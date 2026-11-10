@@ -5,6 +5,9 @@
  * (cx, cy) vai de cx a cx + 1. O movimento e resolvido um eixo por vez, o que
  * produz o deslizar ao longo da parede de graca.
  *
+ * Quem e solido vem de um predicado `Solid`: a grade sozinha, ou a grade mais
+ * as bombas que aquele jogador nao pode atravessar.
+ *
  * Varre todas as colunas (ou linhas) entre a borda atual e a borda alvo, entao
  * nao ha tunelamento mesmo com passo maior que uma celula.
  */
@@ -15,6 +18,9 @@ import { cellAt, type Grid } from "../domain/grid.js";
 const EPS = BALANCE.physics.collisionEpsilon;
 
 export type Axis = "x" | "y";
+
+/** A celula (cx, cy) bloqueia o movimento? */
+export type Solid = (cx: number, cy: number) => boolean;
 
 export interface Box {
   readonly x: number;
@@ -28,20 +34,29 @@ export function isBlocked(grid: Grid, cx: number, cy: number): boolean {
   return blocksMovement(cellAt(grid, cx, cy));
 }
 
-/** A caixa ocupa alguma celula bloqueada? */
-export function overlapsBlocked(grid: Grid, box: Box): boolean {
+/** Solidez so da grade: parede, caixa e fora da arena. */
+export function gridSolid(grid: Grid): Solid {
+  return (cx, cy) => isBlocked(grid, cx, cy);
+}
+
+/** Celulas que a caixa ocupa, em indices de coluna e linha. */
+export function cellsOverlapped(box: Box): { x: number; y: number }[] {
+  const cells: { x: number; y: number }[] = [];
   const x0 = Math.floor(box.x - box.half + EPS);
   const x1 = Math.floor(box.x + box.half - EPS);
   const y0 = Math.floor(box.y - box.half + EPS);
   const y1 = Math.floor(box.y + box.half - EPS);
   for (let cy = y0; cy <= y1; cy += 1) {
     for (let cx = x0; cx <= x1; cx += 1) {
-      if (isBlocked(grid, cx, cy)) {
-        return true;
-      }
+      cells.push({ x: cx, y: cy });
     }
   }
-  return false;
+  return cells;
+}
+
+/** A caixa ocupa alguma celula solida? */
+export function overlapsBlocked(solid: Solid, box: Box): boolean {
+  return cellsOverlapped(box).some((c) => solid(c.x, c.y));
 }
 
 /**
@@ -49,7 +64,7 @@ export function overlapsBlocked(grid: Grid, box: Box): boolean {
  * desse eixo, parando encostada na primeira celula bloqueada.
  */
 export function moveAlongAxis(
-  grid: Grid,
+  solid: Solid,
   box: Box,
   axis: Axis,
   delta: number,
@@ -68,8 +83,7 @@ export function moveAlongAxis(
 
   const blockedAt = (line: number): boolean => {
     for (let lane = lane0; lane <= lane1; lane += 1) {
-      const blocked =
-        axis === "x" ? isBlocked(grid, line, lane) : isBlocked(grid, lane, line);
+      const blocked = axis === "x" ? solid(line, lane) : solid(lane, line);
       if (blocked) {
         return true;
       }

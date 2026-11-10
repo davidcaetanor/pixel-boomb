@@ -5,7 +5,7 @@
 export interface Explosion {
   readonly id: number;
   readonly ownerId: string;
-  /** Indices de celula atingidos, incluindo a celula da bomba. */
+  /** Indices de celula atingidos. O primeiro e sempre a celula da bomba. */
   readonly cells: readonly number[];
   /** Segundos restantes de chama. */
   remaining: number;

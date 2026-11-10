@@ -13,9 +13,8 @@
 import type { AxisIntent, InputCommand } from "../commands/input-command.js";
 import { CELL_CENTER } from "../config/arena.js";
 import { BALANCE } from "../config/balance.js";
-import type { Grid } from "../domain/grid.js";
 import { Facing, type Player } from "../domain/player.js";
-import { isBlocked, moveAlongAxis, type Axis } from "./grid-collision.js";
+import { moveAlongAxis, type Axis, type Solid } from "./grid-collision.js";
 
 export const PLAYER_HALF = BALANCE.player.hitboxSize / 2;
 
@@ -55,7 +54,7 @@ interface AxisMove {
 }
 
 function moveOnAxis(
-  grid: Grid,
+  solid: Solid,
   pos: Position,
   axis: Axis,
   dir: AxisIntent,
@@ -67,7 +66,7 @@ function moveOnAxis(
 
   const box = { x: pos.x, y: pos.y, half: PLAYER_HALF };
   const along = axis === "x" ? pos.x : pos.y;
-  const reached = moveAlongAxis(grid, box, axis, dir * distance);
+  const reached = moveAlongAxis(solid, box, axis, dir * distance);
   const moved = Math.abs(reached - along);
   const leftover = distance - moved;
   let next: Position = axis === "x" ? { x: reached, y: pos.y } : { x: pos.x, y: reached };
@@ -89,8 +88,7 @@ function moveOnAxis(
   // Bloqueado significa borda encostada numa linha inteira da grade.
   const edgeLine = Math.round(leadEdge);
   const ahead = dir > 0 ? edgeLine : edgeLine - 1;
-  const aheadBlocked =
-    axis === "x" ? isBlocked(grid, ahead, lane) : isBlocked(grid, lane, ahead);
+  const aheadBlocked = axis === "x" ? solid(ahead, lane) : solid(lane, ahead);
   if (aheadBlocked) {
     return { pos: next, blocked: true };
   }
@@ -98,7 +96,7 @@ function moveOnAxis(
   const crossAxis: Axis = axis === "x" ? "y" : "x";
   const nudge = Math.sign(offset) * Math.min(leftover, Math.abs(offset));
   const crossBox = { x: next.x, y: next.y, half: PLAYER_HALF };
-  const crossReached = moveAlongAxis(grid, crossBox, crossAxis, nudge);
+  const crossReached = moveAlongAxis(solid, crossBox, crossAxis, nudge);
   next = crossAxis === "x" ? { x: crossReached, y: next.y } : { x: next.x, y: crossReached };
   return { pos: next, blocked: false };
 }
@@ -108,7 +106,7 @@ function moveOnAxis(
  * Funcao pura: nao muta nada.
  */
 export function movePlayer(
-  grid: Grid,
+  solid: Solid,
   player: Pick<Player, "x" | "y" | "speed">,
   input: InputCommand,
   dt: number,
@@ -123,13 +121,13 @@ export function movePlayer(
   const first: Axis = intent[preferred] !== 0 ? preferred : preferred === "x" ? "y" : "x";
   const second: Axis = first === "x" ? "y" : "x";
 
-  const tried = moveOnAxis(grid, start, first, intent[first], distance);
+  const tried = moveOnAxis(solid, start, first, intent[first], distance);
   if (!tried.blocked || intent[second] === 0) {
     return withFacing(start, tried.pos, first, intent[first]);
   }
   // Preferido travado: usa o outro a partir do ponto original, sem o
   // avanco parcial, para o jogador nao virar de lado por um tick.
-  const fallback = moveOnAxis(grid, start, second, intent[second], distance);
+  const fallback = moveOnAxis(solid, start, second, intent[second], distance);
   return withFacing(start, fallback.pos, second, intent[second]);
 }
 
