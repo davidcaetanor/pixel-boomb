@@ -1,8 +1,8 @@
-# Bloco do PixelBoom para o /etc/caddy/Caddyfile da VPS.
-# Troque o dominio pelo seu. O Caddy emite e renova o certificado sozinho
-# (precisa da porta 80 aberta) e repassa pagina e WebSocket para o container.
+# Proxy HTTPS para o container. A emissao e a renovacao do certificado
+# dependem da porta 80 acessivel.
 
 pixelboomb.duckdns.org {
 	encode zstd gzip
+	header -Server
 	reverse_proxy 127.0.0.1:2567
 }
