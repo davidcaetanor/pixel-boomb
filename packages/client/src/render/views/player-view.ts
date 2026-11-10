@@ -22,6 +22,9 @@ const WALK_FRAME_RATE = 10;
 const MOVING_THRESHOLD = 1e-6;
 /** Tempo parado antes de trocar para o frame de repouso. */
 const IDLE_GRACE_SECONDS = 0.12;
+/** Frame de morte provisorio: tinge de vermelho e some. */
+const DEATH_TINT = 0xff4040;
+const DEATH_FADE_MS = 450;
 
 function animKey(dir: DirecaoFolha): string {
   return `${FOLHA_JOGADOR.chave}-andar-${dir}`;
@@ -54,8 +57,9 @@ export class PlayerView {
   private readonly sprite: Phaser.GameObjects.Sprite;
   private facing: DirecaoFolha = "south";
   private stillFor = IDLE_GRACE_SECONDS;
+  private morto = false;
 
-  constructor(scene: Phaser.Scene) {
+  constructor(private readonly scene: Phaser.Scene) {
     registerPlayerAnimations(scene);
     this.sprite = scene.add
       .sprite(0, 0, FOLHA_JOGADOR.chave, idleFrame(this.facing))
@@ -66,7 +70,11 @@ export class PlayerView {
     const x = Phaser.Math.Linear(previous.x, current.x, alpha);
     const y = Phaser.Math.Linear(previous.y, current.y, alpha);
     this.sprite.setPosition(x * TILE_SIZE, y * TILE_SIZE);
-    this.sprite.setVisible(current.alive);
+
+    if (!current.alive) {
+      this.morre();
+      return;
+    }
 
     const dx = current.x - previous.x;
     const dy = current.y - previous.y;
@@ -83,5 +91,15 @@ export class PlayerView {
       this.sprite.anims.stop();
       this.sprite.setFrame(idleFrame(this.facing));
     }
+  }
+
+  private morre(): void {
+    if (this.morto) {
+      return;
+    }
+    this.morto = true;
+    this.sprite.anims.stop();
+    this.sprite.setFrame(idleFrame(this.facing)).setTint(DEATH_TINT);
+    this.scene.tweens.add({ targets: this.sprite, alpha: 0, duration: DEATH_FADE_MS });
   }
 }
