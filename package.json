@@ -1,0 +1,22 @@
+{
+  "name": "pixelboom",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "pnpm --filter @pixelboom/shared build && pnpm --filter @pixelboom/client build && pnpm --filter @pixelboom/server build",
+    "dev": "pnpm --filter @pixelboom/client dev",
+    "dev:server": "pnpm --filter @pixelboom/server dev",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm --filter @pixelboom/shared test",
+    "lint": "eslint .",
+    "check": "pnpm lint && pnpm typecheck && pnpm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.2"
+  }
+}

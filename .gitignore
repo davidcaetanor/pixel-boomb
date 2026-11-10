@@ -1,0 +1,26 @@
+# Dependencias e artefatos gerados
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Segredos, nada aqui pode ir pro repositorio
+.env
+.env.*
+!.env.example
+.mcp.json
+.claude/settings.local.json
+
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Documentacao do projeto, fora do versionamento por decisao do David
+docs/
+
+# Temporarios
+_tmp-*
+assets/source/**/*.tmp
