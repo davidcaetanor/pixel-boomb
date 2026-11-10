@@ -1,7 +1,8 @@
 # PixelBoom
 
 Jogo multiplayer de arena em grade estilo Bomberman, em pixel art, rodando no
-navegador. Ate 8 jogadores por sala. Projeto de faculdade, desktop apenas.
+navegador. 
+Ate 8 jogadores por sala. 
 
 ## Stack
 
