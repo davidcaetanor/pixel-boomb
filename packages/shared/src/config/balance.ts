@@ -19,6 +19,21 @@ export const BALANCE = {
     rangeInitial: 2,
     rangeStep: 1,
     rangeMax: 6,
+
+    /**
+     * Lado da caixa de colisao do jogador, em celulas. Menor que 1 para caber
+     * no corredor com folga; o desvio de quina cuida do alinhamento.
+     */
+    hitboxSize: 0.8,
+  },
+
+  /** Colisao contra a grade. */
+  physics: {
+    /**
+     * Folga numerica para que encostar exatamente na borda de uma celula
+     * nao conte como estar dentro dela.
+     */
+    collisionEpsilon: 1e-9,
   },
 
   /** Tempos, sempre em segundos. */

@@ -17,6 +17,9 @@ export const RENDER_ZOOM = 2;
 export const LOGICAL_WIDTH = ARENA_COLS * TILE_SIZE;
 export const LOGICAL_HEIGHT = ARENA_ROWS * TILE_SIZE;
 
+/** Deslocamento do canto ao centro de uma celula, em unidades de celula. */
+export const CELL_CENTER = 0.5;
+
 export const CELL_COUNT = ARENA_COLS * ARENA_ROWS;
 
 /** Perimetro indestrutivel. */
