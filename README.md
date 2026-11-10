@@ -1,4 +1,4 @@
-# PixelBoom
+# Pixel-Boomb
 
 Jogo multiplayer de arena em grade estilo Bomberman, em pixel art, rodando no
 navegador. 
