@@ -1,0 +1,196 @@
+{
+  "objects": [
+    {
+      "id": "f9289596-7073-4867-8259-411cd703e537",
+      "name": "up_bomb_quantity",
+      "prompt": "a pickup icon, a small black bomb symbol centered on a rounded pale cream capsule with a thick dark outline, high contrast, bright and readable. Centered with transparent space around it.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "d9fa4bd0-7b76-4447-b4d0-2959b5cc7dca",
+      "name": "up_bomb_force",
+      "prompt": "a pickup icon, a small black bomb symbol centered on a rounded pale cream capsule with a thick dark outline, high contrast, bright and readable. Centered with transparent space around it.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "4833da42-4169-4567-b39c-5549d09b790b",
+      "name": "up_speed",
+      "prompt": "a pickup icon, a small black bomb symbol centered on a rounded pale cream capsule with a thick dark outline, high contrast, bright and readable. Centered with transparent space around it.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "85fbb616-21a1-42b9-8849-f3b94a986ddf",
+      "name": "bomb",
+      "prompt": "a round black cartoon bomb with a short curved fuse, classic sphere shape, one bright white highlight on the upper left of the sphere, a small bright orange spark at the fuse tip. Centered with transparent space around it, not filling the frame.\n\na bright explosion burst, white core surrounded by yellow and then orange flame, the brightest possible element, radiating outward toward all four edges. Fills the entire frame edge to edge.\n\na bright horizontal band of explosion flame, white core with yellow and orange edges, spanning the full width and touching the left and right edges of the frame, with transparent space above and below.\n\na bright rounded cap of explosion flame, white core with yellow and orange edges, touching the left edge of the frame and rounded on the right, with transparent space above and below.\n\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    }
+  ],
+  "groups": [
+    {
+      "group_id": "bafdd764-61d3-4834-a1e5-58b6e348e04f",
+      "folder": "objects/powerup_bombs",
+      "objects": [
+        {
+          "id": "f9289596-7073-4867-8259-411cd703e537",
+          "name": "up_bomb_quantity",
+          "prompt": "a pickup icon, a small black bomb symbol centered on a rounded pale cream capsule with a thick dark outline, high contrast, bright and readable. Centered with transparent space around it.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        },
+        {
+          "id": "d9fa4bd0-7b76-4447-b4d0-2959b5cc7dca",
+          "name": "up_bomb_force",
+          "prompt": "a pickup icon, a small black bomb symbol centered on a rounded pale cream capsule with a thick dark outline, high contrast, bright and readable. Centered with transparent space around it.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        },
+        {
+          "id": "4833da42-4169-4567-b39c-5549d09b790b",
+          "name": "up_speed",
+          "prompt": "a pickup icon, a small black bomb symbol centered on a rounded pale cream capsule with a thick dark outline, high contrast, bright and readable. Centered with transparent space around it.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        }
+      ]
+    },
+    {
+      "group_id": "32bd0c03-e8cb-4c3e-a095-2792c7a08222",
+      "folder": "objects/bomb",
+      "objects": [
+        {
+          "id": "85fbb616-21a1-42b9-8849-f3b94a986ddf",
+          "name": "bomb",
+          "prompt": "a round black cartoon bomb with a short curved fuse, classic sphere shape, one bright white highlight on the upper left of the sphere, a small bright orange spark at the fuse tip. Centered with transparent space around it, not filling the frame.\n\na bright explosion burst, white core surrounded by yellow and then orange flame, the brightest possible element, radiating outward toward all four edges. Fills the entire frame edge to edge.\n\na bright horizontal band of explosion flame, white core with yellow and orange edges, spanning the full width and touching the left and right edges of the frame, with transparent space above and below.\n\na bright rounded cap of explosion flame, white core with yellow and orange edges, touching the left edge of the frame and rounded on the right, with transparent space above and below.\n\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        }
+      ]
+    }
+  ],
+  "export_version": "1.1",
+  "export_date": "2026-11-10T02:01:50.236922"
+}

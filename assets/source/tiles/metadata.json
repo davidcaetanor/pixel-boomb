@@ -1,0 +1,316 @@
+{
+  "objects": [
+    {
+      "id": "9a7eca03-77f0-4dce-9052-b788147f5333",
+      "name": "spawnpoint_block",
+      "prompt": "A single square player spawn marker for a colorful top-down Bomberman-style game, designed as a reusable game object. A compact square platform viewed directly from above, with a thick dark outer outline, a clean beveled border and a flat solid-colored inner square. Slightly rounded pixel-art corners, subtle dimensional shading and a simple symmetrical design. The central square must have a uniform neutral light azul color, with no colored accents, gradients or patterns. The outer frame should use neutral dark blue and. The design must be easy to recolor by changing only the central square color. Keep the shape, outline, border, shading, proportions and lighting identical across all color variations. No text, no numbers, no characters, no additional objects. 32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow",
+      "size": {
+        "width": 32,
+        "height": 32
+      },
+      "directions": 1,
+      "view": "low top-down",
+      "rotations": {
+        "unknown": "rotations/spawnpoint_block.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "ea7fe187-56c3-41d5-a9f3-7c7e48bff5b0",
+      "name": "large_tree",
+      "prompt": "A large rounded tree for an enchanted forest top-down cartoon game. Broad, full and voluminous spherical canopy, formed by multiple large overlapping clusters of lush bright green foliage. Vibrant lime-green highlights on the upper surface, natural leafy green midtones and deep emerald green shadows underneath. Thick, sturdy brown trunk with visible branching roots spreading slightly across the ground. Wide and imposing silhouette, dense foliage, thick dark outlines, clean 16-bit pixel art shading. Rich but controlled colors, consistent light source from the upper left. Isolated tree, no background, no extra objects, no flowers, no fruit, no ground tile.\n\n32x32 tile, fills the entire frame edge to edge with no transparent margin, tiles seamlessly when repeated side by side and stacked.\nPixel art for a cute cartoon top-down arena game. Flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts, at least one clearly light element. No volumetric shading, no gradient, no texture, no anti-aliasing, no gritty or gloomy mood, no realistic rendering. Light from the upper left. Transparent background. Nothing outside the subject itself: no sparkles, no glints, no glow, no floating decorations, no blush, no drop shadow, no text.",
+      "size": {
+        "width": 32,
+        "height": 32
+      },
+      "directions": 1,
+      "view": "low top-down",
+      "rotations": {
+        "unknown": "rotations/large_tree.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "1b99fd99-8ae6-4036-ada1-c6dfa2905f6c",
+      "name": "small_tree",
+      "prompt": "A small rounded tree for an enchanted forest top-down cartoon game. Compact, dense and spherical green canopy, with several overlapping rounded clusters of bright lime-green and natural leaf-green foliage. Darker emerald green shading along the lower edges, subtle yellow-green highlights on top. Short, narrow brown trunk with small visible roots. Cute, chunky silhouette, thick dark outlines, clean 16-bit pixel art shading. Rich but controlled colors, consistent light source from the upper left. Isolated tree, no background, no extra objects, no flowers, no fruit, no ground tile.\n\n32x32 tile, fills the entire frame edge to edge with no transparent margin, tiles seamlessly when repeated side by side and stacked.\nPixel art for a cute cartoon top-down arena game. Flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts, at least one clearly light element. No volumetric shading, no gradient, no texture, no anti-aliasing, no gritty or gloomy mood, no realistic rendering. Light from the upper left. Transparent background. Nothing outside the subject itself: no sparkles, no glints, no glow, no floating decorations, no blush, no drop shadow, no text.",
+      "size": {
+        "width": 32,
+        "height": 32
+      },
+      "directions": 1,
+      "view": "low top-down",
+      "rotations": {
+        "unknown": "rotations/small_tree.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "b2d4f088-7b65-40b6-b779-1d9d05d429cc",
+      "name": "wood_box",
+      "prompt": "a wooden crate, warm light brown wood, lighter and friendlier than stone, three horizontal plank lines and darker wood braces at the corners, looks light and breakable. The tile fills the entire frame edge to edge with no transparent margin, and tiles seamlessly when repeated side by side.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "046623dd-d10a-4bc1-9375-78c46a2ad44b",
+      "name": "stone_block",
+      "prompt": "a solid stone block wall tile, cool blue-grey stone, flat top face and a visible darker front face, heavy and immovable, clean straight edges, a few simple blocky shapes to suggest stone without texture. The tile fills the entire frame edge to edge with no transparent margin, and tiles seamlessly when repeated side by side and stacked.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "4a4a9eca-3c28-47bc-bfff-21177899fe4d",
+      "name": "horizontal_explosion",
+      "prompt": "a bright horizontal band of explosion flame, white core with yellow and orange edges, spanning the full width and touching the left and right edges of the frame, with transparent space above and below.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    },
+    {
+      "id": "64eca7e2-64e7-415b-8751-0aa14fbb01c7",
+      "name": "explosion_burst",
+      "prompt": "a bright explosion burst, white core surrounded by yellow and then orange flame, the brightest possible element, radiating outward toward all four edges. Fills the entire frame edge to edge.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+      "size": {
+        "width": 34,
+        "height": 34
+      },
+      "directions": 8,
+      "view": "low top-down",
+      "rotations": {
+        "south": "rotations/south.png",
+        "south-east": "rotations/south-east.png",
+        "east": "rotations/east.png",
+        "north-east": "rotations/north-east.png",
+        "north": "rotations/north.png",
+        "north-west": "rotations/north-west.png",
+        "west": "rotations/west.png",
+        "south-west": "rotations/south-west.png"
+      },
+      "animations": {}
+    }
+  ],
+  "groups": [
+    {
+      "group_id": "ea738599-8940-4f09-aeb0-3ea269c83a3f",
+      "folder": "tiles/spawnpoint_block",
+      "objects": [
+        {
+          "id": "9a7eca03-77f0-4dce-9052-b788147f5333",
+          "name": "spawnpoint_block",
+          "prompt": "A single square player spawn marker for a colorful top-down Bomberman-style game, designed as a reusable game object. A compact square platform viewed directly from above, with a thick dark outer outline, a clean beveled border and a flat solid-colored inner square. Slightly rounded pixel-art corners, subtle dimensional shading and a simple symmetrical design. The central square must have a uniform neutral light azul color, with no colored accents, gradients or patterns. The outer frame should use neutral dark blue and. The design must be easy to recolor by changing only the central square color. Keep the shape, outline, border, shading, proportions and lighting identical across all color variations. No text, no numbers, no characters, no additional objects. 32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow",
+          "size": {
+            "width": 32,
+            "height": 32
+          },
+          "directions": 1,
+          "view": "low top-down",
+          "rotations": {
+            "unknown": "rotations/spawnpoint_block.png"
+          },
+          "animations": {}
+        }
+      ]
+    },
+    {
+      "group_id": "1acaf95f-2268-4d71-9c1a-e1084a73f857",
+      "folder": "tiles/large_tree",
+      "objects": [
+        {
+          "id": "ea7fe187-56c3-41d5-a9f3-7c7e48bff5b0",
+          "name": "large_tree",
+          "prompt": "A large rounded tree for an enchanted forest top-down cartoon game. Broad, full and voluminous spherical canopy, formed by multiple large overlapping clusters of lush bright green foliage. Vibrant lime-green highlights on the upper surface, natural leafy green midtones and deep emerald green shadows underneath. Thick, sturdy brown trunk with visible branching roots spreading slightly across the ground. Wide and imposing silhouette, dense foliage, thick dark outlines, clean 16-bit pixel art shading. Rich but controlled colors, consistent light source from the upper left. Isolated tree, no background, no extra objects, no flowers, no fruit, no ground tile.\n\n32x32 tile, fills the entire frame edge to edge with no transparent margin, tiles seamlessly when repeated side by side and stacked.\nPixel art for a cute cartoon top-down arena game. Flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts, at least one clearly light element. No volumetric shading, no gradient, no texture, no anti-aliasing, no gritty or gloomy mood, no realistic rendering. Light from the upper left. Transparent background. Nothing outside the subject itself: no sparkles, no glints, no glow, no floating decorations, no blush, no drop shadow, no text.",
+          "size": {
+            "width": 32,
+            "height": 32
+          },
+          "directions": 1,
+          "view": "low top-down",
+          "rotations": {
+            "unknown": "rotations/large_tree.png"
+          },
+          "animations": {}
+        }
+      ]
+    },
+    {
+      "group_id": "c4fdf2c3-474c-4afa-856d-6d305824cb2e",
+      "folder": "tiles/small_tree",
+      "objects": [
+        {
+          "id": "1b99fd99-8ae6-4036-ada1-c6dfa2905f6c",
+          "name": "small_tree",
+          "prompt": "A small rounded tree for an enchanted forest top-down cartoon game. Compact, dense and spherical green canopy, with several overlapping rounded clusters of bright lime-green and natural leaf-green foliage. Darker emerald green shading along the lower edges, subtle yellow-green highlights on top. Short, narrow brown trunk with small visible roots. Cute, chunky silhouette, thick dark outlines, clean 16-bit pixel art shading. Rich but controlled colors, consistent light source from the upper left. Isolated tree, no background, no extra objects, no flowers, no fruit, no ground tile.\n\n32x32 tile, fills the entire frame edge to edge with no transparent margin, tiles seamlessly when repeated side by side and stacked.\nPixel art for a cute cartoon top-down arena game. Flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts, at least one clearly light element. No volumetric shading, no gradient, no texture, no anti-aliasing, no gritty or gloomy mood, no realistic rendering. Light from the upper left. Transparent background. Nothing outside the subject itself: no sparkles, no glints, no glow, no floating decorations, no blush, no drop shadow, no text.",
+          "size": {
+            "width": 32,
+            "height": 32
+          },
+          "directions": 1,
+          "view": "low top-down",
+          "rotations": {
+            "unknown": "rotations/small_tree.png"
+          },
+          "animations": {}
+        }
+      ]
+    },
+    {
+      "group_id": "2aa23391-8f15-4e55-81e9-c236ad272d79",
+      "folder": "tiles/wood_box",
+      "objects": [
+        {
+          "id": "b2d4f088-7b65-40b6-b779-1d9d05d429cc",
+          "name": "wood_box",
+          "prompt": "a wooden crate, warm light brown wood, lighter and friendlier than stone, three horizontal plank lines and darker wood braces at the corners, looks light and breakable. The tile fills the entire frame edge to edge with no transparent margin, and tiles seamlessly when repeated side by side.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        }
+      ]
+    },
+    {
+      "group_id": "1a9e10d4-a589-43cc-8f20-ce93b09fd01e",
+      "folder": "tiles/stone_block",
+      "objects": [
+        {
+          "id": "046623dd-d10a-4bc1-9375-78c46a2ad44b",
+          "name": "stone_block",
+          "prompt": "a solid stone block wall tile, cool blue-grey stone, flat top face and a visible darker front face, heavy and immovable, clean straight edges, a few simple blocky shapes to suggest stone without texture. The tile fills the entire frame edge to edge with no transparent margin, and tiles seamlessly when repeated side by side and stacked.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        }
+      ]
+    },
+    {
+      "group_id": "8655feb8-f2bf-482f-9a17-b53cd2702544",
+      "folder": "tiles/horizontal_explosion",
+      "objects": [
+        {
+          "id": "4a4a9eca-3c28-47bc-bfff-21177899fe4d",
+          "name": "horizontal_explosion",
+          "prompt": "a bright horizontal band of explosion flame, white core with yellow and orange edges, spanning the full width and touching the left and right edges of the frame, with transparent space above and below.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        }
+      ]
+    },
+    {
+      "group_id": "c04f84d6-e8fa-4476-b102-c68b0a1695f0",
+      "folder": "tiles/explosion_burst",
+      "objects": [
+        {
+          "id": "64eca7e2-64e7-415b-8751-0aa14fbb01c7",
+          "name": "explosion_burst",
+          "prompt": "a bright explosion burst, white core surrounded by yellow and then orange flame, the brightest possible element, radiating outward toward all four edges. Fills the entire frame edge to edge.\n\n32x32 pixel art game object sprite, cute cartoon style matching a friendly top-down game, single object centered, flat cel shading with only two tones per color, thick dark outline, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty mood, no realistic rendering, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background. Nothing outside the object itself, no sparkles, no glow.",
+          "size": {
+            "width": 34,
+            "height": 34
+          },
+          "directions": 8,
+          "view": "low top-down",
+          "rotations": {
+            "south": "rotations/south.png",
+            "south-east": "rotations/south-east.png",
+            "east": "rotations/east.png",
+            "north-east": "rotations/north-east.png",
+            "north": "rotations/north.png",
+            "north-west": "rotations/north-west.png",
+            "west": "rotations/west.png",
+            "south-west": "rotations/south-west.png"
+          },
+          "animations": {}
+        }
+      ]
+    }
+  ],
+  "export_version": "1.1",
+  "export_date": "2026-11-10T02:01:50.236922"
+}

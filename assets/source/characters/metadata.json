@@ -1,0 +1,1592 @@
+{
+  "groups": [
+    {
+      "group_id": "bdb331ae-6880-4cc4-b72d-eb67665e1d2e",
+      "folder": "characters/karasuno",
+      "states": [
+        {
+          "character": {
+            "id": "551dfeab-74eb-4fa7-9582-75cba8abcc79",
+            "name": "karasuno",
+            "prompt": "a cute cartoon crow standing upright, big round head with a large light grey beak pointing down and forward, one large white eye with a small black pupil and an angled eyebrow giving a grumpy expression, small body, dark navy triangular cape with straight edges widening to a flat hem, red scarf at the neck. No plume, no antenna, no spike, no weapon, no armor.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "mannequin",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T22:34:05.819420+00:00"
+          },
+          "folder": "characters/karasuno",
+          "frames": {
+            "rotations": {
+              "south": "characters/karasuno/rotations/south.png",
+              "south-east": "characters/karasuno/rotations/south-east.png",
+              "east": "characters/karasuno/rotations/east.png",
+              "north-east": "characters/karasuno/rotations/north-east.png",
+              "north": "characters/karasuno/rotations/north.png",
+              "north-west": "characters/karasuno/rotations/north-west.png",
+              "west": "characters/karasuno/rotations/west.png",
+              "south-west": "characters/karasuno/rotations/south-west.png"
+            },
+            "animations": {
+              "Walking": {
+                "north-east": [
+                  "characters/karasuno/animations/Walking/north-east/frame_000.png",
+                  "characters/karasuno/animations/Walking/north-east/frame_001.png",
+                  "characters/karasuno/animations/Walking/north-east/frame_002.png",
+                  "characters/karasuno/animations/Walking/north-east/frame_003.png",
+                  "characters/karasuno/animations/Walking/north-east/frame_004.png",
+                  "characters/karasuno/animations/Walking/north-east/frame_005.png"
+                ],
+                "north": [
+                  "characters/karasuno/animations/Walking/north/frame_000.png",
+                  "characters/karasuno/animations/Walking/north/frame_001.png",
+                  "characters/karasuno/animations/Walking/north/frame_002.png",
+                  "characters/karasuno/animations/Walking/north/frame_003.png",
+                  "characters/karasuno/animations/Walking/north/frame_004.png",
+                  "characters/karasuno/animations/Walking/north/frame_005.png"
+                ],
+                "east": [
+                  "characters/karasuno/animations/Walking/east/frame_000.png",
+                  "characters/karasuno/animations/Walking/east/frame_001.png",
+                  "characters/karasuno/animations/Walking/east/frame_002.png",
+                  "characters/karasuno/animations/Walking/east/frame_003.png",
+                  "characters/karasuno/animations/Walking/east/frame_004.png",
+                  "characters/karasuno/animations/Walking/east/frame_005.png"
+                ],
+                "south-west": [
+                  "characters/karasuno/animations/Walking/south-west/frame_000.png",
+                  "characters/karasuno/animations/Walking/south-west/frame_001.png",
+                  "characters/karasuno/animations/Walking/south-west/frame_002.png",
+                  "characters/karasuno/animations/Walking/south-west/frame_003.png",
+                  "characters/karasuno/animations/Walking/south-west/frame_004.png",
+                  "characters/karasuno/animations/Walking/south-west/frame_005.png"
+                ],
+                "south": [
+                  "characters/karasuno/animations/Walking/south/frame_000.png",
+                  "characters/karasuno/animations/Walking/south/frame_001.png",
+                  "characters/karasuno/animations/Walking/south/frame_002.png",
+                  "characters/karasuno/animations/Walking/south/frame_003.png",
+                  "characters/karasuno/animations/Walking/south/frame_004.png",
+                  "characters/karasuno/animations/Walking/south/frame_005.png"
+                ],
+                "west": [
+                  "characters/karasuno/animations/Walking/west/frame_000.png",
+                  "characters/karasuno/animations/Walking/west/frame_001.png",
+                  "characters/karasuno/animations/Walking/west/frame_002.png",
+                  "characters/karasuno/animations/Walking/west/frame_003.png",
+                  "characters/karasuno/animations/Walking/west/frame_004.png",
+                  "characters/karasuno/animations/Walking/west/frame_005.png"
+                ],
+                "north-west": [
+                  "characters/karasuno/animations/Walking/north-west/frame_000.png",
+                  "characters/karasuno/animations/Walking/north-west/frame_001.png",
+                  "characters/karasuno/animations/Walking/north-west/frame_002.png",
+                  "characters/karasuno/animations/Walking/north-west/frame_003.png",
+                  "characters/karasuno/animations/Walking/north-west/frame_004.png",
+                  "characters/karasuno/animations/Walking/north-west/frame_005.png"
+                ],
+                "south-east": [
+                  "characters/karasuno/animations/Walking/south-east/frame_000.png",
+                  "characters/karasuno/animations/Walking/south-east/frame_001.png",
+                  "characters/karasuno/animations/Walking/south-east/frame_002.png",
+                  "characters/karasuno/animations/Walking/south-east/frame_003.png",
+                  "characters/karasuno/animations/Walking/south-east/frame_004.png",
+                  "characters/karasuno/animations/Walking/south-east/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "group_id": "60dff5e4-a212-40ca-a827-0ad05b41a0b5",
+      "folder": "characters/papyrus",
+      "states": [
+        {
+          "character": {
+            "id": "d385f556-7ad0-4b5d-ab11-806a6ef62f19",
+            "name": "papyrus",
+            "prompt": "a cute cartoon skeleton, the thinnest character, big round cream-white skull with two large dark eye sockets, very narrow body, thin long limbs, a red scarf at the neck flowing to one side. Thick dark outline to separate the pale bones from the background. No detailed ribs, no individual fingers, no joint details, not scary.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "mannequin",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T21:32:45.825405+00:00"
+          },
+          "folder": "characters/papyrus",
+          "frames": {
+            "rotations": {
+              "south": "characters/papyrus/rotations/south.png",
+              "south-east": "characters/papyrus/rotations/south-east.png",
+              "east": "characters/papyrus/rotations/east.png",
+              "north-east": "characters/papyrus/rotations/north-east.png",
+              "north": "characters/papyrus/rotations/north.png",
+              "north-west": "characters/papyrus/rotations/north-west.png",
+              "west": "characters/papyrus/rotations/west.png",
+              "south-west": "characters/papyrus/rotations/south-west.png"
+            },
+            "animations": {
+              "Walking": {
+                "north": [
+                  "characters/papyrus/animations/Walking/north/frame_000.png",
+                  "characters/papyrus/animations/Walking/north/frame_001.png",
+                  "characters/papyrus/animations/Walking/north/frame_002.png",
+                  "characters/papyrus/animations/Walking/north/frame_003.png",
+                  "characters/papyrus/animations/Walking/north/frame_004.png",
+                  "characters/papyrus/animations/Walking/north/frame_005.png"
+                ],
+                "north-west": [
+                  "characters/papyrus/animations/Walking/north-west/frame_000.png",
+                  "characters/papyrus/animations/Walking/north-west/frame_001.png",
+                  "characters/papyrus/animations/Walking/north-west/frame_002.png",
+                  "characters/papyrus/animations/Walking/north-west/frame_003.png",
+                  "characters/papyrus/animations/Walking/north-west/frame_004.png",
+                  "characters/papyrus/animations/Walking/north-west/frame_005.png"
+                ],
+                "south": [
+                  "characters/papyrus/animations/Walking/south/frame_000.png",
+                  "characters/papyrus/animations/Walking/south/frame_001.png",
+                  "characters/papyrus/animations/Walking/south/frame_002.png",
+                  "characters/papyrus/animations/Walking/south/frame_003.png",
+                  "characters/papyrus/animations/Walking/south/frame_004.png",
+                  "characters/papyrus/animations/Walking/south/frame_005.png"
+                ],
+                "west": [
+                  "characters/papyrus/animations/Walking/west/frame_000.png",
+                  "characters/papyrus/animations/Walking/west/frame_001.png",
+                  "characters/papyrus/animations/Walking/west/frame_002.png",
+                  "characters/papyrus/animations/Walking/west/frame_003.png",
+                  "characters/papyrus/animations/Walking/west/frame_004.png",
+                  "characters/papyrus/animations/Walking/west/frame_005.png"
+                ],
+                "south-west": [
+                  "characters/papyrus/animations/Walking/south-west/frame_000.png",
+                  "characters/papyrus/animations/Walking/south-west/frame_001.png",
+                  "characters/papyrus/animations/Walking/south-west/frame_002.png",
+                  "characters/papyrus/animations/Walking/south-west/frame_003.png",
+                  "characters/papyrus/animations/Walking/south-west/frame_004.png",
+                  "characters/papyrus/animations/Walking/south-west/frame_005.png"
+                ],
+                "east": [
+                  "characters/papyrus/animations/Walking/east/frame_000.png",
+                  "characters/papyrus/animations/Walking/east/frame_001.png",
+                  "characters/papyrus/animations/Walking/east/frame_002.png",
+                  "characters/papyrus/animations/Walking/east/frame_003.png",
+                  "characters/papyrus/animations/Walking/east/frame_004.png",
+                  "characters/papyrus/animations/Walking/east/frame_005.png"
+                ],
+                "south-east": [
+                  "characters/papyrus/animations/Walking/south-east/frame_000.png",
+                  "characters/papyrus/animations/Walking/south-east/frame_001.png",
+                  "characters/papyrus/animations/Walking/south-east/frame_002.png",
+                  "characters/papyrus/animations/Walking/south-east/frame_003.png",
+                  "characters/papyrus/animations/Walking/south-east/frame_004.png",
+                  "characters/papyrus/animations/Walking/south-east/frame_005.png"
+                ],
+                "north-east": [
+                  "characters/papyrus/animations/Walking/north-east/frame_000.png",
+                  "characters/papyrus/animations/Walking/north-east/frame_001.png",
+                  "characters/papyrus/animations/Walking/north-east/frame_002.png",
+                  "characters/papyrus/animations/Walking/north-east/frame_003.png",
+                  "characters/papyrus/animations/Walking/north-east/frame_004.png",
+                  "characters/papyrus/animations/Walking/north-east/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "group_id": "a59e379e-9f69-491f-b2de-84803849dac9",
+      "folder": "characters/bender",
+      "states": [
+        {
+          "character": {
+            "id": "dba46719-3bfb-46c5-aaa7-f6b09fef68c8",
+            "name": "bender",
+            "prompt": "a cute cartoon robot, big perfectly cubic head made of light grey metal, narrow slim body much thinner than the head, one thin antenna with a small glowing ball on top, two large bright cyan rectangular eyes on the cube face, one cyan panel on the chest only, short smooth limbs. Light grey and pale blue palette. No segmented arms, no joint rings, no rivets, no panel lines.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "mannequin",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T21:32:22.336336+00:00"
+          },
+          "folder": "characters/bender",
+          "frames": {
+            "rotations": {
+              "south": "characters/bender/rotations/south.png",
+              "south-east": "characters/bender/rotations/south-east.png",
+              "east": "characters/bender/rotations/east.png",
+              "north-east": "characters/bender/rotations/north-east.png",
+              "north": "characters/bender/rotations/north.png",
+              "north-west": "characters/bender/rotations/north-west.png",
+              "west": "characters/bender/rotations/west.png",
+              "south-west": "characters/bender/rotations/south-west.png"
+            },
+            "animations": {
+              "Walk": {
+                "north-west": [
+                  "characters/bender/animations/Walk/north-west/frame_000.png",
+                  "characters/bender/animations/Walk/north-west/frame_001.png",
+                  "characters/bender/animations/Walk/north-west/frame_002.png",
+                  "characters/bender/animations/Walk/north-west/frame_003.png",
+                  "characters/bender/animations/Walk/north-west/frame_004.png",
+                  "characters/bender/animations/Walk/north-west/frame_005.png"
+                ],
+                "south-west": [
+                  "characters/bender/animations/Walk/south-west/frame_000.png",
+                  "characters/bender/animations/Walk/south-west/frame_001.png",
+                  "characters/bender/animations/Walk/south-west/frame_002.png",
+                  "characters/bender/animations/Walk/south-west/frame_003.png",
+                  "characters/bender/animations/Walk/south-west/frame_004.png",
+                  "characters/bender/animations/Walk/south-west/frame_005.png"
+                ],
+                "south": [
+                  "characters/bender/animations/Walk/south/frame_000.png",
+                  "characters/bender/animations/Walk/south/frame_001.png",
+                  "characters/bender/animations/Walk/south/frame_002.png",
+                  "characters/bender/animations/Walk/south/frame_003.png",
+                  "characters/bender/animations/Walk/south/frame_004.png",
+                  "characters/bender/animations/Walk/south/frame_005.png"
+                ],
+                "south-east": [
+                  "characters/bender/animations/Walk/south-east/frame_000.png",
+                  "characters/bender/animations/Walk/south-east/frame_001.png",
+                  "characters/bender/animations/Walk/south-east/frame_002.png",
+                  "characters/bender/animations/Walk/south-east/frame_003.png",
+                  "characters/bender/animations/Walk/south-east/frame_004.png",
+                  "characters/bender/animations/Walk/south-east/frame_005.png"
+                ],
+                "west": [
+                  "characters/bender/animations/Walk/west/frame_000.png",
+                  "characters/bender/animations/Walk/west/frame_001.png",
+                  "characters/bender/animations/Walk/west/frame_002.png",
+                  "characters/bender/animations/Walk/west/frame_003.png",
+                  "characters/bender/animations/Walk/west/frame_004.png",
+                  "characters/bender/animations/Walk/west/frame_005.png"
+                ],
+                "north-east": [
+                  "characters/bender/animations/Walk/north-east/frame_000.png",
+                  "characters/bender/animations/Walk/north-east/frame_001.png",
+                  "characters/bender/animations/Walk/north-east/frame_002.png",
+                  "characters/bender/animations/Walk/north-east/frame_003.png",
+                  "characters/bender/animations/Walk/north-east/frame_004.png",
+                  "characters/bender/animations/Walk/north-east/frame_005.png"
+                ],
+                "east": [
+                  "characters/bender/animations/Walk/east/frame_000.png",
+                  "characters/bender/animations/Walk/east/frame_001.png",
+                  "characters/bender/animations/Walk/east/frame_002.png",
+                  "characters/bender/animations/Walk/east/frame_003.png",
+                  "characters/bender/animations/Walk/east/frame_004.png",
+                  "characters/bender/animations/Walk/east/frame_005.png"
+                ],
+                "north": [
+                  "characters/bender/animations/Walk/north/frame_000.png",
+                  "characters/bender/animations/Walk/north/frame_001.png",
+                  "characters/bender/animations/Walk/north/frame_002.png",
+                  "characters/bender/animations/Walk/north/frame_003.png",
+                  "characters/bender/animations/Walk/north/frame_004.png",
+                  "characters/bender/animations/Walk/north/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "group_id": "a9b0e227-2a03-4902-a98e-ca8d9d41711c",
+      "folder": "characters/cogu",
+      "states": [
+        {
+          "character": {
+            "id": "4b7264ef-5828-48b3-a7da-4cf1f68e8ac7",
+            "name": "cogu",
+            "prompt": "a cute cartoon walking mushroom, very wide smooth red dome cap with a completely unbroken rounded top edge, the cap is the widest part of the whole character, three cream spots on the cap arranged off-center, thin pale cream stem body much narrower than the cap, two small legs, two large dark oval eyes on the stem. Mass concentrated at the top, narrow and open below. No backpack, no chest, no lantern, no held items.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "mannequin",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T21:31:34.128956+00:00"
+          },
+          "folder": "characters/cogu",
+          "frames": {
+            "rotations": {
+              "south": "characters/cogu/rotations/south.png",
+              "south-east": "characters/cogu/rotations/south-east.png",
+              "east": "characters/cogu/rotations/east.png",
+              "north-east": "characters/cogu/rotations/north-east.png",
+              "north": "characters/cogu/rotations/north.png",
+              "north-west": "characters/cogu/rotations/north-west.png",
+              "west": "characters/cogu/rotations/west.png",
+              "south-west": "characters/cogu/rotations/south-west.png"
+            },
+            "animations": {
+              "Walking": {
+                "south-east": [
+                  "characters/cogu/animations/Walking/south-east/frame_000.png",
+                  "characters/cogu/animations/Walking/south-east/frame_001.png",
+                  "characters/cogu/animations/Walking/south-east/frame_002.png",
+                  "characters/cogu/animations/Walking/south-east/frame_003.png",
+                  "characters/cogu/animations/Walking/south-east/frame_004.png",
+                  "characters/cogu/animations/Walking/south-east/frame_005.png"
+                ],
+                "south-west": [
+                  "characters/cogu/animations/Walking/south-west/frame_000.png",
+                  "characters/cogu/animations/Walking/south-west/frame_001.png",
+                  "characters/cogu/animations/Walking/south-west/frame_002.png",
+                  "characters/cogu/animations/Walking/south-west/frame_003.png",
+                  "characters/cogu/animations/Walking/south-west/frame_004.png",
+                  "characters/cogu/animations/Walking/south-west/frame_005.png"
+                ],
+                "north": [
+                  "characters/cogu/animations/Walking/north/frame_000.png",
+                  "characters/cogu/animations/Walking/north/frame_001.png",
+                  "characters/cogu/animations/Walking/north/frame_002.png",
+                  "characters/cogu/animations/Walking/north/frame_003.png",
+                  "characters/cogu/animations/Walking/north/frame_004.png",
+                  "characters/cogu/animations/Walking/north/frame_005.png"
+                ],
+                "north-west": [
+                  "characters/cogu/animations/Walking/north-west/frame_000.png",
+                  "characters/cogu/animations/Walking/north-west/frame_001.png",
+                  "characters/cogu/animations/Walking/north-west/frame_002.png",
+                  "characters/cogu/animations/Walking/north-west/frame_003.png",
+                  "characters/cogu/animations/Walking/north-west/frame_004.png",
+                  "characters/cogu/animations/Walking/north-west/frame_005.png"
+                ],
+                "south": [
+                  "characters/cogu/animations/Walking/south/frame_000.png",
+                  "characters/cogu/animations/Walking/south/frame_001.png",
+                  "characters/cogu/animations/Walking/south/frame_002.png",
+                  "characters/cogu/animations/Walking/south/frame_003.png",
+                  "characters/cogu/animations/Walking/south/frame_004.png",
+                  "characters/cogu/animations/Walking/south/frame_005.png"
+                ],
+                "north-east": [
+                  "characters/cogu/animations/Walking/north-east/frame_000.png",
+                  "characters/cogu/animations/Walking/north-east/frame_001.png",
+                  "characters/cogu/animations/Walking/north-east/frame_002.png",
+                  "characters/cogu/animations/Walking/north-east/frame_003.png",
+                  "characters/cogu/animations/Walking/north-east/frame_004.png",
+                  "characters/cogu/animations/Walking/north-east/frame_005.png"
+                ],
+                "west": [
+                  "characters/cogu/animations/Walking/west/frame_000.png",
+                  "characters/cogu/animations/Walking/west/frame_001.png",
+                  "characters/cogu/animations/Walking/west/frame_002.png",
+                  "characters/cogu/animations/Walking/west/frame_003.png",
+                  "characters/cogu/animations/Walking/west/frame_004.png",
+                  "characters/cogu/animations/Walking/west/frame_005.png"
+                ],
+                "east": [
+                  "characters/cogu/animations/Walking/east/frame_000.png",
+                  "characters/cogu/animations/Walking/east/frame_001.png",
+                  "characters/cogu/animations/Walking/east/frame_002.png",
+                  "characters/cogu/animations/Walking/east/frame_003.png",
+                  "characters/cogu/animations/Walking/east/frame_004.png",
+                  "characters/cogu/animations/Walking/east/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "group_id": "d9aa6373-9e55-4f04-8e79-56d83446ab84",
+      "folder": "characters/golem",
+      "states": [
+        {
+          "character": {
+            "id": "226eb82b-3d6a-4ead-a091-469e192643ba",
+            "name": "golem",
+            "prompt": "a cute cartoon stone golem, the body is the largest part and the head is small \u2014 heavy trapezoidal body of light warm grey stone, broad at the shoulders and narrow at the short legs, one arm roughly twice the size and length of the other in an unmistakably asymmetric pose, two large bright yellow eyes, one patch of green moss on one shoulder only. Pale grey stone with clear light highlights, friendly expression. No cracks, no rock texture, no sprout, not menacing.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "mannequin",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T20:41:26.013847+00:00"
+          },
+          "folder": "characters/golem",
+          "frames": {
+            "rotations": {
+              "south": "characters/golem/rotations/south.png",
+              "south-east": "characters/golem/rotations/south-east.png",
+              "east": "characters/golem/rotations/east.png",
+              "north-east": "characters/golem/rotations/north-east.png",
+              "north": "characters/golem/rotations/north.png",
+              "north-west": "characters/golem/rotations/north-west.png",
+              "west": "characters/golem/rotations/west.png",
+              "south-west": "characters/golem/rotations/south-west.png"
+            },
+            "animations": {
+              "Walking": {
+                "north": [
+                  "characters/golem/animations/Walking/north/frame_000.png",
+                  "characters/golem/animations/Walking/north/frame_001.png",
+                  "characters/golem/animations/Walking/north/frame_002.png",
+                  "characters/golem/animations/Walking/north/frame_003.png",
+                  "characters/golem/animations/Walking/north/frame_004.png",
+                  "characters/golem/animations/Walking/north/frame_005.png"
+                ],
+                "north-east": [
+                  "characters/golem/animations/Walking/north-east/frame_000.png",
+                  "characters/golem/animations/Walking/north-east/frame_001.png",
+                  "characters/golem/animations/Walking/north-east/frame_002.png",
+                  "characters/golem/animations/Walking/north-east/frame_003.png",
+                  "characters/golem/animations/Walking/north-east/frame_004.png",
+                  "characters/golem/animations/Walking/north-east/frame_005.png"
+                ],
+                "west": [
+                  "characters/golem/animations/Walking/west/frame_000.png",
+                  "characters/golem/animations/Walking/west/frame_001.png",
+                  "characters/golem/animations/Walking/west/frame_002.png",
+                  "characters/golem/animations/Walking/west/frame_003.png",
+                  "characters/golem/animations/Walking/west/frame_004.png",
+                  "characters/golem/animations/Walking/west/frame_005.png"
+                ],
+                "east": [
+                  "characters/golem/animations/Walking/east/frame_000.png",
+                  "characters/golem/animations/Walking/east/frame_001.png",
+                  "characters/golem/animations/Walking/east/frame_002.png",
+                  "characters/golem/animations/Walking/east/frame_003.png",
+                  "characters/golem/animations/Walking/east/frame_004.png",
+                  "characters/golem/animations/Walking/east/frame_005.png"
+                ],
+                "south-east": [
+                  "characters/golem/animations/Walking/south-east/frame_000.png",
+                  "characters/golem/animations/Walking/south-east/frame_001.png",
+                  "characters/golem/animations/Walking/south-east/frame_002.png",
+                  "characters/golem/animations/Walking/south-east/frame_003.png",
+                  "characters/golem/animations/Walking/south-east/frame_004.png",
+                  "characters/golem/animations/Walking/south-east/frame_005.png"
+                ],
+                "south": [
+                  "characters/golem/animations/Walking/south/frame_000.png",
+                  "characters/golem/animations/Walking/south/frame_001.png",
+                  "characters/golem/animations/Walking/south/frame_002.png",
+                  "characters/golem/animations/Walking/south/frame_003.png",
+                  "characters/golem/animations/Walking/south/frame_004.png",
+                  "characters/golem/animations/Walking/south/frame_005.png"
+                ],
+                "north-west": [
+                  "characters/golem/animations/Walking/north-west/frame_000.png",
+                  "characters/golem/animations/Walking/north-west/frame_001.png",
+                  "characters/golem/animations/Walking/north-west/frame_002.png",
+                  "characters/golem/animations/Walking/north-west/frame_003.png",
+                  "characters/golem/animations/Walking/north-west/frame_004.png",
+                  "characters/golem/animations/Walking/north-west/frame_005.png"
+                ],
+                "south-west": [
+                  "characters/golem/animations/Walking/south-west/frame_000.png",
+                  "characters/golem/animations/Walking/south-west/frame_001.png",
+                  "characters/golem/animations/Walking/south-west/frame_002.png",
+                  "characters/golem/animations/Walking/south-west/frame_003.png",
+                  "characters/golem/animations/Walking/south-west/frame_004.png",
+                  "characters/golem/animations/Walking/south-west/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "group_id": "a5eba355-4c5d-4be2-b256-f666d3c9b025",
+      "folder": "characters/gamabunta",
+      "states": [
+        {
+          "character": {
+            "id": "9c103478-5b1a-4b9d-a502-487393110262",
+            "name": "gamabunta",
+            "prompt": "a cute cartoon frog standing upright in a low crouch, the body is the largest part and the head is wide but low \u2014 wide heavy green lower body with knees projecting outward and upward above the hip line, two large white bulging eyes sitting on top of the head as two separate rounded bumps with a visible dip between them, wide flat mouth making the head wider than tall, pale cream belly, a brown bead necklace and an orange sash running diagonally across one shoulder. Mass concentrated at the bottom. No hat of any kind, no seated or meditating pose, no hands pressed together, no robe folds.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "mannequin",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T20:36:04.717784+00:00"
+          },
+          "folder": "characters/gamabunta",
+          "frames": {
+            "rotations": {
+              "south": "characters/gamabunta/rotations/south.png",
+              "south-east": "characters/gamabunta/rotations/south-east.png",
+              "east": "characters/gamabunta/rotations/east.png",
+              "north-east": "characters/gamabunta/rotations/north-east.png",
+              "north": "characters/gamabunta/rotations/north.png",
+              "north-west": "characters/gamabunta/rotations/north-west.png",
+              "west": "characters/gamabunta/rotations/west.png",
+              "south-west": "characters/gamabunta/rotations/south-west.png"
+            },
+            "animations": {
+              "Walk": {
+                "north-east": [
+                  "characters/gamabunta/animations/Walk/north-east/frame_000.png",
+                  "characters/gamabunta/animations/Walk/north-east/frame_001.png",
+                  "characters/gamabunta/animations/Walk/north-east/frame_002.png",
+                  "characters/gamabunta/animations/Walk/north-east/frame_003.png",
+                  "characters/gamabunta/animations/Walk/north-east/frame_004.png",
+                  "characters/gamabunta/animations/Walk/north-east/frame_005.png"
+                ],
+                "south-west": [
+                  "characters/gamabunta/animations/Walk/south-west/frame_000.png",
+                  "characters/gamabunta/animations/Walk/south-west/frame_001.png",
+                  "characters/gamabunta/animations/Walk/south-west/frame_002.png",
+                  "characters/gamabunta/animations/Walk/south-west/frame_003.png",
+                  "characters/gamabunta/animations/Walk/south-west/frame_004.png",
+                  "characters/gamabunta/animations/Walk/south-west/frame_005.png"
+                ],
+                "south": [
+                  "characters/gamabunta/animations/Walk/south/frame_000.png",
+                  "characters/gamabunta/animations/Walk/south/frame_001.png",
+                  "characters/gamabunta/animations/Walk/south/frame_002.png",
+                  "characters/gamabunta/animations/Walk/south/frame_003.png",
+                  "characters/gamabunta/animations/Walk/south/frame_004.png",
+                  "characters/gamabunta/animations/Walk/south/frame_005.png"
+                ],
+                "east": [
+                  "characters/gamabunta/animations/Walk/east/frame_000.png",
+                  "characters/gamabunta/animations/Walk/east/frame_001.png",
+                  "characters/gamabunta/animations/Walk/east/frame_002.png",
+                  "characters/gamabunta/animations/Walk/east/frame_003.png",
+                  "characters/gamabunta/animations/Walk/east/frame_004.png",
+                  "characters/gamabunta/animations/Walk/east/frame_005.png"
+                ],
+                "south-east": [
+                  "characters/gamabunta/animations/Walk/south-east/frame_000.png",
+                  "characters/gamabunta/animations/Walk/south-east/frame_001.png",
+                  "characters/gamabunta/animations/Walk/south-east/frame_002.png",
+                  "characters/gamabunta/animations/Walk/south-east/frame_003.png",
+                  "characters/gamabunta/animations/Walk/south-east/frame_004.png",
+                  "characters/gamabunta/animations/Walk/south-east/frame_005.png"
+                ],
+                "north": [
+                  "characters/gamabunta/animations/Walk/north/frame_000.png",
+                  "characters/gamabunta/animations/Walk/north/frame_001.png",
+                  "characters/gamabunta/animations/Walk/north/frame_002.png",
+                  "characters/gamabunta/animations/Walk/north/frame_003.png",
+                  "characters/gamabunta/animations/Walk/north/frame_004.png",
+                  "characters/gamabunta/animations/Walk/north/frame_005.png"
+                ],
+                "west": [
+                  "characters/gamabunta/animations/Walk/west/frame_000.png",
+                  "characters/gamabunta/animations/Walk/west/frame_001.png",
+                  "characters/gamabunta/animations/Walk/west/frame_002.png",
+                  "characters/gamabunta/animations/Walk/west/frame_003.png",
+                  "characters/gamabunta/animations/Walk/west/frame_004.png",
+                  "characters/gamabunta/animations/Walk/west/frame_005.png"
+                ],
+                "north-west": [
+                  "characters/gamabunta/animations/Walk/north-west/frame_000.png",
+                  "characters/gamabunta/animations/Walk/north-west/frame_001.png",
+                  "characters/gamabunta/animations/Walk/north-west/frame_002.png",
+                  "characters/gamabunta/animations/Walk/north-west/frame_003.png",
+                  "characters/gamabunta/animations/Walk/north-west/frame_004.png",
+                  "characters/gamabunta/animations/Walk/north-west/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "group_id": "34c65480-674a-4c55-9f12-cba799441a51",
+      "folder": "characters/octus",
+      "states": [
+        {
+          "character": {
+            "id": "75890668-b87c-4feb-bdfd-7909972490f1",
+            "name": "octus",
+            "prompt": "a cute cartoon octopus pirate, small bulbous medium-lilac head, a flat narrow red bandana tied around the head with the knot on one side, the tentacles spread outward almost horizontally so the base is about 1.6 times wider than the head, clear inverted triangle silhouette with a narrow top and a very wide low fringed base, a black eye patch over one eye and one large white eye with a small dark pupil. Light lilac with pale highlights. No pirate hat, no hat brim, no skull emblem, no suckers.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "mannequin",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T20:31:59.336330+00:00"
+          },
+          "folder": "characters/octus",
+          "frames": {
+            "rotations": {
+              "south": "characters/octus/rotations/south.png",
+              "south-east": "characters/octus/rotations/south-east.png",
+              "east": "characters/octus/rotations/east.png",
+              "north-east": "characters/octus/rotations/north-east.png",
+              "north": "characters/octus/rotations/north.png",
+              "north-west": "characters/octus/rotations/north-west.png",
+              "west": "characters/octus/rotations/west.png",
+              "south-west": "characters/octus/rotations/south-west.png"
+            },
+            "animations": {
+              "Walking": {
+                "west": [
+                  "characters/octus/animations/Walking/west/frame_000.png",
+                  "characters/octus/animations/Walking/west/frame_001.png",
+                  "characters/octus/animations/Walking/west/frame_002.png",
+                  "characters/octus/animations/Walking/west/frame_003.png",
+                  "characters/octus/animations/Walking/west/frame_004.png",
+                  "characters/octus/animations/Walking/west/frame_005.png"
+                ],
+                "east": [
+                  "characters/octus/animations/Walking/east/frame_000.png",
+                  "characters/octus/animations/Walking/east/frame_001.png",
+                  "characters/octus/animations/Walking/east/frame_002.png",
+                  "characters/octus/animations/Walking/east/frame_003.png",
+                  "characters/octus/animations/Walking/east/frame_004.png",
+                  "characters/octus/animations/Walking/east/frame_005.png"
+                ],
+                "south-west": [
+                  "characters/octus/animations/Walking/south-west/frame_000.png",
+                  "characters/octus/animations/Walking/south-west/frame_001.png",
+                  "characters/octus/animations/Walking/south-west/frame_002.png",
+                  "characters/octus/animations/Walking/south-west/frame_003.png",
+                  "characters/octus/animations/Walking/south-west/frame_004.png",
+                  "characters/octus/animations/Walking/south-west/frame_005.png"
+                ],
+                "north-west": [
+                  "characters/octus/animations/Walking/north-west/frame_000.png",
+                  "characters/octus/animations/Walking/north-west/frame_001.png",
+                  "characters/octus/animations/Walking/north-west/frame_002.png",
+                  "characters/octus/animations/Walking/north-west/frame_003.png",
+                  "characters/octus/animations/Walking/north-west/frame_004.png",
+                  "characters/octus/animations/Walking/north-west/frame_005.png"
+                ],
+                "south": [
+                  "characters/octus/animations/Walking/south/frame_000.png",
+                  "characters/octus/animations/Walking/south/frame_001.png",
+                  "characters/octus/animations/Walking/south/frame_002.png",
+                  "characters/octus/animations/Walking/south/frame_003.png",
+                  "characters/octus/animations/Walking/south/frame_004.png",
+                  "characters/octus/animations/Walking/south/frame_005.png"
+                ],
+                "north-east": [
+                  "characters/octus/animations/Walking/north-east/frame_000.png",
+                  "characters/octus/animations/Walking/north-east/frame_001.png",
+                  "characters/octus/animations/Walking/north-east/frame_002.png",
+                  "characters/octus/animations/Walking/north-east/frame_003.png",
+                  "characters/octus/animations/Walking/north-east/frame_004.png",
+                  "characters/octus/animations/Walking/north-east/frame_005.png"
+                ],
+                "south-east": [
+                  "characters/octus/animations/Walking/south-east/frame_000.png",
+                  "characters/octus/animations/Walking/south-east/frame_001.png",
+                  "characters/octus/animations/Walking/south-east/frame_002.png",
+                  "characters/octus/animations/Walking/south-east/frame_003.png",
+                  "characters/octus/animations/Walking/south-east/frame_004.png",
+                  "characters/octus/animations/Walking/south-east/frame_005.png"
+                ],
+                "north": [
+                  "characters/octus/animations/Walking/north/frame_000.png",
+                  "characters/octus/animations/Walking/north/frame_001.png",
+                  "characters/octus/animations/Walking/north/frame_002.png",
+                  "characters/octus/animations/Walking/north/frame_003.png",
+                  "characters/octus/animations/Walking/north/frame_004.png",
+                  "characters/octus/animations/Walking/north/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "group_id": "a8d577d5-f004-484a-9333-c73b94a332c3",
+      "folder": "characters/tommy",
+      "states": [
+        {
+          "character": {
+            "id": "be169ff3-f034-4b18-b271-a49e1f2935e2",
+            "name": "tommy",
+            "prompt": "a cute cartoon fat cat, the body is the largest part and the head is small \u2014 low wide orange body shaped like a cushion, much wider than tall, small round head with a cream face, an enormous thick orange tail curling upward in a tall arc as tall as the whole body, a red collar band at the neck, two darker stripes on the body. No bell, no detailed paws, no fur texture.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+            "size": {
+              "width": 32,
+              "height": 32
+            },
+            "template_id": "cat",
+            "directions": 8,
+            "view": "low top-down",
+            "created_at": "2026-11-07T20:25:59.043947+00:00"
+          },
+          "folder": "characters/tommy",
+          "frames": {
+            "rotations": {
+              "south": "characters/tommy/rotations/south.png",
+              "south-east": "characters/tommy/rotations/south-east.png",
+              "east": "characters/tommy/rotations/east.png",
+              "north-east": "characters/tommy/rotations/north-east.png",
+              "north": "characters/tommy/rotations/north.png",
+              "north-west": "characters/tommy/rotations/north-west.png",
+              "west": "characters/tommy/rotations/west.png",
+              "south-west": "characters/tommy/rotations/south-west.png"
+            },
+            "animations": {
+              "Walk": {
+                "south-west": [
+                  "characters/tommy/animations/Walk/south-west/frame_000.png",
+                  "characters/tommy/animations/Walk/south-west/frame_001.png",
+                  "characters/tommy/animations/Walk/south-west/frame_002.png",
+                  "characters/tommy/animations/Walk/south-west/frame_003.png",
+                  "characters/tommy/animations/Walk/south-west/frame_004.png",
+                  "characters/tommy/animations/Walk/south-west/frame_005.png"
+                ],
+                "north-west": [
+                  "characters/tommy/animations/Walk/north-west/frame_000.png",
+                  "characters/tommy/animations/Walk/north-west/frame_001.png",
+                  "characters/tommy/animations/Walk/north-west/frame_002.png",
+                  "characters/tommy/animations/Walk/north-west/frame_003.png",
+                  "characters/tommy/animations/Walk/north-west/frame_004.png",
+                  "characters/tommy/animations/Walk/north-west/frame_005.png"
+                ],
+                "south-east": [
+                  "characters/tommy/animations/Walk/south-east/frame_000.png",
+                  "characters/tommy/animations/Walk/south-east/frame_001.png",
+                  "characters/tommy/animations/Walk/south-east/frame_002.png",
+                  "characters/tommy/animations/Walk/south-east/frame_003.png",
+                  "characters/tommy/animations/Walk/south-east/frame_004.png",
+                  "characters/tommy/animations/Walk/south-east/frame_005.png"
+                ],
+                "north-east": [
+                  "characters/tommy/animations/Walk/north-east/frame_000.png",
+                  "characters/tommy/animations/Walk/north-east/frame_001.png",
+                  "characters/tommy/animations/Walk/north-east/frame_002.png",
+                  "characters/tommy/animations/Walk/north-east/frame_003.png",
+                  "characters/tommy/animations/Walk/north-east/frame_004.png",
+                  "characters/tommy/animations/Walk/north-east/frame_005.png"
+                ],
+                "east": [
+                  "characters/tommy/animations/Walk/east/frame_000.png",
+                  "characters/tommy/animations/Walk/east/frame_001.png",
+                  "characters/tommy/animations/Walk/east/frame_002.png",
+                  "characters/tommy/animations/Walk/east/frame_003.png",
+                  "characters/tommy/animations/Walk/east/frame_004.png",
+                  "characters/tommy/animations/Walk/east/frame_005.png"
+                ],
+                "north": [
+                  "characters/tommy/animations/Walk/north/frame_000.png",
+                  "characters/tommy/animations/Walk/north/frame_001.png",
+                  "characters/tommy/animations/Walk/north/frame_002.png",
+                  "characters/tommy/animations/Walk/north/frame_003.png",
+                  "characters/tommy/animations/Walk/north/frame_004.png",
+                  "characters/tommy/animations/Walk/north/frame_005.png"
+                ],
+                "west": [
+                  "characters/tommy/animations/Walk/west/frame_000.png",
+                  "characters/tommy/animations/Walk/west/frame_001.png",
+                  "characters/tommy/animations/Walk/west/frame_002.png",
+                  "characters/tommy/animations/Walk/west/frame_003.png",
+                  "characters/tommy/animations/Walk/west/frame_004.png",
+                  "characters/tommy/animations/Walk/west/frame_005.png"
+                ],
+                "south": [
+                  "characters/tommy/animations/Walk/south/frame_000.png",
+                  "characters/tommy/animations/Walk/south/frame_001.png",
+                  "characters/tommy/animations/Walk/south/frame_002.png",
+                  "characters/tommy/animations/Walk/south/frame_003.png",
+                  "characters/tommy/animations/Walk/south/frame_004.png",
+                  "characters/tommy/animations/Walk/south/frame_005.png"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "states": [
+    {
+      "character": {
+        "id": "551dfeab-74eb-4fa7-9582-75cba8abcc79",
+        "name": "karasuno",
+        "prompt": "a cute cartoon crow standing upright, big round head with a large light grey beak pointing down and forward, one large white eye with a small black pupil and an angled eyebrow giving a grumpy expression, small body, dark navy triangular cape with straight edges widening to a flat hem, red scarf at the neck. No plume, no antenna, no spike, no weapon, no armor.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T22:34:05.819420+00:00"
+      },
+      "folder": "characters/karasuno",
+      "frames": {
+        "rotations": {
+          "south": "characters/karasuno/rotations/south.png",
+          "south-east": "characters/karasuno/rotations/south-east.png",
+          "east": "characters/karasuno/rotations/east.png",
+          "north-east": "characters/karasuno/rotations/north-east.png",
+          "north": "characters/karasuno/rotations/north.png",
+          "north-west": "characters/karasuno/rotations/north-west.png",
+          "west": "characters/karasuno/rotations/west.png",
+          "south-west": "characters/karasuno/rotations/south-west.png"
+        },
+        "animations": {
+          "Walking": {
+            "north-east": [
+              "characters/karasuno/animations/Walking/north-east/frame_000.png",
+              "characters/karasuno/animations/Walking/north-east/frame_001.png",
+              "characters/karasuno/animations/Walking/north-east/frame_002.png",
+              "characters/karasuno/animations/Walking/north-east/frame_003.png",
+              "characters/karasuno/animations/Walking/north-east/frame_004.png",
+              "characters/karasuno/animations/Walking/north-east/frame_005.png"
+            ],
+            "north": [
+              "characters/karasuno/animations/Walking/north/frame_000.png",
+              "characters/karasuno/animations/Walking/north/frame_001.png",
+              "characters/karasuno/animations/Walking/north/frame_002.png",
+              "characters/karasuno/animations/Walking/north/frame_003.png",
+              "characters/karasuno/animations/Walking/north/frame_004.png",
+              "characters/karasuno/animations/Walking/north/frame_005.png"
+            ],
+            "east": [
+              "characters/karasuno/animations/Walking/east/frame_000.png",
+              "characters/karasuno/animations/Walking/east/frame_001.png",
+              "characters/karasuno/animations/Walking/east/frame_002.png",
+              "characters/karasuno/animations/Walking/east/frame_003.png",
+              "characters/karasuno/animations/Walking/east/frame_004.png",
+              "characters/karasuno/animations/Walking/east/frame_005.png"
+            ],
+            "south-west": [
+              "characters/karasuno/animations/Walking/south-west/frame_000.png",
+              "characters/karasuno/animations/Walking/south-west/frame_001.png",
+              "characters/karasuno/animations/Walking/south-west/frame_002.png",
+              "characters/karasuno/animations/Walking/south-west/frame_003.png",
+              "characters/karasuno/animations/Walking/south-west/frame_004.png",
+              "characters/karasuno/animations/Walking/south-west/frame_005.png"
+            ],
+            "south": [
+              "characters/karasuno/animations/Walking/south/frame_000.png",
+              "characters/karasuno/animations/Walking/south/frame_001.png",
+              "characters/karasuno/animations/Walking/south/frame_002.png",
+              "characters/karasuno/animations/Walking/south/frame_003.png",
+              "characters/karasuno/animations/Walking/south/frame_004.png",
+              "characters/karasuno/animations/Walking/south/frame_005.png"
+            ],
+            "west": [
+              "characters/karasuno/animations/Walking/west/frame_000.png",
+              "characters/karasuno/animations/Walking/west/frame_001.png",
+              "characters/karasuno/animations/Walking/west/frame_002.png",
+              "characters/karasuno/animations/Walking/west/frame_003.png",
+              "characters/karasuno/animations/Walking/west/frame_004.png",
+              "characters/karasuno/animations/Walking/west/frame_005.png"
+            ],
+            "north-west": [
+              "characters/karasuno/animations/Walking/north-west/frame_000.png",
+              "characters/karasuno/animations/Walking/north-west/frame_001.png",
+              "characters/karasuno/animations/Walking/north-west/frame_002.png",
+              "characters/karasuno/animations/Walking/north-west/frame_003.png",
+              "characters/karasuno/animations/Walking/north-west/frame_004.png",
+              "characters/karasuno/animations/Walking/north-west/frame_005.png"
+            ],
+            "south-east": [
+              "characters/karasuno/animations/Walking/south-east/frame_000.png",
+              "characters/karasuno/animations/Walking/south-east/frame_001.png",
+              "characters/karasuno/animations/Walking/south-east/frame_002.png",
+              "characters/karasuno/animations/Walking/south-east/frame_003.png",
+              "characters/karasuno/animations/Walking/south-east/frame_004.png",
+              "characters/karasuno/animations/Walking/south-east/frame_005.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "d385f556-7ad0-4b5d-ab11-806a6ef62f19",
+        "name": "papyrus",
+        "prompt": "a cute cartoon skeleton, the thinnest character, big round cream-white skull with two large dark eye sockets, very narrow body, thin long limbs, a red scarf at the neck flowing to one side. Thick dark outline to separate the pale bones from the background. No detailed ribs, no individual fingers, no joint details, not scary.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T21:32:45.825405+00:00"
+      },
+      "folder": "characters/papyrus",
+      "frames": {
+        "rotations": {
+          "south": "characters/papyrus/rotations/south.png",
+          "south-east": "characters/papyrus/rotations/south-east.png",
+          "east": "characters/papyrus/rotations/east.png",
+          "north-east": "characters/papyrus/rotations/north-east.png",
+          "north": "characters/papyrus/rotations/north.png",
+          "north-west": "characters/papyrus/rotations/north-west.png",
+          "west": "characters/papyrus/rotations/west.png",
+          "south-west": "characters/papyrus/rotations/south-west.png"
+        },
+        "animations": {
+          "Walking": {
+            "north": [
+              "characters/papyrus/animations/Walking/north/frame_000.png",
+              "characters/papyrus/animations/Walking/north/frame_001.png",
+              "characters/papyrus/animations/Walking/north/frame_002.png",
+              "characters/papyrus/animations/Walking/north/frame_003.png",
+              "characters/papyrus/animations/Walking/north/frame_004.png",
+              "characters/papyrus/animations/Walking/north/frame_005.png"
+            ],
+            "north-west": [
+              "characters/papyrus/animations/Walking/north-west/frame_000.png",
+              "characters/papyrus/animations/Walking/north-west/frame_001.png",
+              "characters/papyrus/animations/Walking/north-west/frame_002.png",
+              "characters/papyrus/animations/Walking/north-west/frame_003.png",
+              "characters/papyrus/animations/Walking/north-west/frame_004.png",
+              "characters/papyrus/animations/Walking/north-west/frame_005.png"
+            ],
+            "south": [
+              "characters/papyrus/animations/Walking/south/frame_000.png",
+              "characters/papyrus/animations/Walking/south/frame_001.png",
+              "characters/papyrus/animations/Walking/south/frame_002.png",
+              "characters/papyrus/animations/Walking/south/frame_003.png",
+              "characters/papyrus/animations/Walking/south/frame_004.png",
+              "characters/papyrus/animations/Walking/south/frame_005.png"
+            ],
+            "west": [
+              "characters/papyrus/animations/Walking/west/frame_000.png",
+              "characters/papyrus/animations/Walking/west/frame_001.png",
+              "characters/papyrus/animations/Walking/west/frame_002.png",
+              "characters/papyrus/animations/Walking/west/frame_003.png",
+              "characters/papyrus/animations/Walking/west/frame_004.png",
+              "characters/papyrus/animations/Walking/west/frame_005.png"
+            ],
+            "south-west": [
+              "characters/papyrus/animations/Walking/south-west/frame_000.png",
+              "characters/papyrus/animations/Walking/south-west/frame_001.png",
+              "characters/papyrus/animations/Walking/south-west/frame_002.png",
+              "characters/papyrus/animations/Walking/south-west/frame_003.png",
+              "characters/papyrus/animations/Walking/south-west/frame_004.png",
+              "characters/papyrus/animations/Walking/south-west/frame_005.png"
+            ],
+            "east": [
+              "characters/papyrus/animations/Walking/east/frame_000.png",
+              "characters/papyrus/animations/Walking/east/frame_001.png",
+              "characters/papyrus/animations/Walking/east/frame_002.png",
+              "characters/papyrus/animations/Walking/east/frame_003.png",
+              "characters/papyrus/animations/Walking/east/frame_004.png",
+              "characters/papyrus/animations/Walking/east/frame_005.png"
+            ],
+            "south-east": [
+              "characters/papyrus/animations/Walking/south-east/frame_000.png",
+              "characters/papyrus/animations/Walking/south-east/frame_001.png",
+              "characters/papyrus/animations/Walking/south-east/frame_002.png",
+              "characters/papyrus/animations/Walking/south-east/frame_003.png",
+              "characters/papyrus/animations/Walking/south-east/frame_004.png",
+              "characters/papyrus/animations/Walking/south-east/frame_005.png"
+            ],
+            "north-east": [
+              "characters/papyrus/animations/Walking/north-east/frame_000.png",
+              "characters/papyrus/animations/Walking/north-east/frame_001.png",
+              "characters/papyrus/animations/Walking/north-east/frame_002.png",
+              "characters/papyrus/animations/Walking/north-east/frame_003.png",
+              "characters/papyrus/animations/Walking/north-east/frame_004.png",
+              "characters/papyrus/animations/Walking/north-east/frame_005.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "dba46719-3bfb-46c5-aaa7-f6b09fef68c8",
+        "name": "bender",
+        "prompt": "a cute cartoon robot, big perfectly cubic head made of light grey metal, narrow slim body much thinner than the head, one thin antenna with a small glowing ball on top, two large bright cyan rectangular eyes on the cube face, one cyan panel on the chest only, short smooth limbs. Light grey and pale blue palette. No segmented arms, no joint rings, no rivets, no panel lines.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T21:32:22.336336+00:00"
+      },
+      "folder": "characters/bender",
+      "frames": {
+        "rotations": {
+          "south": "characters/bender/rotations/south.png",
+          "south-east": "characters/bender/rotations/south-east.png",
+          "east": "characters/bender/rotations/east.png",
+          "north-east": "characters/bender/rotations/north-east.png",
+          "north": "characters/bender/rotations/north.png",
+          "north-west": "characters/bender/rotations/north-west.png",
+          "west": "characters/bender/rotations/west.png",
+          "south-west": "characters/bender/rotations/south-west.png"
+        },
+        "animations": {
+          "Walk": {
+            "north-west": [
+              "characters/bender/animations/Walk/north-west/frame_000.png",
+              "characters/bender/animations/Walk/north-west/frame_001.png",
+              "characters/bender/animations/Walk/north-west/frame_002.png",
+              "characters/bender/animations/Walk/north-west/frame_003.png",
+              "characters/bender/animations/Walk/north-west/frame_004.png",
+              "characters/bender/animations/Walk/north-west/frame_005.png"
+            ],
+            "south-west": [
+              "characters/bender/animations/Walk/south-west/frame_000.png",
+              "characters/bender/animations/Walk/south-west/frame_001.png",
+              "characters/bender/animations/Walk/south-west/frame_002.png",
+              "characters/bender/animations/Walk/south-west/frame_003.png",
+              "characters/bender/animations/Walk/south-west/frame_004.png",
+              "characters/bender/animations/Walk/south-west/frame_005.png"
+            ],
+            "south": [
+              "characters/bender/animations/Walk/south/frame_000.png",
+              "characters/bender/animations/Walk/south/frame_001.png",
+              "characters/bender/animations/Walk/south/frame_002.png",
+              "characters/bender/animations/Walk/south/frame_003.png",
+              "characters/bender/animations/Walk/south/frame_004.png",
+              "characters/bender/animations/Walk/south/frame_005.png"
+            ],
+            "south-east": [
+              "characters/bender/animations/Walk/south-east/frame_000.png",
+              "characters/bender/animations/Walk/south-east/frame_001.png",
+              "characters/bender/animations/Walk/south-east/frame_002.png",
+              "characters/bender/animations/Walk/south-east/frame_003.png",
+              "characters/bender/animations/Walk/south-east/frame_004.png",
+              "characters/bender/animations/Walk/south-east/frame_005.png"
+            ],
+            "west": [
+              "characters/bender/animations/Walk/west/frame_000.png",
+              "characters/bender/animations/Walk/west/frame_001.png",
+              "characters/bender/animations/Walk/west/frame_002.png",
+              "characters/bender/animations/Walk/west/frame_003.png",
+              "characters/bender/animations/Walk/west/frame_004.png",
+              "characters/bender/animations/Walk/west/frame_005.png"
+            ],
+            "north-east": [
+              "characters/bender/animations/Walk/north-east/frame_000.png",
+              "characters/bender/animations/Walk/north-east/frame_001.png",
+              "characters/bender/animations/Walk/north-east/frame_002.png",
+              "characters/bender/animations/Walk/north-east/frame_003.png",
+              "characters/bender/animations/Walk/north-east/frame_004.png",
+              "characters/bender/animations/Walk/north-east/frame_005.png"
+            ],
+            "east": [
+              "characters/bender/animations/Walk/east/frame_000.png",
+              "characters/bender/animations/Walk/east/frame_001.png",
+              "characters/bender/animations/Walk/east/frame_002.png",
+              "characters/bender/animations/Walk/east/frame_003.png",
+              "characters/bender/animations/Walk/east/frame_004.png",
+              "characters/bender/animations/Walk/east/frame_005.png"
+            ],
+            "north": [
+              "characters/bender/animations/Walk/north/frame_000.png",
+              "characters/bender/animations/Walk/north/frame_001.png",
+              "characters/bender/animations/Walk/north/frame_002.png",
+              "characters/bender/animations/Walk/north/frame_003.png",
+              "characters/bender/animations/Walk/north/frame_004.png",
+              "characters/bender/animations/Walk/north/frame_005.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "4b7264ef-5828-48b3-a7da-4cf1f68e8ac7",
+        "name": "cogu",
+        "prompt": "a cute cartoon walking mushroom, very wide smooth red dome cap with a completely unbroken rounded top edge, the cap is the widest part of the whole character, three cream spots on the cap arranged off-center, thin pale cream stem body much narrower than the cap, two small legs, two large dark oval eyes on the stem. Mass concentrated at the top, narrow and open below. No backpack, no chest, no lantern, no held items.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T21:31:34.128956+00:00"
+      },
+      "folder": "characters/cogu",
+      "frames": {
+        "rotations": {
+          "south": "characters/cogu/rotations/south.png",
+          "south-east": "characters/cogu/rotations/south-east.png",
+          "east": "characters/cogu/rotations/east.png",
+          "north-east": "characters/cogu/rotations/north-east.png",
+          "north": "characters/cogu/rotations/north.png",
+          "north-west": "characters/cogu/rotations/north-west.png",
+          "west": "characters/cogu/rotations/west.png",
+          "south-west": "characters/cogu/rotations/south-west.png"
+        },
+        "animations": {
+          "Walking": {
+            "south-east": [
+              "characters/cogu/animations/Walking/south-east/frame_000.png",
+              "characters/cogu/animations/Walking/south-east/frame_001.png",
+              "characters/cogu/animations/Walking/south-east/frame_002.png",
+              "characters/cogu/animations/Walking/south-east/frame_003.png",
+              "characters/cogu/animations/Walking/south-east/frame_004.png",
+              "characters/cogu/animations/Walking/south-east/frame_005.png"
+            ],
+            "south-west": [
+              "characters/cogu/animations/Walking/south-west/frame_000.png",
+              "characters/cogu/animations/Walking/south-west/frame_001.png",
+              "characters/cogu/animations/Walking/south-west/frame_002.png",
+              "characters/cogu/animations/Walking/south-west/frame_003.png",
+              "characters/cogu/animations/Walking/south-west/frame_004.png",
+              "characters/cogu/animations/Walking/south-west/frame_005.png"
+            ],
+            "north": [
+              "characters/cogu/animations/Walking/north/frame_000.png",
+              "characters/cogu/animations/Walking/north/frame_001.png",
+              "characters/cogu/animations/Walking/north/frame_002.png",
+              "characters/cogu/animations/Walking/north/frame_003.png",
+              "characters/cogu/animations/Walking/north/frame_004.png",
+              "characters/cogu/animations/Walking/north/frame_005.png"
+            ],
+            "north-west": [
+              "characters/cogu/animations/Walking/north-west/frame_000.png",
+              "characters/cogu/animations/Walking/north-west/frame_001.png",
+              "characters/cogu/animations/Walking/north-west/frame_002.png",
+              "characters/cogu/animations/Walking/north-west/frame_003.png",
+              "characters/cogu/animations/Walking/north-west/frame_004.png",
+              "characters/cogu/animations/Walking/north-west/frame_005.png"
+            ],
+            "south": [
+              "characters/cogu/animations/Walking/south/frame_000.png",
+              "characters/cogu/animations/Walking/south/frame_001.png",
+              "characters/cogu/animations/Walking/south/frame_002.png",
+              "characters/cogu/animations/Walking/south/frame_003.png",
+              "characters/cogu/animations/Walking/south/frame_004.png",
+              "characters/cogu/animations/Walking/south/frame_005.png"
+            ],
+            "north-east": [
+              "characters/cogu/animations/Walking/north-east/frame_000.png",
+              "characters/cogu/animations/Walking/north-east/frame_001.png",
+              "characters/cogu/animations/Walking/north-east/frame_002.png",
+              "characters/cogu/animations/Walking/north-east/frame_003.png",
+              "characters/cogu/animations/Walking/north-east/frame_004.png",
+              "characters/cogu/animations/Walking/north-east/frame_005.png"
+            ],
+            "west": [
+              "characters/cogu/animations/Walking/west/frame_000.png",
+              "characters/cogu/animations/Walking/west/frame_001.png",
+              "characters/cogu/animations/Walking/west/frame_002.png",
+              "characters/cogu/animations/Walking/west/frame_003.png",
+              "characters/cogu/animations/Walking/west/frame_004.png",
+              "characters/cogu/animations/Walking/west/frame_005.png"
+            ],
+            "east": [
+              "characters/cogu/animations/Walking/east/frame_000.png",
+              "characters/cogu/animations/Walking/east/frame_001.png",
+              "characters/cogu/animations/Walking/east/frame_002.png",
+              "characters/cogu/animations/Walking/east/frame_003.png",
+              "characters/cogu/animations/Walking/east/frame_004.png",
+              "characters/cogu/animations/Walking/east/frame_005.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "226eb82b-3d6a-4ead-a091-469e192643ba",
+        "name": "golem",
+        "prompt": "a cute cartoon stone golem, the body is the largest part and the head is small \u2014 heavy trapezoidal body of light warm grey stone, broad at the shoulders and narrow at the short legs, one arm roughly twice the size and length of the other in an unmistakably asymmetric pose, two large bright yellow eyes, one patch of green moss on one shoulder only. Pale grey stone with clear light highlights, friendly expression. No cracks, no rock texture, no sprout, not menacing.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T20:41:26.013847+00:00"
+      },
+      "folder": "characters/golem",
+      "frames": {
+        "rotations": {
+          "south": "characters/golem/rotations/south.png",
+          "south-east": "characters/golem/rotations/south-east.png",
+          "east": "characters/golem/rotations/east.png",
+          "north-east": "characters/golem/rotations/north-east.png",
+          "north": "characters/golem/rotations/north.png",
+          "north-west": "characters/golem/rotations/north-west.png",
+          "west": "characters/golem/rotations/west.png",
+          "south-west": "characters/golem/rotations/south-west.png"
+        },
+        "animations": {
+          "Walking": {
+            "north": [
+              "characters/golem/animations/Walking/north/frame_000.png",
+              "characters/golem/animations/Walking/north/frame_001.png",
+              "characters/golem/animations/Walking/north/frame_002.png",
+              "characters/golem/animations/Walking/north/frame_003.png",
+              "characters/golem/animations/Walking/north/frame_004.png",
+              "characters/golem/animations/Walking/north/frame_005.png"
+            ],
+            "north-east": [
+              "characters/golem/animations/Walking/north-east/frame_000.png",
+              "characters/golem/animations/Walking/north-east/frame_001.png",
+              "characters/golem/animations/Walking/north-east/frame_002.png",
+              "characters/golem/animations/Walking/north-east/frame_003.png",
+              "characters/golem/animations/Walking/north-east/frame_004.png",
+              "characters/golem/animations/Walking/north-east/frame_005.png"
+            ],
+            "west": [
+              "characters/golem/animations/Walking/west/frame_000.png",
+              "characters/golem/animations/Walking/west/frame_001.png",
+              "characters/golem/animations/Walking/west/frame_002.png",
+              "characters/golem/animations/Walking/west/frame_003.png",
+              "characters/golem/animations/Walking/west/frame_004.png",
+              "characters/golem/animations/Walking/west/frame_005.png"
+            ],
+            "east": [
+              "characters/golem/animations/Walking/east/frame_000.png",
+              "characters/golem/animations/Walking/east/frame_001.png",
+              "characters/golem/animations/Walking/east/frame_002.png",
+              "characters/golem/animations/Walking/east/frame_003.png",
+              "characters/golem/animations/Walking/east/frame_004.png",
+              "characters/golem/animations/Walking/east/frame_005.png"
+            ],
+            "south-east": [
+              "characters/golem/animations/Walking/south-east/frame_000.png",
+              "characters/golem/animations/Walking/south-east/frame_001.png",
+              "characters/golem/animations/Walking/south-east/frame_002.png",
+              "characters/golem/animations/Walking/south-east/frame_003.png",
+              "characters/golem/animations/Walking/south-east/frame_004.png",
+              "characters/golem/animations/Walking/south-east/frame_005.png"
+            ],
+            "south": [
+              "characters/golem/animations/Walking/south/frame_000.png",
+              "characters/golem/animations/Walking/south/frame_001.png",
+              "characters/golem/animations/Walking/south/frame_002.png",
+              "characters/golem/animations/Walking/south/frame_003.png",
+              "characters/golem/animations/Walking/south/frame_004.png",
+              "characters/golem/animations/Walking/south/frame_005.png"
+            ],
+            "north-west": [
+              "characters/golem/animations/Walking/north-west/frame_000.png",
+              "characters/golem/animations/Walking/north-west/frame_001.png",
+              "characters/golem/animations/Walking/north-west/frame_002.png",
+              "characters/golem/animations/Walking/north-west/frame_003.png",
+              "characters/golem/animations/Walking/north-west/frame_004.png",
+              "characters/golem/animations/Walking/north-west/frame_005.png"
+            ],
+            "south-west": [
+              "characters/golem/animations/Walking/south-west/frame_000.png",
+              "characters/golem/animations/Walking/south-west/frame_001.png",
+              "characters/golem/animations/Walking/south-west/frame_002.png",
+              "characters/golem/animations/Walking/south-west/frame_003.png",
+              "characters/golem/animations/Walking/south-west/frame_004.png",
+              "characters/golem/animations/Walking/south-west/frame_005.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "9c103478-5b1a-4b9d-a502-487393110262",
+        "name": "gamabunta",
+        "prompt": "a cute cartoon frog standing upright in a low crouch, the body is the largest part and the head is wide but low \u2014 wide heavy green lower body with knees projecting outward and upward above the hip line, two large white bulging eyes sitting on top of the head as two separate rounded bumps with a visible dip between them, wide flat mouth making the head wider than tall, pale cream belly, a brown bead necklace and an orange sash running diagonally across one shoulder. Mass concentrated at the bottom. No hat of any kind, no seated or meditating pose, no hands pressed together, no robe folds.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T20:36:04.717784+00:00"
+      },
+      "folder": "characters/gamabunta",
+      "frames": {
+        "rotations": {
+          "south": "characters/gamabunta/rotations/south.png",
+          "south-east": "characters/gamabunta/rotations/south-east.png",
+          "east": "characters/gamabunta/rotations/east.png",
+          "north-east": "characters/gamabunta/rotations/north-east.png",
+          "north": "characters/gamabunta/rotations/north.png",
+          "north-west": "characters/gamabunta/rotations/north-west.png",
+          "west": "characters/gamabunta/rotations/west.png",
+          "south-west": "characters/gamabunta/rotations/south-west.png"
+        },
+        "animations": {
+          "Walk": {
+            "north-east": [
+              "characters/gamabunta/animations/Walk/north-east/frame_000.png",
+              "characters/gamabunta/animations/Walk/north-east/frame_001.png",
+              "characters/gamabunta/animations/Walk/north-east/frame_002.png",
+              "characters/gamabunta/animations/Walk/north-east/frame_003.png",
+              "characters/gamabunta/animations/Walk/north-east/frame_004.png",
+              "characters/gamabunta/animations/Walk/north-east/frame_005.png"
+            ],
+            "south-west": [
+              "characters/gamabunta/animations/Walk/south-west/frame_000.png",
+              "characters/gamabunta/animations/Walk/south-west/frame_001.png",
+              "characters/gamabunta/animations/Walk/south-west/frame_002.png",
+              "characters/gamabunta/animations/Walk/south-west/frame_003.png",
+              "characters/gamabunta/animations/Walk/south-west/frame_004.png",
+              "characters/gamabunta/animations/Walk/south-west/frame_005.png"
+            ],
+            "south": [
+              "characters/gamabunta/animations/Walk/south/frame_000.png",
+              "characters/gamabunta/animations/Walk/south/frame_001.png",
+              "characters/gamabunta/animations/Walk/south/frame_002.png",
+              "characters/gamabunta/animations/Walk/south/frame_003.png",
+              "characters/gamabunta/animations/Walk/south/frame_004.png",
+              "characters/gamabunta/animations/Walk/south/frame_005.png"
+            ],
+            "east": [
+              "characters/gamabunta/animations/Walk/east/frame_000.png",
+              "characters/gamabunta/animations/Walk/east/frame_001.png",
+              "characters/gamabunta/animations/Walk/east/frame_002.png",
+              "characters/gamabunta/animations/Walk/east/frame_003.png",
+              "characters/gamabunta/animations/Walk/east/frame_004.png",
+              "characters/gamabunta/animations/Walk/east/frame_005.png"
+            ],
+            "south-east": [
+              "characters/gamabunta/animations/Walk/south-east/frame_000.png",
+              "characters/gamabunta/animations/Walk/south-east/frame_001.png",
+              "characters/gamabunta/animations/Walk/south-east/frame_002.png",
+              "characters/gamabunta/animations/Walk/south-east/frame_003.png",
+              "characters/gamabunta/animations/Walk/south-east/frame_004.png",
+              "characters/gamabunta/animations/Walk/south-east/frame_005.png"
+            ],
+            "north": [
+              "characters/gamabunta/animations/Walk/north/frame_000.png",
+              "characters/gamabunta/animations/Walk/north/frame_001.png",
+              "characters/gamabunta/animations/Walk/north/frame_002.png",
+              "characters/gamabunta/animations/Walk/north/frame_003.png",
+              "characters/gamabunta/animations/Walk/north/frame_004.png",
+              "characters/gamabunta/animations/Walk/north/frame_005.png"
+            ],
+            "west": [
+              "characters/gamabunta/animations/Walk/west/frame_000.png",
+              "characters/gamabunta/animations/Walk/west/frame_001.png",
+              "characters/gamabunta/animations/Walk/west/frame_002.png",
+              "characters/gamabunta/animations/Walk/west/frame_003.png",
+              "characters/gamabunta/animations/Walk/west/frame_004.png",
+              "characters/gamabunta/animations/Walk/west/frame_005.png"
+            ],
+            "north-west": [
+              "characters/gamabunta/animations/Walk/north-west/frame_000.png",
+              "characters/gamabunta/animations/Walk/north-west/frame_001.png",
+              "characters/gamabunta/animations/Walk/north-west/frame_002.png",
+              "characters/gamabunta/animations/Walk/north-west/frame_003.png",
+              "characters/gamabunta/animations/Walk/north-west/frame_004.png",
+              "characters/gamabunta/animations/Walk/north-west/frame_005.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "75890668-b87c-4feb-bdfd-7909972490f1",
+        "name": "octus",
+        "prompt": "a cute cartoon octopus pirate, small bulbous medium-lilac head, a flat narrow red bandana tied around the head with the knot on one side, the tentacles spread outward almost horizontally so the base is about 1.6 times wider than the head, clear inverted triangle silhouette with a narrow top and a very wide low fringed base, a black eye patch over one eye and one large white eye with a small dark pupil. Light lilac with pale highlights. No pirate hat, no hat brim, no skull emblem, no suckers.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T20:31:59.336330+00:00"
+      },
+      "folder": "characters/octus",
+      "frames": {
+        "rotations": {
+          "south": "characters/octus/rotations/south.png",
+          "south-east": "characters/octus/rotations/south-east.png",
+          "east": "characters/octus/rotations/east.png",
+          "north-east": "characters/octus/rotations/north-east.png",
+          "north": "characters/octus/rotations/north.png",
+          "north-west": "characters/octus/rotations/north-west.png",
+          "west": "characters/octus/rotations/west.png",
+          "south-west": "characters/octus/rotations/south-west.png"
+        },
+        "animations": {
+          "Walking": {
+            "west": [
+              "characters/octus/animations/Walking/west/frame_000.png",
+              "characters/octus/animations/Walking/west/frame_001.png",
+              "characters/octus/animations/Walking/west/frame_002.png",
+              "characters/octus/animations/Walking/west/frame_003.png",
+              "characters/octus/animations/Walking/west/frame_004.png",
+              "characters/octus/animations/Walking/west/frame_005.png"
+            ],
+            "east": [
+              "characters/octus/animations/Walking/east/frame_000.png",
+              "characters/octus/animations/Walking/east/frame_001.png",
+              "characters/octus/animations/Walking/east/frame_002.png",
+              "characters/octus/animations/Walking/east/frame_003.png",
+              "characters/octus/animations/Walking/east/frame_004.png",
+              "characters/octus/animations/Walking/east/frame_005.png"
+            ],
+            "south-west": [
+              "characters/octus/animations/Walking/south-west/frame_000.png",
+              "characters/octus/animations/Walking/south-west/frame_001.png",
+              "characters/octus/animations/Walking/south-west/frame_002.png",
+              "characters/octus/animations/Walking/south-west/frame_003.png",
+              "characters/octus/animations/Walking/south-west/frame_004.png",
+              "characters/octus/animations/Walking/south-west/frame_005.png"
+            ],
+            "north-west": [
+              "characters/octus/animations/Walking/north-west/frame_000.png",
+              "characters/octus/animations/Walking/north-west/frame_001.png",
+              "characters/octus/animations/Walking/north-west/frame_002.png",
+              "characters/octus/animations/Walking/north-west/frame_003.png",
+              "characters/octus/animations/Walking/north-west/frame_004.png",
+              "characters/octus/animations/Walking/north-west/frame_005.png"
+            ],
+            "south": [
+              "characters/octus/animations/Walking/south/frame_000.png",
+              "characters/octus/animations/Walking/south/frame_001.png",
+              "characters/octus/animations/Walking/south/frame_002.png",
+              "characters/octus/animations/Walking/south/frame_003.png",
+              "characters/octus/animations/Walking/south/frame_004.png",
+              "characters/octus/animations/Walking/south/frame_005.png"
+            ],
+            "north-east": [
+              "characters/octus/animations/Walking/north-east/frame_000.png",
+              "characters/octus/animations/Walking/north-east/frame_001.png",
+              "characters/octus/animations/Walking/north-east/frame_002.png",
+              "characters/octus/animations/Walking/north-east/frame_003.png",
+              "characters/octus/animations/Walking/north-east/frame_004.png",
+              "characters/octus/animations/Walking/north-east/frame_005.png"
+            ],
+            "south-east": [
+              "characters/octus/animations/Walking/south-east/frame_000.png",
+              "characters/octus/animations/Walking/south-east/frame_001.png",
+              "characters/octus/animations/Walking/south-east/frame_002.png",
+              "characters/octus/animations/Walking/south-east/frame_003.png",
+              "characters/octus/animations/Walking/south-east/frame_004.png",
+              "characters/octus/animations/Walking/south-east/frame_005.png"
+            ],
+            "north": [
+              "characters/octus/animations/Walking/north/frame_000.png",
+              "characters/octus/animations/Walking/north/frame_001.png",
+              "characters/octus/animations/Walking/north/frame_002.png",
+              "characters/octus/animations/Walking/north/frame_003.png",
+              "characters/octus/animations/Walking/north/frame_004.png",
+              "characters/octus/animations/Walking/north/frame_005.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "be169ff3-f034-4b18-b271-a49e1f2935e2",
+        "name": "tommy",
+        "prompt": "a cute cartoon fat cat, the body is the largest part and the head is small \u2014 low wide orange body shaped like a cushion, much wider than tall, small round head with a cream face, an enormous thick orange tail curling upward in a tall arc as tall as the whole body, a red collar band at the neck, two darker stripes on the body. No bell, no detailed paws, no fur texture.\n\n32x32 pixel art game sprite, cute cartoon mascot style, friendly and playful, chibi proportions with a big head and a small body. Front-facing standing character, full body, feet near the bottom edge. Large light eyes with small round dark pupils. Flat cel shading with only two tones per color, thick dark outline around the whole character, bright readable palette with clearly separated light and dark parts. No volumetric shading, no gritty or gloomy mood, no realistic rendering, no muted colors, no texture, no gradient, no anti-aliasing. Light from the upper left. Transparent background.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "cat",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-07T20:25:59.043947+00:00"
+      },
+      "folder": "characters/tommy",
+      "frames": {
+        "rotations": {
+          "south": "characters/tommy/rotations/south.png",
+          "south-east": "characters/tommy/rotations/south-east.png",
+          "east": "characters/tommy/rotations/east.png",
+          "north-east": "characters/tommy/rotations/north-east.png",
+          "north": "characters/tommy/rotations/north.png",
+          "north-west": "characters/tommy/rotations/north-west.png",
+          "west": "characters/tommy/rotations/west.png",
+          "south-west": "characters/tommy/rotations/south-west.png"
+        },
+        "animations": {
+          "Walk": {
+            "south-west": [
+              "characters/tommy/animations/Walk/south-west/frame_000.png",
+              "characters/tommy/animations/Walk/south-west/frame_001.png",
+              "characters/tommy/animations/Walk/south-west/frame_002.png",
+              "characters/tommy/animations/Walk/south-west/frame_003.png",
+              "characters/tommy/animations/Walk/south-west/frame_004.png",
+              "characters/tommy/animations/Walk/south-west/frame_005.png"
+            ],
+            "north-west": [
+              "characters/tommy/animations/Walk/north-west/frame_000.png",
+              "characters/tommy/animations/Walk/north-west/frame_001.png",
+              "characters/tommy/animations/Walk/north-west/frame_002.png",
+              "characters/tommy/animations/Walk/north-west/frame_003.png",
+              "characters/tommy/animations/Walk/north-west/frame_004.png",
+              "characters/tommy/animations/Walk/north-west/frame_005.png"
+            ],
+            "south-east": [
+              "characters/tommy/animations/Walk/south-east/frame_000.png",
+              "characters/tommy/animations/Walk/south-east/frame_001.png",
+              "characters/tommy/animations/Walk/south-east/frame_002.png",
+              "characters/tommy/animations/Walk/south-east/frame_003.png",
+              "characters/tommy/animations/Walk/south-east/frame_004.png",
+              "characters/tommy/animations/Walk/south-east/frame_005.png"
+            ],
+            "north-east": [
+              "characters/tommy/animations/Walk/north-east/frame_000.png",
+              "characters/tommy/animations/Walk/north-east/frame_001.png",
+              "characters/tommy/animations/Walk/north-east/frame_002.png",
+              "characters/tommy/animations/Walk/north-east/frame_003.png",
+              "characters/tommy/animations/Walk/north-east/frame_004.png",
+              "characters/tommy/animations/Walk/north-east/frame_005.png"
+            ],
+            "east": [
+              "characters/tommy/animations/Walk/east/frame_000.png",
+              "characters/tommy/animations/Walk/east/frame_001.png",
+              "characters/tommy/animations/Walk/east/frame_002.png",
+              "characters/tommy/animations/Walk/east/frame_003.png",
+              "characters/tommy/animations/Walk/east/frame_004.png",
+              "characters/tommy/animations/Walk/east/frame_005.png"
+            ],
+            "north": [
+              "characters/tommy/animations/Walk/north/frame_000.png",
+              "characters/tommy/animations/Walk/north/frame_001.png",
+              "characters/tommy/animations/Walk/north/frame_002.png",
+              "characters/tommy/animations/Walk/north/frame_003.png",
+              "characters/tommy/animations/Walk/north/frame_004.png",
+              "characters/tommy/animations/Walk/north/frame_005.png"
+            ],
+            "west": [
+              "characters/tommy/animations/Walk/west/frame_000.png",
+              "characters/tommy/animations/Walk/west/frame_001.png",
+              "characters/tommy/animations/Walk/west/frame_002.png",
+              "characters/tommy/animations/Walk/west/frame_003.png",
+              "characters/tommy/animations/Walk/west/frame_004.png",
+              "characters/tommy/animations/Walk/west/frame_005.png"
+            ],
+            "south": [
+              "characters/tommy/animations/Walk/south/frame_000.png",
+              "characters/tommy/animations/Walk/south/frame_001.png",
+              "characters/tommy/animations/Walk/south/frame_002.png",
+              "characters/tommy/animations/Walk/south/frame_003.png",
+              "characters/tommy/animations/Walk/south/frame_004.png",
+              "characters/tommy/animations/Walk/south/frame_005.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-10T01:54:24.189095"
+}
