@@ -27,16 +27,6 @@ export function isBorder(x: number, y: number): boolean {
   return x === 0 || y === 0 || x === ARENA_COLS - 1 || y === ARENA_ROWS - 1;
 }
 
-/** Pilar indestrutivel: toda posicao par do interior. */
-export function isPillar(x: number, y: number): boolean {
-  return !isBorder(x, y) && x % 2 === 0 && y % 2 === 0;
-}
-
-/** Parede que nunca muda durante a rodada (antes da morte subita). */
-export function isStaticWall(x: number, y: number): boolean {
-  return isBorder(x, y) || isPillar(x, y);
-}
-
 export function isInside(x: number, y: number): boolean {
   return x >= 0 && y >= 0 && x < ARENA_COLS && y < ARENA_ROWS;
 }
@@ -65,18 +55,20 @@ export interface SpawnPoint {
 }
 
 /**
- * 8 pontos com separacao maxima: 4 cantos e 4 pontos medios das bordas
- * (o ponto medio superior e inferior, e os dois laterais).
+ * 8 pontos no corredor da borda, em ordem ao redor da arena, a 8 celulas de
+ * caminhada um do outro. O corredor da borda e livre em todo layout, entao a
+ * distancia entre vizinhos e a mesma em qualquer rodada. Nenhum ponto fica no
+ * canto: o canto deixaria um vizinho mais perto que o outro.
  */
 export const SPAWN_POINTS: readonly SpawnPoint[] = [
-  { x: 1, y: 1, clearance: [{ x: 2, y: 1 }, { x: 1, y: 2 }] },
-  { x: 12, y: 1, clearance: [{ x: 11, y: 1 }, { x: 13, y: 1 }] },
-  { x: 23, y: 1, clearance: [{ x: 22, y: 1 }, { x: 23, y: 2 }] },
-  { x: 1, y: 6, clearance: [{ x: 1, y: 5 }, { x: 1, y: 7 }] },
-  { x: 23, y: 6, clearance: [{ x: 23, y: 5 }, { x: 23, y: 7 }] },
-  { x: 1, y: 11, clearance: [{ x: 2, y: 11 }, { x: 1, y: 10 }] },
-  { x: 12, y: 11, clearance: [{ x: 11, y: 11 }, { x: 13, y: 11 }] },
-  { x: 23, y: 11, clearance: [{ x: 22, y: 11 }, { x: 23, y: 10 }] },
+  { x: 8, y: 1, clearance: [{ x: 7, y: 1 }, { x: 9, y: 1 }] },
+  { x: 16, y: 1, clearance: [{ x: 15, y: 1 }, { x: 17, y: 1 }] },
+  { x: 23, y: 2, clearance: [{ x: 23, y: 1 }, { x: 23, y: 3 }] },
+  { x: 23, y: 10, clearance: [{ x: 23, y: 9 }, { x: 23, y: 11 }] },
+  { x: 16, y: 11, clearance: [{ x: 15, y: 11 }, { x: 17, y: 11 }] },
+  { x: 8, y: 11, clearance: [{ x: 7, y: 11 }, { x: 9, y: 11 }] },
+  { x: 1, y: 10, clearance: [{ x: 1, y: 9 }, { x: 1, y: 11 }] },
+  { x: 1, y: 2, clearance: [{ x: 1, y: 1 }, { x: 1, y: 3 }] },
 ] as const;
 
 /**

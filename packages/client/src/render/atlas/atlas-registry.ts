@@ -18,6 +18,9 @@ export const TEXTURA = {
   chamaCentro: "chama-centro-provisorio",
   chamaHorizontal: "chama-horizontal-provisorio",
   chamaVertical: "chama-vertical-provisorio",
+  powerupBomba: "powerup-bomba-provisorio",
+  powerupAlcance: "powerup-alcance-provisorio",
+  powerupVelocidade: "powerup-velocidade-provisorio",
 } as const;
 
 export type NomeTextura = (typeof TEXTURA)[keyof typeof TEXTURA];

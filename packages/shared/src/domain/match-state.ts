@@ -38,6 +38,8 @@ export interface MatchState {
   powerUps: PowerUp[];
   /** Quantos aneis a morte subita ja fechou. */
   ringsClosed: number;
+  /** Vencedor da rodada quando phase = Finished; null em empate ou em andamento. */
+  winnerId: string | null;
   /** Proximo id livre para bomba e explosao. */
   nextEntityId: number;
   /** Estado do RNG com semente. Faz parte do estado para o snapshot ser fiel. */

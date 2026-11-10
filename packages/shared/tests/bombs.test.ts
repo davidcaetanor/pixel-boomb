@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { playingMatch } from "./helpers.js";
 import { BALANCE, TICK_SECONDS } from "../src/config/balance.js";
 import { SPAWN_SAFE_INDICES, cellIndex, cellX, cellY } from "../src/config/arena.js";
 import { CellKind } from "../src/domain/cell.js";
@@ -7,7 +8,7 @@ import type { MatchState } from "../src/domain/match-state.js";
 import type { InputCommand, InputsByPlayer } from "../src/commands/input-command.js";
 import { crateCandidates, createStaticGrid, generateMap } from "../src/rules/map-generation.js";
 import { propagate } from "../src/rules/explosion-propagation.js";
-import { createMatchState, step } from "../src/simulation/step.js";
+import { step } from "../src/simulation/step.js";
 import { seedRng } from "../src/simulation/rng.js";
 
 const BOMB: InputCommand = { moveX: 0, moveY: 0, bomb: true };
@@ -16,7 +17,7 @@ const FUSE_TICKS = Math.ceil(BALANCE.time.bombFuse / TICK_SECONDS);
 /** Partida sem caixas, jogadores no centro das celulas dadas. */
 function arena(positions: Record<string, [number, number]>): MatchState {
   const ids = Object.keys(positions);
-  const base = createMatchState(1, ids);
+  const base = playingMatch(1, ids);
   return {
     ...base,
     grid: createStaticGrid(),
@@ -45,8 +46,9 @@ const cells = (list: [number, number][]): Set<number> =>
 describe("map-generation", () => {
   it("poe caixas na densidade do balance e deixa os spawns livres", () => {
     for (const seed of [1, 2, 3, 99, 12345]) {
-      const { grid } = generateMap(seedRng(seed));
-      const density = countCells(grid, CellKind.Crate) / crateCandidates().length;
+      const { grid, layoutIndex } = generateMap(seedRng(seed));
+      const candidates = crateCandidates(createStaticGrid(layoutIndex)).length;
+      const density = countCells(grid, CellKind.Crate) / candidates;
       expect(density).toBeGreaterThanOrEqual(BALANCE.mapGeneration.crateDensityMin - 0.01);
       expect(density).toBeLessThanOrEqual(BALANCE.mapGeneration.crateDensityMax + 0.01);
       for (const index of SPAWN_SAFE_INDICES) {
@@ -62,8 +64,8 @@ describe("map-generation", () => {
   });
 
   it("nunca troca parede fixa por caixa", () => {
-    const fixed = createStaticGrid();
-    const { grid } = generateMap(seedRng(5));
+    const { grid, layoutIndex } = generateMap(seedRng(5));
+    const fixed = createStaticGrid(layoutIndex);
     fixed.cells.forEach((kind, i) => {
       if (kind === CellKind.Wall) {
         expect(grid.cells[i]).toBe(CellKind.Wall);

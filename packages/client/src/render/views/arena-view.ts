@@ -1,21 +1,24 @@
 /**
  * Arena: piso, borda, pilares, marcadores de spawn e caixas.
  *
- * Le o Grid e pinta. As caixas sao sincronizadas a cada quadro: se a celula
- * deixou de ser caixa na simulacao, a imagem sai.
+ * Le o Grid e pinta: borda vira arvore, qualquer outra parede vira pilar, o
+ * que cobre o layout sorteado. A cada quadro sincroniza o que muda na rodada:
+ * caixa destruida sai, celula fechada pela morte subita ganha pilar, e o
+ * marcador de cada jogador so aparece na contagem, no spawn onde ele nasceu.
  */
 import type Phaser from "phaser";
 import {
   ARENA_COLS,
   ARENA_ROWS,
   CellKind,
-  SPAWN_POINTS,
+  MatchPhase,
   TILE_SIZE,
   cellAt,
   cellIndex,
   isBorder,
-  isPillar,
   type Grid,
+  type MatchPhase as Phase,
+  type Player,
 } from "@pixelboom/shared";
 import { TEXTURA } from "../atlas/atlas-registry.js";
 
@@ -27,8 +30,15 @@ const CORES_JOGADOR = [
 
 export class ArenaView {
   private readonly caixas = new Map<number, Phaser.GameObjects.Image>();
+  /** Celulas que ja tem parede desenhada. */
+  private readonly paredes = new Set<number>();
+  private readonly marcadores: Phaser.GameObjects.Image[] = [];
 
-  constructor(private readonly scene: Phaser.Scene, grid: Grid) {
+  constructor(
+    private readonly scene: Phaser.Scene,
+    grid: Grid,
+    players: readonly Player[],
+  ) {
     for (let y = 0; y < ARENA_ROWS; y += 1) {
       for (let x = 0; x < ARENA_COLS; x += 1) {
         this.coloca(TEXTURA.piso, x, y);
@@ -37,17 +47,17 @@ export class ArenaView {
           const canto =
             (x === 0 || x === ARENA_COLS - 1) && (y === 0 || y === ARENA_ROWS - 1);
           this.coloca(canto ? TEXTURA.arvorePequena : TEXTURA.arvore, x, y);
-        } else if (isPillar(x, y)) {
-          this.coloca(TEXTURA.pilar, x, y);
+          this.paredes.add(cellIndex(x, y));
         }
       }
     }
 
-    // Fixos ate existir a fase de contagem regressiva (E3).
-    SPAWN_POINTS.forEach((spawn, slot) => {
-      this.coloca(TEXTURA.spawn, spawn.x, spawn.y).setTint(CORES_JOGADOR[slot] ?? 0xffffff);
-    });
+    for (const player of players) {
+      const marcador = this.coloca(TEXTURA.spawn, Math.floor(player.x), Math.floor(player.y));
+      this.marcadores.push(marcador.setTint(CORES_JOGADOR[player.slot] ?? 0xffffff));
+    }
 
+    this.sincronizaParedes(grid);
     for (let y = 0; y < ARENA_ROWS; y += 1) {
       for (let x = 0; x < ARENA_COLS; x += 1) {
         if (cellAt(grid, x, y) === CellKind.Crate) {
@@ -57,11 +67,30 @@ export class ArenaView {
     }
   }
 
-  render(grid: Grid): void {
+  render(grid: Grid, phase: Phase): void {
+    const contagem = phase === MatchPhase.Countdown;
+    for (const marcador of this.marcadores) {
+      marcador.setVisible(contagem);
+    }
+
     for (const [index, imagem] of this.caixas) {
       if (grid.cells[index] !== CellKind.Crate) {
         imagem.destroy();
         this.caixas.delete(index);
+      }
+    }
+
+    this.sincronizaParedes(grid);
+  }
+
+  private sincronizaParedes(grid: Grid): void {
+    for (let y = 0; y < ARENA_ROWS; y += 1) {
+      for (let x = 0; x < ARENA_COLS; x += 1) {
+        const index = cellIndex(x, y);
+        if (!this.paredes.has(index) && cellAt(grid, x, y) === CellKind.Wall) {
+          this.paredes.add(index);
+          this.coloca(TEXTURA.pilar, x, y);
+        }
       }
     }
   }
