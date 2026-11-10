@@ -3,7 +3,7 @@
  * tick; a grade e atualizada celula a celula para enviar so a diferenca.
  */
 import { ArraySchema } from "@colyseus/schema";
-import type { MatchState } from "@pixelboom/shared";
+import { MatchPhase, type MatchState, type Series } from "@pixelboom/shared";
 import {
   BombSchema,
   ExplosionSchema,
@@ -25,7 +25,15 @@ function writeGrid(target: MatchSchema, cells: Uint8Array): void {
   });
 }
 
-export function writeMatch(target: MatchSchema, state: MatchState): void {
+export function writeMatch(
+  target: MatchSchema,
+  state: MatchState,
+  series: Series,
+  ackFor: (playerId: string) => number,
+): void {
+  target.round = series.roundsPlayed + (state.phase === MatchPhase.Finished ? 0 : 1);
+  target.seriesFinished = series.finished;
+  target.seriesWinnerId = series.winnerId ?? "";
   target.phase = state.phase;
   target.tick = state.tick;
   target.elapsed = state.elapsed;
@@ -49,6 +57,8 @@ export function writeMatch(target: MatchSchema, state: MatchState): void {
     s.speed = p.speed;
     s.maxBombs = p.maxBombs;
     s.range = p.range;
+    s.roundsWon = p.roundsWon;
+    s.ackSeq = ackFor(p.id);
     if (!target.players.has(p.id)) {
       target.players.set(p.id, s);
     }
@@ -70,6 +80,9 @@ export function writeMatch(target: MatchSchema, state: MatchState): void {
 export function writeWaiting(target: MatchSchema, connected: number): void {
   target.phase = WAITING_PHASE;
   target.connected = connected;
+  target.round = 0;
+  target.seriesFinished = false;
+  target.seriesWinnerId = "";
   target.winnerId = "";
   target.players.clear();
   target.bombs = new ArraySchema<BombSchema>();

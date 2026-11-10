@@ -25,6 +25,8 @@ interface RemotePlayer {
   speed: number;
   maxBombs: number;
   range: number;
+  roundsWon: number;
+  ackSeq: number;
 }
 
 /** Formato do estado da sala, independente das classes de schema do servidor. */
@@ -34,6 +36,9 @@ export interface RemoteState {
   elapsed: number;
   winnerId: string;
   connected: number;
+  round: number;
+  seriesFinished: boolean;
+  seriesWinnerId: string;
   cells: Iterable<number>;
   players: { forEach(cb: (p: RemotePlayer) => void): void };
   bombs: Iterable<{ id: number; x: number; y: number }>;
@@ -41,9 +46,21 @@ export interface RemoteState {
   powerUps: Iterable<{ kind: number; x: number; y: number }>;
 }
 
-export type Snapshot =
-  | { readonly kind: "waiting"; readonly connected: number }
-  | { readonly kind: "match"; readonly state: MatchState };
+export interface SeriesView {
+  readonly round: number;
+  readonly finished: boolean;
+  readonly winnerId: string | null;
+}
+
+export interface MatchSnapshot {
+  readonly kind: "match";
+  readonly state: MatchState;
+  readonly series: SeriesView;
+  /** Ultima entrada confirmada pelo servidor, por jogador. */
+  readonly acks: ReadonlyMap<string, number>;
+}
+
+export type Snapshot = { readonly kind: "waiting"; readonly connected: number } | MatchSnapshot;
 
 export function readSnapshot(remote: RemoteState): Snapshot {
   if (remote.phase === WAITING_PHASE) {
@@ -51,7 +68,9 @@ export function readSnapshot(remote: RemoteState): Snapshot {
   }
 
   const players: MatchState["players"] = [];
+  const acks = new Map<string, number>();
   remote.players.forEach((p) => {
+    acks.set(p.id, p.ackSeq);
     players.push({
       id: p.id,
       slot: p.slot,
@@ -63,7 +82,7 @@ export function readSnapshot(remote: RemoteState): Snapshot {
       maxBombs: p.maxBombs,
       range: p.range,
       bombsPlaced: 0,
-      roundsWon: 0,
+      roundsWon: p.roundsWon,
     });
   });
   players.sort((a, b) => a.slot - b.slot);
@@ -94,5 +113,10 @@ export function readSnapshot(remote: RemoteState): Snapshot {
     nextEntityId: 0,
     rng: 0,
   };
-  return { kind: "match", state };
+  const series: SeriesView = {
+    round: remote.round,
+    finished: remote.seriesFinished,
+    winnerId: remote.seriesWinnerId === "" ? null : remote.seriesWinnerId,
+  };
+  return { kind: "match", state, series, acks };
 }

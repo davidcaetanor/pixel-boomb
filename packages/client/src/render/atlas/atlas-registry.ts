@@ -26,12 +26,11 @@ export function caminhoDaTextura(nome: NomeTextura): string {
 }
 
 /**
- * Folha do jogador: uma linha por direcao, na ordem de DIRECOES_FOLHA. A
- * coluna 0 e o quadro parado e as seguintes, a caminhada. Quadros de 48x48
- * com o personagem na escala do tile de 32.
+ * Formato das folhas de personagem: uma linha por direcao, na ordem de
+ * DIRECOES_FOLHA. A coluna 0 e o quadro parado e as seguintes, a caminhada.
+ * Quadros de 48x48 com o personagem na escala do tile de 32.
  */
-export const FOLHA_JOGADOR = {
-  chave: "jogador-provisorio",
+export const FOLHA_PERSONAGEM = {
   larguraFrame: 48,
   alturaFrame: 48,
   colunas: 7,
@@ -40,6 +39,22 @@ export const FOLHA_JOGADOR = {
 
 export const DIRECOES_FOLHA = ["south", "west", "east", "north"] as const;
 export type DirecaoFolha = (typeof DIRECOES_FOLHA)[number];
+
+/** Um personagem por slot de jogador, na ordem dos slots. */
+export const ELENCO = [
+  "bender",
+  "cogu",
+  "gamabunta",
+  "golem",
+  "karasuno",
+  "octus",
+  "papyrus",
+  "tommy",
+] as const;
+
+export function chaveDoPersonagem(slot: number): string {
+  return `personagem-${ELENCO[slot % ELENCO.length] ?? ELENCO[0]}-provisorio`;
+}
 
 export function caminhoDaFolha(chave: string): string {
   return `/${chave}.png`;

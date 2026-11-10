@@ -34,6 +34,8 @@ export const BALANCE = {
     matchMax: 180,
     /** Pausa entre o fim de uma rodada online e o inicio da proxima. */
     roundRestartDelay: 5,
+    /** Pausa entre o fim de uma serie e o inicio da proxima. */
+    seriesRestartDelay: 10,
   },
 
   /** Geracao do mapa. Fracoes de 0 a 1. */
@@ -58,6 +60,8 @@ export const BALANCE = {
     minPlayersToStart: 2,
     /** Mensagens aceitas por cliente por segundo. */
     maxMessagesPerSecond: 60,
+    /** Entradas em espera por jogador no servidor, cerca de 200 ms a 30 Hz. */
+    maxQueuedInputs: 6,
   },
 
   /** Formato da partida. */

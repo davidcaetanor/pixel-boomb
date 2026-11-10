@@ -18,12 +18,7 @@ import {
   type Player,
 } from "@pixelboom/shared";
 import { TEXTURA } from "../atlas/atlas-registry.js";
-
-/** Cor de cada slot, usada para tingir o marcador de spawn. */
-const CORES_JOGADOR = [
-  0xe85d5d, 0x5da9e8, 0x6fcf63, 0xe8d15d,
-  0xb46fe8, 0xe8945d, 0x5de8c9, 0xe85db4,
-];
+import { corDoSlot } from "../palette.js";
 
 export class ArenaView {
   private readonly caixas = new Map<number, Phaser.GameObjects.Image>();
@@ -50,7 +45,7 @@ export class ArenaView {
 
     for (const player of players) {
       const marcador = this.coloca(TEXTURA.spawn, Math.floor(player.x), Math.floor(player.y));
-      this.marcadores.push(marcador.setTint(CORES_JOGADOR[player.slot] ?? 0xffffff));
+      this.marcadores.push(marcador.setTint(corDoSlot(player.slot)));
     }
 
     this.sincronizaParedes(grid);

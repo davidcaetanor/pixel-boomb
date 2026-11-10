@@ -1,10 +1,12 @@
 /** Carrega as texturas e abre a partida. */
 import Phaser from "phaser";
 import {
-  FOLHA_JOGADOR,
+  ELENCO,
+  FOLHA_PERSONAGEM,
   TEXTURA,
   caminhoDaFolha,
   caminhoDaTextura,
+  chaveDoPersonagem,
 } from "../atlas/atlas-registry.js";
 
 export class BootScene extends Phaser.Scene {
@@ -16,15 +18,18 @@ export class BootScene extends Phaser.Scene {
     for (const nome of Object.values(TEXTURA)) {
       this.load.image(nome, caminhoDaTextura(nome));
     }
-    this.load.spritesheet(FOLHA_JOGADOR.chave, caminhoDaFolha(FOLHA_JOGADOR.chave), {
-      frameWidth: FOLHA_JOGADOR.larguraFrame,
-      frameHeight: FOLHA_JOGADOR.alturaFrame,
+    ELENCO.forEach((_, slot) => {
+      const chave = chaveDoPersonagem(slot);
+      this.load.spritesheet(chave, caminhoDaFolha(chave), {
+        frameWidth: FOLHA_PERSONAGEM.larguraFrame,
+        frameHeight: FOLHA_PERSONAGEM.alturaFrame,
+      });
     });
   }
 
-  /** `?local` abre a partida offline; o padrao e a sala online. */
+  /** `?local` abre a partida offline; o padrao e o lobby da sala online. */
   create(): void {
     const local = new URLSearchParams(window.location.search).has("local");
-    this.scene.start(local ? "match" : "online");
+    this.scene.start(local ? "match" : "lobby");
   }
 }

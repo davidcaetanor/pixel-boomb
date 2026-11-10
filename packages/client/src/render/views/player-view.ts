@@ -1,13 +1,14 @@
 /**
- * Sprite do jogador interpolado entre dois ticks. A direcao vem de
- * Player.facing; o deslocamento so indica se ha movimento. O quadro parado
+ * Sprite do personagem do slot, interpolado entre dois estados. A direcao vem
+ * de Player.facing; o deslocamento so indica se ha movimento. O quadro parado
  * espera IDLE_GRACE_SECONDS para nao piscar na troca de tecla.
  */
 import Phaser from "phaser";
 import { TILE_SIZE, type Player } from "@pixelboom/shared";
 import {
   DIRECOES_FOLHA,
-  FOLHA_JOGADOR,
+  FOLHA_PERSONAGEM,
+  chaveDoPersonagem,
   type DirecaoFolha,
 } from "../atlas/atlas-registry.js";
 
@@ -15,7 +16,7 @@ import {
 const PLAYER_DEPTH = 10;
 /** Quadros por segundo da caminhada. */
 const WALK_FRAME_RATE = 10;
-/** Deslocamento minimo entre ticks, em celulas, para contar como andando. */
+/** Deslocamento minimo entre estados, em celulas, para contar como andando. */
 const MOVING_THRESHOLD = 1e-6;
 /** Tempo parado antes de trocar para o frame de repouso. */
 const IDLE_GRACE_SECONDS = 0.12;
@@ -23,26 +24,26 @@ const IDLE_GRACE_SECONDS = 0.12;
 const DEATH_TINT = 0xff4040;
 const DEATH_FADE_MS = 450;
 
-function animKey(dir: DirecaoFolha): string {
-  return `${FOLHA_JOGADOR.chave}-andar-${dir}`;
+function animKey(sheet: string, dir: DirecaoFolha): string {
+  return `${sheet}-andar-${dir}`;
 }
 
 function idleFrame(dir: DirecaoFolha): number {
-  return DIRECOES_FOLHA.indexOf(dir) * FOLHA_JOGADOR.colunas;
+  return DIRECOES_FOLHA.indexOf(dir) * FOLHA_PERSONAGEM.colunas;
 }
 
-export function registerPlayerAnimations(scene: Phaser.Scene): void {
+function registerAnimations(scene: Phaser.Scene, sheet: string): void {
   DIRECOES_FOLHA.forEach((dir, row) => {
-    const key = animKey(dir);
+    const key = animKey(sheet, dir);
     if (scene.anims.exists(key)) {
       return;
     }
-    const start = row * FOLHA_JOGADOR.colunas + 1;
+    const start = row * FOLHA_PERSONAGEM.colunas + 1;
     scene.anims.create({
       key,
-      frames: scene.anims.generateFrameNumbers(FOLHA_JOGADOR.chave, {
+      frames: scene.anims.generateFrameNumbers(sheet, {
         start,
-        end: start + FOLHA_JOGADOR.framesCaminhada - 1,
+        end: start + FOLHA_PERSONAGEM.framesCaminhada - 1,
       }),
       frameRate: WALK_FRAME_RATE,
       repeat: -1,
@@ -52,15 +53,24 @@ export function registerPlayerAnimations(scene: Phaser.Scene): void {
 
 export class PlayerView {
   private readonly sprite: Phaser.GameObjects.Sprite;
+  private readonly sheet: string;
   private facing: DirecaoFolha = "south";
   private stillFor = IDLE_GRACE_SECONDS;
-  private morto = false;
+  private dead = false;
 
-  constructor(private readonly scene: Phaser.Scene) {
-    registerPlayerAnimations(scene);
-    this.sprite = scene.add
-      .sprite(0, 0, FOLHA_JOGADOR.chave, idleFrame(this.facing))
-      .setDepth(PLAYER_DEPTH);
+  constructor(private readonly scene: Phaser.Scene, slot: number) {
+    this.sheet = chaveDoPersonagem(slot);
+    registerAnimations(scene, this.sheet);
+    this.sprite = scene.add.sprite(0, 0, this.sheet, idleFrame(this.facing)).setDepth(PLAYER_DEPTH);
+  }
+
+  /** Posicao desenhada, em pixels. */
+  get position(): { readonly x: number; readonly y: number } {
+    return { x: this.sprite.x, y: this.sprite.y };
+  }
+
+  get isDead(): boolean {
+    return this.dead;
   }
 
   render(previous: Player, current: Player, alpha: number, dtSeconds: number): void {
@@ -69,17 +79,14 @@ export class PlayerView {
     this.sprite.setPosition(x * TILE_SIZE, y * TILE_SIZE);
 
     if (!current.alive) {
-      this.morre();
+      this.die();
       return;
     }
 
-    const dx = current.x - previous.x;
-    const dy = current.y - previous.y;
-
-    if (Math.hypot(dx, dy) > MOVING_THRESHOLD) {
+    if (Math.hypot(current.x - previous.x, current.y - previous.y) > MOVING_THRESHOLD) {
       this.stillFor = 0;
       this.facing = current.facing;
-      this.sprite.anims.play(animKey(this.facing), true);
+      this.sprite.anims.play(animKey(this.sheet, this.facing), true);
       return;
     }
 
@@ -90,11 +97,11 @@ export class PlayerView {
     }
   }
 
-  private morre(): void {
-    if (this.morto) {
+  private die(): void {
+    if (this.dead) {
       return;
     }
-    this.morto = true;
+    this.dead = true;
     this.sprite.anims.stop();
     this.sprite.setFrame(idleFrame(this.facing)).setTint(DEATH_TINT);
     this.scene.tweens.add({ targets: this.sprite, alpha: 0, duration: DEATH_FADE_MS });

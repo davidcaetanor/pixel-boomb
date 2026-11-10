@@ -16,6 +16,7 @@ import {
   type MatchState,
 } from "@pixelboom/shared";
 import { KeyboardSource } from "../../input/keyboard-source.js";
+import { roundResult } from "../hud/messages.js";
 import { TimerHud } from "../hud/timer.js";
 import { ArenaView } from "../views/arena-view.js";
 import { BombView } from "../views/bomb-view.js";
@@ -60,8 +61,8 @@ export class MatchScene extends Phaser.Scene {
     this.bombView = new BombView(this);
     this.powerUpView = new PowerUpView(this);
     this.explosionView = new ExplosionView(this);
-    this.playerView = new PlayerView(this);
-    this.hud = new TimerHud(this, LOCAL_PLAYER_ID);
+    this.playerView = new PlayerView(this, 0);
+    this.hud = new TimerHud(this);
 
     this.input.keyboard?.on("keydown-ENTER", () => {
       if (this.state.phase === MatchPhase.Finished) {
@@ -94,6 +95,10 @@ export class MatchScene extends Phaser.Scene {
       const alpha = interpolationAlpha(this.loop);
       this.playerView.render(anterior, atual, alpha, deltaMs / MS_PER_SECOND);
     }
-    this.hud.render(this.state);
+    const banner =
+      this.state.phase === MatchPhase.Finished
+        ? `${roundResult(this.state, LOCAL_PLAYER_ID)}\nEnter: nova rodada`
+        : null;
+    this.hud.render(this.state, "", banner);
   }
 }
