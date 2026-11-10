@@ -5,6 +5,7 @@
  * nem Node. server e client importam daqui; nunca o contrario.
  */
 export * from "./config/arena.js";
+export * from "./config/arena-layouts.js";
 export * from "./config/balance.js";
 export * from "./config/sudden-death-order.js";
 export * from "./commands/input-command.js";
@@ -17,6 +18,7 @@ export * from "./rules/explosion-propagation.js";
 export * from "./rules/grid-collision.js";
 export * from "./rules/map-generation.js";
 export * from "./rules/pickup.js";
+export * from "./rules/spawn-assignment.js";
 export * from "./rules/sudden-death.js";
 export * from "./rules/victory.js";
 export * from "./rules/movement.js";

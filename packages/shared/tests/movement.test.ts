@@ -123,7 +123,7 @@ describe("facing ao virar segurando a tecla", () => {
     "nao pisca de lado partindo de x = %s",
     (startX) => {
       let s = { ...playingMatch(1, ["p"]), grid: createStaticGrid() };
-      s = { ...s, players: s.players.map((p) => ({ ...p, x: startX })) };
+      s = { ...s, players: s.players.map((p) => ({ ...p, x: startX, y: 1.5 })) };
       const seen: string[] = [];
       for (let t = 0; t < 40; t += 1) {
         const input: InputCommand =
@@ -141,7 +141,12 @@ describe("facing ao virar segurando a tecla", () => {
 
 describe("step", () => {
   it("move so quem mandou comando e nao muta o estado anterior", () => {
-    const s0 = playingMatch(42, ["a", "b"]);
+    const base = playingMatch(42, ["a", "b"]);
+    const s0 = {
+      ...base,
+      grid: createStaticGrid(),
+      players: base.players.map((p, i) => ({ ...p, x: 1.5 + i * 4, y: 1.5 })),
+    };
     const s1 = step(s0, { a: { moveX: 1, moveY: 0 } }, TICK_SECONDS);
     expect(s1.tick).toBe(1);
     expect(s1.players[0]?.x).toBeGreaterThan(s0.players[0]?.x ?? Infinity);

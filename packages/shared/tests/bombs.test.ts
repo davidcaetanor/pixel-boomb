@@ -46,8 +46,9 @@ const cells = (list: [number, number][]): Set<number> =>
 describe("map-generation", () => {
   it("poe caixas na densidade do balance e deixa os spawns livres", () => {
     for (const seed of [1, 2, 3, 99, 12345]) {
-      const { grid } = generateMap(seedRng(seed));
-      const density = countCells(grid, CellKind.Crate) / crateCandidates().length;
+      const { grid, layoutIndex } = generateMap(seedRng(seed));
+      const candidates = crateCandidates(createStaticGrid(layoutIndex)).length;
+      const density = countCells(grid, CellKind.Crate) / candidates;
       expect(density).toBeGreaterThanOrEqual(BALANCE.mapGeneration.crateDensityMin - 0.01);
       expect(density).toBeLessThanOrEqual(BALANCE.mapGeneration.crateDensityMax + 0.01);
       for (const index of SPAWN_SAFE_INDICES) {
@@ -63,8 +64,8 @@ describe("map-generation", () => {
   });
 
   it("nunca troca parede fixa por caixa", () => {
-    const fixed = createStaticGrid();
-    const { grid } = generateMap(seedRng(5));
+    const { grid, layoutIndex } = generateMap(seedRng(5));
+    const fixed = createStaticGrid(layoutIndex);
     fixed.cells.forEach((kind, i) => {
       if (kind === CellKind.Wall) {
         expect(grid.cells[i]).toBe(CellKind.Wall);

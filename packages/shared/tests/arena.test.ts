@@ -9,12 +9,52 @@ import {
   SPAWN_POINTS,
   cellIndex,
   isBorder,
-  isPillar,
-  isStaticWall,
 } from "../src/config/arena.js";
+import { ARENA_LAYOUTS, isLayoutWall, type ArenaLayout } from "../src/config/arena-layouts.js";
+
+const DIRS: readonly (readonly [number, number])[] = [
+  [1, 0],
+  [-1, 0],
+  [0, 1],
+  [0, -1],
+];
+
+function freeCells(layout: ArenaLayout): { x: number; y: number }[] {
+  const cells: { x: number; y: number }[] = [];
+  for (let y = 0; y < ARENA_ROWS; y += 1) {
+    for (let x = 0; x < ARENA_COLS; x += 1) {
+      if (!isLayoutWall(layout, x, y)) {
+        cells.push({ x, y });
+      }
+    }
+  }
+  return cells;
+}
+
+/** Distancia de caminhada entre duas celulas, so pelo piso do layout. */
+function walk(layout: ArenaLayout, from: { x: number; y: number }, to: { x: number; y: number }): number {
+  const dist = new Map<number, number>([[cellIndex(from.x, from.y), 0]]);
+  const queue = [from];
+  while (queue.length > 0) {
+    const cur = queue.shift() as { x: number; y: number };
+    const d = dist.get(cellIndex(cur.x, cur.y)) ?? 0;
+    if (cur.x === to.x && cur.y === to.y) {
+      return d;
+    }
+    for (const [dx, dy] of DIRS) {
+      const nx = cur.x + dx;
+      const ny = cur.y + dy;
+      if (!isLayoutWall(layout, nx, ny) && !dist.has(cellIndex(nx, ny))) {
+        dist.set(cellIndex(nx, ny), d + 1);
+        queue.push({ x: nx, y: ny });
+      }
+    }
+  }
+  return Infinity;
+}
 
 describe("dimensoes da arena", () => {
-  it("e impar x impar, o que o padrao de pilares exige", () => {
+  it("e impar x impar", () => {
     expect(ARENA_COLS % 2).toBe(1);
     expect(ARENA_ROWS % 2).toBe(1);
   });
@@ -26,57 +66,72 @@ describe("dimensoes da arena", () => {
     expect(LOGICAL_HEIGHT * RENDER_ZOOM).toBeLessThan(1080);
     expect(LOGICAL_WIDTH * RENDER_ZOOM).toBeLessThanOrEqual(1920);
   });
-
-  it("tem 198 celulas livres, ~25 por jogador", () => {
-    let free = 0;
-    for (let y = 0; y < ARENA_ROWS; y += 1) {
-      for (let x = 0; x < ARENA_COLS; x += 1) {
-        if (!isStaticWall(x, y)) {
-          free += 1;
-        }
-      }
-    }
-    expect(free).toBe(198);
-    expect(Math.floor(free / 8)).toBe(24);
-  });
 });
 
-describe("paredes estaticas", () => {
+describe.each(ARENA_LAYOUTS.map((l) => [l.name, l] as const))("layout %s", (_name, layout) => {
+  it("tem o tamanho da arena", () => {
+    expect(layout.rows).toHaveLength(ARENA_ROWS);
+    for (const row of layout.rows) {
+      expect(row).toHaveLength(ARENA_COLS);
+      expect(row).toMatch(/^[#.S]+$/);
+    }
+  });
+
   it("fecha todo o perimetro", () => {
-    for (let x = 0; x < ARENA_COLS; x += 1) {
-      expect(isBorder(x, 0)).toBe(true);
-      expect(isBorder(x, ARENA_ROWS - 1)).toBe(true);
-    }
     for (let y = 0; y < ARENA_ROWS; y += 1) {
-      expect(isBorder(0, y)).toBe(true);
-      expect(isBorder(ARENA_COLS - 1, y)).toBe(true);
-    }
-  });
-
-  it("poe pilar em toda posicao par do interior e nada mais", () => {
-    expect(isPillar(2, 2)).toBe(true);
-    expect(isPillar(22, 10)).toBe(true);
-    expect(isPillar(3, 2)).toBe(false);
-    expect(isPillar(2, 3)).toBe(false);
-    expect(isPillar(0, 0)).toBe(false);
-  });
-
-  it("garante que toda celula livre tem pelo menos duas saidas", () => {
-    // Nenhum corredor sem saida: a propriedade que o padrao impar garante.
-    for (let y = 1; y < ARENA_ROWS - 1; y += 1) {
-      for (let x = 1; x < ARENA_COLS - 1; x += 1) {
-        if (isStaticWall(x, y)) {
-          continue;
+      for (let x = 0; x < ARENA_COLS; x += 1) {
+        if (isBorder(x, y)) {
+          expect(isLayoutWall(layout, x, y)).toBe(true);
         }
-        const exits = [
-          [x + 1, y],
-          [x - 1, y],
-          [x, y + 1],
-          [x, y - 1],
-        ].filter(([nx, ny]) => !isStaticWall(nx as number, ny as number));
-        expect(exits.length).toBeGreaterThanOrEqual(2);
       }
     }
+  });
+
+  it("e simetrico nos dois eixos", () => {
+    for (let y = 0; y < ARENA_ROWS; y += 1) {
+      for (let x = 0; x < ARENA_COLS; x += 1) {
+        const wall = isLayoutWall(layout, x, y);
+        expect(isLayoutWall(layout, ARENA_COLS - 1 - x, y)).toBe(wall);
+        expect(isLayoutWall(layout, x, ARENA_ROWS - 1 - y)).toBe(wall);
+      }
+    }
+  });
+
+  it("marca os spawns exatamente onde SPAWN_POINTS diz", () => {
+    const marked = new Set<number>();
+    layout.rows.forEach((row, y) => {
+      [...row].forEach((ch, x) => {
+        if (ch === "S") {
+          marked.add(cellIndex(x, y));
+        }
+      });
+    });
+    expect(marked).toEqual(new Set(SPAWN_POINTS.map((s) => cellIndex(s.x, s.y))));
+  });
+
+  it("deixa spawn e clearance livres", () => {
+    for (const spawn of SPAWN_POINTS) {
+      for (const cell of [spawn, ...spawn.clearance]) {
+        expect(isLayoutWall(layout, cell.x, cell.y)).toBe(false);
+      }
+    }
+  });
+
+  it("e todo conectado e sem beco sem saida", () => {
+    const free = freeCells(layout);
+    const first = free[0] as { x: number; y: number };
+    for (const cell of free) {
+      expect(walk(layout, first, cell)).toBeLessThan(Infinity);
+      const exits = DIRS.filter(([dx, dy]) => !isLayoutWall(layout, cell.x + dx, cell.y + dy));
+      expect(exits.length).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it("deixa cada spawn a 8 celulas de caminhada dos dois vizinhos", () => {
+    SPAWN_POINTS.forEach((spawn, i) => {
+      const next = SPAWN_POINTS[(i + 1) % SPAWN_POINTS.length] as (typeof SPAWN_POINTS)[number];
+      expect(walk(layout, spawn, next)).toBe(8);
+    });
   });
 });
 
@@ -85,20 +140,11 @@ describe("pontos de spawn", () => {
     expect(SPAWN_POINTS).toHaveLength(8);
   });
 
-  it("nao coloca ninguem dentro de parede", () => {
-    for (const spawn of SPAWN_POINTS) {
-      expect(isStaticWall(spawn.x, spawn.y)).toBe(false);
-    }
-  });
-
-  it("da a cada spawn um L de 3 celulas livres", () => {
+  it("da a cada spawn duas vizinhas livres", () => {
     for (const spawn of SPAWN_POINTS) {
       expect(spawn.clearance).toHaveLength(2);
       for (const cell of spawn.clearance) {
-        expect(isStaticWall(cell.x, cell.y)).toBe(false);
-        const distance =
-          Math.abs(cell.x - spawn.x) + Math.abs(cell.y - spawn.y);
-        expect(distance).toBe(1);
+        expect(Math.abs(cell.x - spawn.x) + Math.abs(cell.y - spawn.y)).toBe(1);
       }
     }
   });

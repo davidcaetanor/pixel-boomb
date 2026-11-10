@@ -35,13 +35,17 @@ import { burnPowerUps, collectPowerUps, rollDrops } from "../rules/pickup.js";
 import { closeRings } from "../rules/sudden-death.js";
 import { checkVictory } from "../rules/victory.js";
 import { movePlayer } from "../rules/movement.js";
+import { assignSpawns } from "../rules/spawn-assignment.js";
 import { seedRng } from "./rng.js";
 
 export { createStaticGrid } from "../rules/map-generation.js";
 
-/** Jogador novo no centro da celula de spawn do seu slot. */
-export function createPlayer(id: string, slot: number): Player {
-  const spawn = SPAWN_POINTS[slot % SPAWN_POINTS.length] ?? SPAWN_POINTS[0];
+/**
+ * Jogador novo no centro do spawn indicado. O slot define cor e placar; o
+ * spawn e sorteado por rodada em createMatchState.
+ */
+export function createPlayer(id: string, slot: number, spawnIndex = slot): Player {
+  const spawn = SPAWN_POINTS[spawnIndex % SPAWN_POINTS.length] ?? SPAWN_POINTS[0];
   if (spawn === undefined) {
     throw new Error("arena sem spawn");
   }
@@ -66,19 +70,20 @@ export function createMatchState(
   playerIds: readonly string[],
 ): MatchState {
   const map = generateMap(seedRng(seed));
+  const spawns = assignSpawns(playerIds.length, map.rng);
   return {
     tick: 0,
     elapsed: -BALANCE.time.countdown,
     phase: MatchPhase.Countdown,
     grid: map.grid,
-    players: playerIds.map((id, slot) => createPlayer(id, slot)),
+    players: playerIds.map((id, slot) => createPlayer(id, slot, spawns.spawnIndices[slot] ?? slot)),
     bombs: [],
     explosions: [],
     powerUps: [],
     ringsClosed: 0,
     winnerId: null,
     nextEntityId: 1,
-    rng: map.rng,
+    rng: spawns.rng,
   };
 }
 
