@@ -1,0 +1,16 @@
+# So o necessario para o build entra no contexto da imagem.
+**/node_modules
+**/dist
+**/*.tsbuildinfo
+.git
+.github
+.claude
+.vite
+docs
+deploy
+assets/source
+assets/processed
+assets/palette
+.env
+.env.*
+*.md

@@ -54,7 +54,7 @@ Nunca o contrário. Nunca `shared` importando de `server` ou `client`.
 | Render | Phaser 4 |
 | Rede | Colyseus (WebSocket) |
 | Runtime do servidor | Node LTS |
-| Hospedagem | Fly.io ou Railway, serviço único servindo estático + WebSocket |
+| Hospedagem | VPS própria com Docker, serviço único servindo estático + WebSocket, atrás do Caddy da VPS |
 | Testes | Vitest, com foco em `shared/` |
 
 Não adicione dependência nova sem necessidade concreta. Em particular: não introduza

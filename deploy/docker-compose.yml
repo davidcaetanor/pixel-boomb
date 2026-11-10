@@ -1,0 +1,33 @@
+# PixelBoom na VPS. Projeto Compose proprio (nome "pixelboom"), entao a rede
+# e separada da do Umbra: um nao enxerga o outro.
+#
+# O Caddy da VPS (fora do Docker) recebe o HTTPS na 443 e repassa para
+# 127.0.0.1:2567. A porta so escuta dentro da VPS; de fora ninguem chega ao
+# container direto, nem se o ufw falhar (Docker ignora o ufw).
+
+name: pixelboom
+
+services:
+  game:
+    image: ghcr.io/davidcaetanor/pixelboom:${PIXELBOOM_IMAGE_TAG:-latest}
+    ports:
+      - "127.0.0.1:2567:2567"
+    environment:
+      TZ: America/Sao_Paulo
+    # Endurecimento: sem root, sistema de arquivos so leitura, sem privilegios extras.
+    user: node
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 256m
+    pids_limit: 128
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+    restart: unless-stopped
