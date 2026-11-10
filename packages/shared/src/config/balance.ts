@@ -44,6 +44,8 @@ export const BALANCE = {
     suddenDeathStart: 90,
     suddenDeathRingInterval: 15,
     matchMax: 180,
+    /** Pausa entre o fim de uma rodada online e o inicio da proxima. */
+    roundRestartDelay: 5,
   },
 
   /** Geracao do mapa. Fracoes de 0 a 1. */
@@ -64,6 +66,10 @@ export const BALANCE = {
     patchesPerSecond: 30,
     interpolationBufferMs: 66,
     maxClientsPerRoom: 8,
+    /** Jogadores conectados para a sala comecar uma rodada. */
+    minPlayersToStart: 2,
+    /** Teto de mensagens por cliente; acima disso o servidor descarta. */
+    maxMessagesPerSecond: 60,
   },
 
   /** Formato da partida. */
