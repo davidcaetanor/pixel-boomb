@@ -39,26 +39,15 @@ pnpm dev                                # cliente em http://localhost:5173
 ## Estrutura
 
 ```
-packages/shared   simulacao pura: dominio, regras, config. Nao importa nada.
-packages/server   autoridade e rede (Colyseus)
-packages/client   render, entrada e predicao (Phaser, Vite)
+packages/shared   dominio, regras, config. 
+packages/server   autoridade e rede 
+packages/client   render, entrada e predicao 
 assets/
-  source/         saida crua do PixelLab, imutavel
+  source/       
     characters/   os 8 personagens, 8 direcoes
-    tiles/        celulas da grade: piso, parede, pilar, caixa, explosao
-    objects/      entidades com estado: bomba, power-ups
+    tiles/        piso, parede, pilar, caixa, explosao
+    objects/      entidades: bomba, power-ups
     ui/           HUD
   processed/      limpeza manual
-  atlas/          folhas finais que o cliente carrega (publicDir do Vite)
-docs/             documentacao, nao versionada
+  atlas/                     
 ```
-
-A regra de dependencia corre em uma direcao so: `server` e `client` importam
-`shared`; `shared` nao importa ninguem. Isso e verificado por lint em
-`eslint.config.js`, nao por disciplina.
-
-## Procedencia dos assets
-
-Os sprites de personagens, tiles e objetos sao gerados com PixelLab e ajustados a
-mao. Os criterios de aceite, a convencao de tiles e objects e o fluxo do MCP estao
-em `docs/` (nao versionado).
