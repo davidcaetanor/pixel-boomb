@@ -52,9 +52,4 @@ export class TimerHud {
     }
     this.centro.setText(banner ?? "");
   }
-
-  renderWaiting(connected: number, needed: number): void {
-    this.topo.setText("");
-    this.centro.setText(`Aguardando jogadores\n${connected}/${needed}`);
-  }
 }

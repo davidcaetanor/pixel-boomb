@@ -63,6 +63,36 @@
         opacity: 0.5;
         cursor: default;
       }
+      .roster {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        gap: 10px;
+      }
+      .lobby .roster-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 6px;
+        font-size: 13px;
+      }
+      .lobby .roster-card.is-mine {
+        border-width: 4px;
+        padding: 4px;
+      }
+      .roster-preview {
+        display: block;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        image-rendering: pixelated;
+      }
+      .room-status {
+        margin: 0;
+      }
+      .lobby .room-start {
+        font-size: 22px;
+        padding: 10px 32px;
+      }
       .lobby-error {
         min-height: 1.2em;
         margin: 0;

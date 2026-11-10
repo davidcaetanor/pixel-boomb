@@ -34,6 +34,14 @@ export class PowerUpSchema extends Schema {
   @type("uint8") y = 0;
 }
 
+/** Jogador conectado a sala, participando ou nao da rodada atual. */
+export class MemberSchema extends Schema {
+  @type("string") id = "";
+  @type("uint8") character = 0;
+  /** Ordem de entrada na sala; define o proximo anfitriao. */
+  @type("uint16") order = 0;
+}
+
 /** Fase de transporte: sala aguardando jogadores. */
 export const WAITING_PHASE = "waiting";
 
@@ -44,6 +52,8 @@ export class MatchSchema extends Schema {
   /** Vazio em empate ou durante a rodada. */
   @type("string") winnerId = "";
   @type("uint8") connected = 0;
+  @type("string") hostId = "";
+  @type({ map: MemberSchema }) members = new MapSchema<MemberSchema>();
   /** Rodada atual da serie, a partir de 1. */
   @type("uint8") round = 0;
   @type("boolean") seriesFinished = false;

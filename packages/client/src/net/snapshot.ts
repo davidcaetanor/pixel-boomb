@@ -29,6 +29,12 @@ interface RemotePlayer {
   ackSeq: number;
 }
 
+interface RemoteMember {
+  id: string;
+  character: number;
+  order: number;
+}
+
 /** Formato do estado da sala, independente das classes de schema do servidor. */
 export interface RemoteState {
   phase: string;
@@ -36,6 +42,8 @@ export interface RemoteState {
   elapsed: number;
   winnerId: string;
   connected: number;
+  hostId: string;
+  members: { forEach(cb: (m: RemoteMember) => void): void };
   round: number;
   seriesFinished: boolean;
   seriesWinnerId: string;
@@ -52,19 +60,46 @@ export interface SeriesView {
   readonly winnerId: string | null;
 }
 
+export interface Member {
+  readonly id: string;
+  readonly character: number;
+  readonly order: number;
+}
+
+/** Quem esta na sala, valido na espera e durante a partida. */
+export interface Lobby {
+  readonly hostId: string;
+  /** Em ordem de entrada. */
+  readonly members: readonly Member[];
+}
+
+export interface WaitingSnapshot {
+  readonly kind: "waiting";
+  readonly lobby: Lobby;
+}
+
 export interface MatchSnapshot {
   readonly kind: "match";
+  readonly lobby: Lobby;
   readonly state: MatchState;
   readonly series: SeriesView;
   /** Ultima entrada confirmada pelo servidor, por jogador. */
   readonly acks: ReadonlyMap<string, number>;
 }
 
-export type Snapshot = { readonly kind: "waiting"; readonly connected: number } | MatchSnapshot;
+export type Snapshot = WaitingSnapshot | MatchSnapshot;
+
+function readLobby(remote: RemoteState): Lobby {
+  const members: Member[] = [];
+  remote.members.forEach((m) => members.push({ id: m.id, character: m.character, order: m.order }));
+  members.sort((a, b) => a.order - b.order);
+  return { hostId: remote.hostId, members };
+}
 
 export function readSnapshot(remote: RemoteState): Snapshot {
+  const lobby = readLobby(remote);
   if (remote.phase === WAITING_PHASE) {
-    return { kind: "waiting", connected: remote.connected };
+    return { kind: "waiting", lobby };
   }
 
   const players: MatchState["players"] = [];
@@ -118,5 +153,5 @@ export function readSnapshot(remote: RemoteState): Snapshot {
     finished: remote.seriesFinished,
     winnerId: remote.seriesWinnerId === "" ? null : remote.seriesWinnerId,
   };
-  return { kind: "match", state, series, acks };
+  return { kind: "match", lobby, state, series, acks };
 }

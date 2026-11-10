@@ -1,8 +1,8 @@
 /**
  * Sala autoritativa: roda a simulacao de shared e decide o estado; o cliente
  * envia entradas numeradas, consumidas uma por tick. A sala tem um codigo
- * curto como id, joga series de rodadas enquanto houver minPlayersToStart
- * conectados e recomeca a serie quando ela termina.
+ * curto como id e uma espera em que cada jogador escolhe personagem. O
+ * anfitriao inicia a serie; ao fim dela todos voltam para a espera.
  */
 import { Room, type Client } from "@colyseus/core";
 import {
@@ -13,8 +13,10 @@ import {
   TICK_SECONDS,
   advance,
   applySeriesScore,
+  canPickCharacter,
   createFixedLoop,
   createMatchState,
+  firstFreeCharacter,
   recordRound,
   step,
   type FixedLoopState,
@@ -22,9 +24,9 @@ import {
   type MatchState,
   type Series,
 } from "@pixelboom/shared";
-import { writeMatch, writeWaiting } from "../schema/mappers.js";
+import { writeLobby, writeMatch, writeWaiting, type LobbyMember } from "../schema/mappers.js";
 import { MatchSchema } from "../schema/match-schema.js";
-import { parseInput } from "../validation/input-validator.js";
+import { parseCharacterPick, parseInput } from "../validation/input-validator.js";
 import { generateRoomCode } from "./room-code.js";
 
 const MS_PER_SECOND = 1000;
@@ -39,6 +41,9 @@ export class MatchRoom extends Room<{ state: MatchSchema }> {
   private match: MatchState | null = null;
   private series: Series = NEW_SERIES;
   private readonly queues = new Map<string, InputQueue>();
+  private readonly members = new Map<string, LobbyMember>();
+  private hostId = "";
+  private nextOrder = 0;
   private finishedFor = 0;
   private roundRecorded = false;
   /** O timer do sistema nao e preciso o bastante; o acumulador garante a taxa de ticks. */
@@ -49,6 +54,26 @@ export class MatchRoom extends Room<{ state: MatchSchema }> {
       const entry = parseInput(raw);
       if (entry !== null) {
         this.queues.get(client.sessionId)?.push(entry);
+      }
+    },
+    character: (client: Client, raw: unknown): void => {
+      const index = parseCharacterPick(raw);
+      const member = this.members.get(client.sessionId);
+      if (this.match !== null || member === undefined || index === null) {
+        return;
+      }
+      if (canPickCharacter(this.charactersExcept(client.sessionId), index)) {
+        this.members.set(client.sessionId, { ...member, character: index });
+        this.publishLobby();
+      }
+    },
+    start: (client: Client): void => {
+      const canStart =
+        client.sessionId === this.hostId &&
+        this.match === null &&
+        this.clients.length >= BALANCE.net.minPlayersToStart;
+      if (canStart) {
+        this.startRound();
       }
     },
   };
@@ -62,39 +87,56 @@ export class MatchRoom extends Room<{ state: MatchSchema }> {
         this.tick();
       }
     }, MS_PER_SECOND / BALANCE.simulation.tickHz);
-    writeWaiting(this.state, 0);
+    writeWaiting(this.state);
   }
 
   override onJoin(client: Client): void {
     this.queues.set(client.sessionId, new InputQueue());
-    this.state.connected = this.clients.length;
-    if (this.match === null && this.clients.length >= BALANCE.net.minPlayersToStart) {
-      this.startRound();
+    const character = firstFreeCharacter(this.charactersExcept(client.sessionId)) ?? 0;
+    this.members.set(client.sessionId, { character, order: this.nextOrder });
+    this.nextOrder += 1;
+    if (this.hostId === "") {
+      this.hostId = client.sessionId;
     }
+    this.publishLobby();
   }
 
   override onLeave(client: Client): void {
     this.queues.delete(client.sessionId);
-    this.state.connected = this.clients.length;
-    if (this.match === null) {
-      writeWaiting(this.state, this.clients.length);
-      return;
+    this.members.delete(client.sessionId);
+    if (this.hostId === client.sessionId) {
+      this.hostId = this.oldestMember() ?? "";
     }
-    this.match = {
-      ...this.match,
-      players: this.match.players.map((p) =>
-        p.id === client.sessionId ? { ...p, alive: false } : p,
-      ),
-    };
+    this.publishLobby();
+    if (this.match !== null) {
+      this.match = {
+        ...this.match,
+        players: this.match.players.map((p) =>
+          p.id === client.sessionId ? { ...p, alive: false } : p,
+        ),
+      };
+    }
+  }
+
+  private charactersExcept(id: string): number[] {
+    return [...this.members].filter(([memberId]) => memberId !== id).map(([, m]) => m.character);
+  }
+
+  private oldestMember(): string | null {
+    const ordered = [...this.members].sort((a, b) => a[1].order - b[1].order);
+    return ordered[0]?.[0] ?? null;
   }
 
   private startRound(): void {
     const seed = Math.floor(Math.random() * SEED_RANGE);
-    const ids = this.clients.map((c) => c.sessionId).slice(0, BALANCE.net.maxClientsPerRoom);
+    const ids = [...this.members]
+      .sort((a, b) => a[1].order - b[1].order)
+      .map(([id]) => id)
+      .slice(0, BALANCE.net.maxClientsPerRoom);
     this.match = applySeriesScore(createMatchState(seed, ids), this.series);
     this.finishedFor = 0;
     this.roundRecorded = false;
-    this.publish();
+    this.publishMatch();
   }
 
   private tick(): void {
@@ -114,7 +156,7 @@ export class MatchRoom extends Room<{ state: MatchSchema }> {
     if (this.match.phase === MatchPhase.Finished) {
       this.finishRound();
     }
-    this.publish();
+    this.publishMatch();
   }
 
   private finishRound(): void {
@@ -136,19 +178,21 @@ export class MatchRoom extends Room<{ state: MatchSchema }> {
   }
 
   private nextRound(): void {
-    if (this.series.finished) {
-      this.series = NEW_SERIES;
-    }
-    if (this.clients.length >= BALANCE.net.minPlayersToStart) {
+    const enoughPlayers = this.clients.length >= BALANCE.net.minPlayersToStart;
+    if (!this.series.finished && enoughPlayers) {
       this.startRound();
       return;
     }
     this.match = null;
     this.series = NEW_SERIES;
-    writeWaiting(this.state, this.clients.length);
+    writeWaiting(this.state);
   }
 
-  private publish(): void {
+  private publishLobby(): void {
+    writeLobby(this.state, this.members, this.hostId);
+  }
+
+  private publishMatch(): void {
     if (this.match !== null) {
       writeMatch(this.state, this.match, this.series, (id) => this.queues.get(id)?.acknowledged ?? 0);
     }

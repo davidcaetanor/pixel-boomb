@@ -40,7 +40,7 @@ export const FOLHA_PERSONAGEM = {
 export const DIRECOES_FOLHA = ["south", "west", "east", "north"] as const;
 export type DirecaoFolha = (typeof DIRECOES_FOLHA)[number];
 
-/** Um personagem por slot de jogador, na ordem dos slots. */
+/** Elenco na ordem dos indices de personagem. */
 export const ELENCO = [
   "bender",
   "cogu",
@@ -52,8 +52,8 @@ export const ELENCO = [
   "tommy",
 ] as const;
 
-export function chaveDoPersonagem(slot: number): string {
-  return `personagem-${ELENCO[slot % ELENCO.length] ?? ELENCO[0]}-provisorio`;
+export function chaveDoPersonagem(character: number): string {
+  return `personagem-${ELENCO[character % ELENCO.length] ?? ELENCO[0]}-provisorio`;
 }
 
 export function caminhoDaFolha(chave: string): string {

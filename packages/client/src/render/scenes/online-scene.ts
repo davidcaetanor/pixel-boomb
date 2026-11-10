@@ -6,7 +6,6 @@
  */
 import Phaser from "phaser";
 import {
-  BALANCE,
   IDLE_INPUT,
   MatchPhase,
   advance,
@@ -22,7 +21,8 @@ import { KeyboardSource } from "../../input/keyboard-source.js";
 import { SnapshotBuffer } from "../../net/interpolation.js";
 import { predictionFor, type LocalPrediction } from "../../net/prediction.js";
 import { activeRoom } from "../../net/room-client.js";
-import { readSnapshot, type MatchSnapshot, type RemoteState } from "../../net/snapshot.js";
+import { readSnapshot, type Lobby, type MatchSnapshot, type RemoteState } from "../../net/snapshot.js";
+import { RoomPanel } from "../../ui/room-panel.js";
 import { onlineBanner, roundLabel } from "../hud/messages.js";
 import { Scoreboard } from "../hud/scoreboard.js";
 import { SelfMarker } from "../hud/self-marker.js";
@@ -59,7 +59,8 @@ export class OnlineScene extends Phaser.Scene {
   private readonly loop: FixedLoopState = createFixedLoop();
   private readonly drawnOthers = new Map<string, Player>();
   private latest: MatchSnapshot | null = null;
-  private waiting = 0;
+  private waitingLobby: Lobby | null = null;
+  private panel: RoomPanel | null = null;
   private views: MatchViews | null = null;
 
   constructor() {
@@ -78,6 +79,7 @@ export class OnlineScene extends Phaser.Scene {
     this.buffer.clear();
     this.drawnOthers.clear();
     this.latest = null;
+    this.waitingLobby = null;
     this.views = null;
     this.loop.accumulator = 0;
 
@@ -109,13 +111,14 @@ export class OnlineScene extends Phaser.Scene {
       room.onStateChange.remove(onState);
       document.removeEventListener("visibilitychange", onHidden);
       this.keyboard.dispose();
+      this.closePanel();
     });
   }
 
   private receive(remote: RemoteState): void {
     const snapshot = readSnapshot(remote);
     if (snapshot.kind === "waiting") {
-      this.waiting = snapshot.connected;
+      this.waitingLobby = snapshot.lobby;
       if (this.latest !== null) {
         this.scene.restart();
       }
@@ -127,6 +130,7 @@ export class OnlineScene extends Phaser.Scene {
     }
 
     this.latest = snapshot;
+    this.waitingLobby = null;
     this.buffer.push(performance.now(), snapshot.state.players);
     const self = snapshot.state.players.find((p) => p.id === this.room.sessionId);
     if (self !== undefined) {
@@ -154,9 +158,12 @@ export class OnlineScene extends Phaser.Scene {
     }
     const snapshot = this.latest;
     if (snapshot === null) {
-      this.timer.renderWaiting(this.waiting, BALANCE.net.minPlayersToStart);
+      if (this.waitingLobby !== null) {
+        this.renderRoom(this.waitingLobby);
+      }
       return;
     }
+    this.closePanel();
 
     const ticks = advance(this.loop, deltaMs / MS_PER_SECOND);
     for (let i = 0; i < ticks; i += 1) {
@@ -168,7 +175,7 @@ export class OnlineScene extends Phaser.Scene {
   private draw(snapshot: MatchSnapshot, time: number, dt: number): void {
     const { state, series } = snapshot;
     const localId = this.room.sessionId;
-    const views = this.views ?? this.createViews(state, localId);
+    const views = this.views ?? this.createViews(state, snapshot.lobby, localId);
 
     views.arena.render(state.grid, state.phase);
     views.powerUps.render(state.powerUps);
@@ -203,14 +210,36 @@ export class OnlineScene extends Phaser.Scene {
     this.scoreboard.render(state.players, localId);
   }
 
-  private createViews(state: MatchState, localId: string): MatchViews {
+  private renderRoom(lobby: Lobby): void {
+    this.status.setText("");
+    this.panel ??= new RoomPanel({
+      onPick: (character) => this.room.send("character", { index: character }),
+      onStart: () => this.room.send("start"),
+    });
+    this.panel.render({
+      code: this.room.roomId,
+      localId: this.room.sessionId,
+      hostId: lobby.hostId,
+      members: lobby.members,
+    });
+  }
+
+  private closePanel(): void {
+    this.panel?.dispose();
+    this.panel = null;
+  }
+
+  private createViews(state: MatchState, lobby: Lobby, localId: string): MatchViews {
+    const characters = new Map(lobby.members.map((m) => [m.id, m.character]));
     const self = state.players.find((p) => p.id === localId);
     this.views = {
       arena: new ArenaView(this, state.grid, state.players),
       bombs: new BombView(this),
       powerUps: new PowerUpView(this),
       explosions: new ExplosionView(this),
-      players: new Map(state.players.map((p) => [p.id, new PlayerView(this, p.slot)])),
+      players: new Map(
+        state.players.map((p) => [p.id, new PlayerView(this, characters.get(p.id) ?? p.slot)]),
+      ),
       selfMarker: self === undefined ? null : new SelfMarker(this, self.slot),
     };
     return this.views;
