@@ -1,14 +1,11 @@
 /**
  * Setas e WASD viram InputCommand.
  *
- * Uma direcao por vez, e a ultima tecla apertada ganha: segurar "direita" e
- * tocar "baixo" vira para baixo; soltar "baixo" volta para a direita. E o
- * comportamento classico do genero e o que deixa entrar em corredor sem
- * brigar com a diagonal.
- *
- * So le teclado. Nao sabe nada de regra nem de posicao.
+ * Envia a direcao mais recente de cada eixo e qual eixo foi apertado por
+ * ultimo. Segurar "direita" e apertar "baixo" pede baixo com prioridade e
+ * direita como alternativa; a simulacao decide qual cabe.
  */
-import type { InputCommand } from "@pixelboom/shared";
+import type { AxisIntent, InputCommand } from "@pixelboom/shared";
 import { IDLE_INPUT } from "@pixelboom/shared";
 
 type Direction = "up" | "down" | "left" | "right";
@@ -24,11 +21,11 @@ const KEY_TO_DIRECTION: Readonly<Record<string, Direction>> = {
   KeyD: "right",
 };
 
-const DIRECTION_TO_COMMAND: Readonly<Record<Direction, InputCommand>> = {
-  up: { moveX: 0, moveY: -1 },
-  down: { moveX: 0, moveY: 1 },
-  left: { moveX: -1, moveY: 0 },
-  right: { moveX: 1, moveY: 0 },
+const DIRECTION_AXIS: Readonly<Record<Direction, { axis: "x" | "y"; sign: AxisIntent }>> = {
+  up: { axis: "y", sign: -1 },
+  down: { axis: "y", sign: 1 },
+  left: { axis: "x", sign: -1 },
+  right: { axis: "x", sign: 1 },
 };
 
 export class KeyboardSource {
@@ -66,7 +63,20 @@ export class KeyboardSource {
 
   read(): InputCommand {
     const last = this.held[this.held.length - 1];
-    return last === undefined ? IDLE_INPUT : DIRECTION_TO_COMMAND[last];
+    if (last === undefined) {
+      return IDLE_INPUT;
+    }
+    let moveX: AxisIntent = 0;
+    let moveY: AxisIntent = 0;
+    for (const dir of this.held) {
+      const { axis, sign } = DIRECTION_AXIS[dir];
+      if (axis === "x") {
+        moveX = sign;
+      } else {
+        moveY = sign;
+      }
+    }
+    return { moveX, moveY, prefer: DIRECTION_AXIS[last].axis };
   }
 
   dispose(): void {

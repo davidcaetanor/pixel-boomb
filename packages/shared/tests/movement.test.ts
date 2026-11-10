@@ -51,11 +51,25 @@ describe("movement", () => {
     expect(end.y).toBe(1.5);
   });
 
-  it("desliza ao longo da parede andando na diagonal", () => {
-    // Encostado na borda de cima, pede cima+direita: segue para a direita.
-    const end = walk({ x: 1.5, y: 1.5 }, { moveX: 1, moveY: -1 }, 10);
+  it("segue na direcao antiga enquanto a nova esta bloqueada", () => {
+    // Indo para a direita na linha 1, aperta baixo (mais recente) sobre o pilar.
+    const end = walk({ x: 2.5, y: 1.5 }, { moveX: 1, moveY: 1, prefer: "y" }, 5);
     expect(end.x).toBeGreaterThan(2.5);
-    expect(end.y).toBeCloseTo(1 + PLAYER_HALF, 10);
+    expect(end.y).toBe(1.5);
+  });
+
+  it("vira sozinho quando a passagem abre, sem soltar a tecla antiga", () => {
+    // Segurando direita e baixo a partir do pilar (2,2): entra no corredor x = 3.
+    const end = walk({ x: 2.5, y: 1.5 }, { moveX: 1, moveY: 1, prefer: "y" }, 30);
+    expect(end.x).toBeGreaterThanOrEqual(3 + PLAYER_HALF - 1e-9);
+    expect(end.x).toBeLessThanOrEqual(4 - PLAYER_HALF + 1e-9);
+    expect(end.y).toBeGreaterThan(3);
+  });
+
+  it("usa a direcao preferida quando as duas estao livres", () => {
+    const end = walk({ x: 3.5, y: 1.5 }, { moveX: 1, moveY: 1, prefer: "y" }, 3);
+    expect(end.x).toBe(3.5);
+    expect(end.y).toBeGreaterThan(1.5);
   });
 
   it("nao gruda na quina: desvia para dentro do corredor", () => {

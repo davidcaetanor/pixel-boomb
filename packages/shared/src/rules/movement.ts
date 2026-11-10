@@ -3,8 +3,8 @@
  *
  * Dois comportamentos fazem a sensacao de "suave, sem degrau":
  *
- * 1. Deslizar: cada eixo e resolvido separado, entao andar na diagonal contra
- *    uma parede continua andando no outro eixo.
+ * 1. Virada antecipada: com duas direcoes seguradas, a mais recente tenta
+ *    primeiro; se estiver bloqueada, segue na outra ate a virada abrir.
  * 2. Desvio de quina: se o jogador empurra contra um pilar mas o centro dele
  *    esta numa faixa cuja celula a frente esta livre, o passo que sobrou vira
  *    um ajuste lateral rumo ao centro dessa faixa. E isso que impede de
@@ -32,15 +32,21 @@ export function sanitizeAxis(value: number): AxisIntent {
   return 0;
 }
 
+interface AxisMove {
+  readonly pos: Position;
+  /** Bateu na parede sem conseguir desviar pela quina. */
+  readonly blocked: boolean;
+}
+
 function moveOnAxis(
   grid: Grid,
   pos: Position,
   axis: Axis,
   dir: AxisIntent,
   distance: number,
-): Position {
+): AxisMove {
   if (dir === 0 || distance <= 0) {
-    return pos;
+    return { pos, blocked: dir !== 0 };
   }
 
   const box = { x: pos.x, y: pos.y, half: PLAYER_HALF };
@@ -51,7 +57,7 @@ function moveOnAxis(
   let next: Position = axis === "x" ? { x: reached, y: pos.y } : { x: pos.x, y: reached };
 
   if (leftover <= BALANCE.physics.collisionEpsilon) {
-    return next;
+    return { pos: next, blocked: false };
   }
 
   // Desvio de quina: olha a celula a frente na faixa onde o centro esta.
@@ -60,7 +66,7 @@ function moveOnAxis(
   const laneCenter = lane + CELL_CENTER;
   const offset = laneCenter - across;
   if (offset === 0) {
-    return next;
+    return { pos: next, blocked: true };
   }
 
   const leadEdge = (axis === "x" ? next.x : next.y) + dir * PLAYER_HALF;
@@ -70,7 +76,7 @@ function moveOnAxis(
   const aheadBlocked =
     axis === "x" ? isBlocked(grid, ahead, lane) : isBlocked(grid, lane, ahead);
   if (aheadBlocked) {
-    return next;
+    return { pos: next, blocked: true };
   }
 
   const crossAxis: Axis = axis === "x" ? "y" : "x";
@@ -78,7 +84,7 @@ function moveOnAxis(
   const crossBox = { x: next.x, y: next.y, half: PLAYER_HALF };
   const crossReached = moveAlongAxis(grid, crossBox, crossAxis, nudge);
   next = crossAxis === "x" ? { x: crossReached, y: next.y } : { x: next.x, y: crossReached };
-  return next;
+  return { pos: next, blocked: false };
 }
 
 /**
@@ -95,8 +101,17 @@ export function movePlayer(
   const moveY = sanitizeAxis(input.moveY);
   const distance = player.speed * Math.max(dt, 0);
 
-  let pos: Position = { x: player.x, y: player.y };
-  pos = moveOnAxis(grid, pos, "x", moveX, distance);
-  pos = moveOnAxis(grid, pos, "y", moveY, distance);
-  return pos;
+  const start: Position = { x: player.x, y: player.y };
+  const intent = { x: moveX, y: moveY };
+  const preferred: Axis = input.prefer === "y" ? "y" : "x";
+  const first: Axis = intent[preferred] !== 0 ? preferred : preferred === "x" ? "y" : "x";
+  const second: Axis = first === "x" ? "y" : "x";
+
+  const tried = moveOnAxis(grid, start, first, intent[first], distance);
+  if (!tried.blocked || intent[second] === 0) {
+    return tried.pos;
+  }
+  // Preferido travado: usa o outro a partir do ponto original, sem o
+  // avanço parcial, para o jogador nao virar de lado por um tick.
+  return moveOnAxis(grid, start, second, intent[second], distance).pos;
 }
