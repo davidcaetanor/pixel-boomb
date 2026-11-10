@@ -15,6 +15,8 @@ export const TEXTURA = {
   arvorePequena: "arvore-p-provisorio",
   spawn: "spawn-provisorio",
   bomba: "bomba-provisorio",
+  /** Frame south do bender, provisorio ate a folha de caminhada. */
+  jogador: "jogador-provisorio",
 } as const;
 
 export type NomeTextura = (typeof TEXTURA)[keyof typeof TEXTURA];

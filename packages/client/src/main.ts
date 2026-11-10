@@ -5,6 +5,7 @@ import {
   RENDER_ZOOM,
 } from "@pixelboom/shared";
 import { BootScene } from "./render/scenes/boot-scene.js";
+import { MatchScene } from "./render/scenes/match-scene.js";
 
 new Phaser.Game({
   type: Phaser.AUTO,
@@ -15,5 +16,5 @@ new Phaser.Game({
   backgroundColor: "#14121c",
   pixelArt: true,
   roundPixels: true,
-  scene: [BootScene],
+  scene: [BootScene, MatchScene],
 });
