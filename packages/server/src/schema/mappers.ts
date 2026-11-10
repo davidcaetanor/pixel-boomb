@@ -7,6 +7,7 @@ import { MatchPhase, type MatchState, type Series } from "@pixelboom/shared";
 import {
   BombSchema,
   ExplosionSchema,
+  MemberSchema,
   PlayerSchema,
   PowerUpSchema,
   WAITING_PHASE,
@@ -77,9 +78,36 @@ export function writeMatch(
   );
 }
 
-export function writeWaiting(target: MatchSchema, connected: number): void {
+export interface LobbyMember {
+  readonly character: number;
+  readonly order: number;
+}
+
+export function writeLobby(
+  target: MatchSchema,
+  members: ReadonlyMap<string, LobbyMember>,
+  hostId: string,
+): void {
+  target.hostId = hostId;
+  target.connected = members.size;
+  for (const id of [...target.members.keys()]) {
+    if (!members.has(id)) {
+      target.members.delete(id);
+    }
+  }
+  for (const [id, member] of members) {
+    const s = target.members.get(id) ?? new MemberSchema();
+    s.id = id;
+    s.character = member.character;
+    s.order = member.order;
+    if (!target.members.has(id)) {
+      target.members.set(id, s);
+    }
+  }
+}
+
+export function writeWaiting(target: MatchSchema): void {
   target.phase = WAITING_PHASE;
-  target.connected = connected;
   target.round = 0;
   target.seriesFinished = false;
   target.seriesWinnerId = "";

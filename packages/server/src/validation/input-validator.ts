@@ -47,3 +47,16 @@ export function parseInput(raw: unknown): SequencedInput | null {
   };
   return { seq, input };
 }
+
+/** Escolha de personagem: `{ index }` com inteiro. O dominio do indice e validado pela regra. */
+export function parseCharacterPick(raw: unknown): number | null {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    return null;
+  }
+  const keys = Object.keys(raw);
+  const index = (raw as Record<string, unknown>)["index"];
+  if (keys.length !== 1 || typeof index !== "number" || !Number.isInteger(index)) {
+    return null;
+  }
+  return index;
+}
