@@ -5,11 +5,11 @@ navegador. Ate 8 jogadores por sala. Projeto de faculdade, desktop apenas.
 
 ## Stack
 
-TypeScript strict, 
-pnpm workspaces, 
-Phaser 4 no render, 
-Colyseus no netcode,
-Vite no cliente, Vitest nos testes.
+- TypeScript strict, 
+- pnpm workspaces, 
+- Phaser 4 no render, 
+- Colyseus no netcode,
+- Vite no cliente, Vitest nos testes.
 
 
 ## Estrutura
@@ -24,6 +24,5 @@ assets/
     tiles/        piso, parede, pilar, caixa, explosao
     objects/      entidades: bomba, power-ups
     ui/           HUD
-  processed/      limpeza manual
-  atlas/                     
+  processed/      limpeza                     
 ```
