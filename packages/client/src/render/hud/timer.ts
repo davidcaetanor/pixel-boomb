@@ -1,7 +1,4 @@
-/**
- * HUD minimo: contagem regressiva, relogio da rodada, aviso de morte subita
- * e resultado. So le o estado.
- */
+/** Contagem regressiva, relogio, aviso de morte subita e resultado da rodada. */
 import type Phaser from "phaser";
 import { LOGICAL_HEIGHT, LOGICAL_WIDTH, MatchPhase, type MatchState } from "@pixelboom/shared";
 
@@ -57,6 +54,19 @@ export class TimerHud {
         this.topo.setText(relogio(state.elapsed)).setColor(COR_NORMAL);
         this.centro.setText(`${this.resultado(state)}\nEnter: nova rodada`).setColor(COR_NORMAL);
         return;
+    }
+  }
+
+  renderWaiting(connected: number, needed: number): void {
+    this.topo.setText("");
+    this.centro.setText(`Aguardando jogadores\n${connected}/${needed}`).setColor(COR_NORMAL);
+  }
+
+  /** Jogador que entrou durante a rodada e aguarda a proxima. */
+  renderSpectator(state: MatchState): void {
+    this.render(state);
+    if (state.phase !== MatchPhase.Finished) {
+      this.centro.setText("Assistindo\nvoce entra na proxima rodada").setColor(COR_NORMAL);
     }
   }
 

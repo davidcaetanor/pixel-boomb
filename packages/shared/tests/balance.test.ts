@@ -3,9 +3,8 @@ import { BALANCE, TICK_SECONDS } from "../src/config/balance.js";
 import { TILE_SIZE } from "../src/config/arena.js";
 
 describe("balanceamento", () => {
-  it("mantem a verificacao de escape de docs/02-game-design.md", () => {
+  it("permite escapar do proprio alcance durante o pavio", () => {
     // A 3,5 celulas/s o jogador percorre 8,75 celulas durante um pavio de 2,5 s.
-    // Se mexer na velocidade ou no pavio, este teste cobra a conta refeita.
     const { speedInitial } = BALANCE.player;
     const distancia = speedInitial * BALANCE.time.bombFuse;
     expect(distancia).toBeCloseTo(8.75, 5);

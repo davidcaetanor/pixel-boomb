@@ -1,11 +1,11 @@
-// Regra de dependencia do projeto, imposta por lint e nao por disciplina.
-// Ver CLAUDE.md secao 2 e docs/03-arquitetura.md.
+// Regra de dependencia entre pacotes: shared e a simulacao pura e nao
+// conhece rede, render, DOM, Node, relogio nem aleatoriedade sem semente.
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 
 const PURO =
   "packages/shared e simulacao pura: nada de Phaser, Colyseus, DOM, Node, " +
-  "relogio ou aleatoriedade sem semente. Ver CLAUDE.md secao 2.";
+  "relogio ou aleatoriedade sem semente.";
 
 export default tseslint.config(
   {
@@ -28,9 +28,6 @@ export default tseslint.config(
     },
   },
 
-  // ---------------------------------------------------------------------------
-  // A regra inviolavel: shared/ nao conhece ninguem.
-  // ---------------------------------------------------------------------------
   {
     files: ["packages/shared/**/*.ts"],
     rules: {
@@ -112,7 +109,6 @@ export default tseslint.config(
     },
   },
 
-  // Testes de shared podem usar relogio e random livremente.
   {
     files: ["packages/shared/tests/**/*.ts"],
     rules: {
@@ -122,7 +118,6 @@ export default tseslint.config(
     },
   },
 
-  // O render e a rede sao a casca imperativa: aqui DOM e Phaser sao esperados.
   {
     files: ["packages/client/**/*.ts"],
     languageOptions: { globals: { window: "readonly", document: "readonly" } },

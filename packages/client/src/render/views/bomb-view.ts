@@ -1,6 +1,4 @@
-/**
- * Bombas no chao, uma imagem por id. Some quando a bomba sai do estado.
- */
+/** Uma imagem por bomba, sincronizada pelo id. */
 import type Phaser from "phaser";
 import { CELL_CENTER, TILE_SIZE, type Bomb } from "@pixelboom/shared";
 import { TEXTURA } from "../atlas/atlas-registry.js";

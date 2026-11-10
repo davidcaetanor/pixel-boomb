@@ -1,10 +1,6 @@
 /**
- * Onde cada jogador nasce nesta rodada.
- *
- * SPAWN_POINTS esta em ordem ao redor da arena. Para n jogadores, escolhe n
- * pontos espalhados por igual nessa volta, a partir de um ponto sorteado, e
- * depois embaralha quem fica com qual. Ninguem decora o proprio spawn, e a
- * distancia ate o vizinho mais proximo fica parecida para todos.
+ * Distribuicao de spawns por rodada: n pontos igualmente espacados ao redor da
+ * arena a partir de uma origem sorteada, embaralhados entre os jogadores.
  */
 import { SPAWN_POINTS } from "../config/arena.js";
 import { nextInt, shuffle, type RngState } from "../simulation/rng.js";

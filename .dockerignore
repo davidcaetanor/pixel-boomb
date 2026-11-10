@@ -1,0 +1,15 @@
+**/node_modules
+**/dist
+**/*.tsbuildinfo
+.git
+.github
+.claude
+.vite
+docs
+deploy
+assets/source
+assets/processed
+assets/palette
+.env
+.env.*
+*.md

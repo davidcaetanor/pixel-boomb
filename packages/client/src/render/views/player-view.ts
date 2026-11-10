@@ -1,10 +1,7 @@
 /**
- * View passiva do jogador. Interpola entre o tick anterior e o atual; a
- * direcao vem de Player.facing, e o deslocamento so diz se esta andando.
- *
- * So 4 direcoes, porque o movimento e de 4 direcoes. Parado por mais que
- * IDLE_GRACE_SECONDS, mostra o frame de repouso da ultima direcao. A tolerancia
- * evita piscar o repouso entre soltar uma tecla e apertar a outra.
+ * Sprite do jogador interpolado entre dois ticks. A direcao vem de
+ * Player.facing; o deslocamento so indica se ha movimento. O quadro parado
+ * espera IDLE_GRACE_SECONDS para nao piscar na troca de tecla.
  */
 import Phaser from "phaser";
 import { TILE_SIZE, type Player } from "@pixelboom/shared";
@@ -22,7 +19,7 @@ const WALK_FRAME_RATE = 10;
 const MOVING_THRESHOLD = 1e-6;
 /** Tempo parado antes de trocar para o frame de repouso. */
 const IDLE_GRACE_SECONDS = 0.12;
-/** Frame de morte provisorio: tinge de vermelho e some. */
+/** Efeito de morte: tinge de vermelho e desaparece. */
 const DEATH_TINT = 0xff4040;
 const DEATH_FADE_MS = 450;
 

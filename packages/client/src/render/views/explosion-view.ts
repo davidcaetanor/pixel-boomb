@@ -1,12 +1,9 @@
-/**
- * Chamas. A primeira celula de Explosion.cells e a origem (centro); as demais
- * usam o braco horizontal ou vertical conforme a linha da origem.
- */
+/** Chamas: centro na origem e bracos horizontais ou verticais nas demais celulas. */
 import type Phaser from "phaser";
 import { TILE_SIZE, cellX, cellY, type Explosion } from "@pixelboom/shared";
 import { TEXTURA } from "../atlas/atlas-registry.js";
 
-/** Acima da bomba e do jogador, para a morte ficar legivel. */
+/** Acima da bomba e do jogador. */
 const FLAME_DEPTH = 15;
 
 export class ExplosionView {

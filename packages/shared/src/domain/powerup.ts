@@ -15,7 +15,7 @@ export const POWER_UP_KINDS: readonly PowerUpKind[] = [
   PowerUpKind.Speed,
 ];
 
-/** Power-up no chao, sempre alinhado ao centro de uma celula. */
+/** Power-up alinhado a uma celula. */
 export interface PowerUp {
   readonly kind: PowerUpKind;
   readonly x: number;

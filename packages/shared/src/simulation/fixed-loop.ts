@@ -1,13 +1,7 @@
 /**
- * Acumulador de passo fixo, reusado no cliente e no servidor.
- *
- * Tres relogios separados: render na taxa do monitor, simulacao a 30 Hz, rede
- * a 30 patches/s. Amarrar render a simulacao faz o jogo depender do framerate
- * da maquina, o que e o bug mais chato de diagnosticar depois.
- *
- * O clamp de delta nao e detalhe: ao voltar de uma aba em segundo plano o
- * delta acumulado e enorme e a simulacao dispara centenas de ticks de uma vez.
- * Sem clamp isso vira um bug que parece problema de rede.
+ * Acumulador de passo fixo, usado no cliente e no servidor para desacoplar a
+ * simulacao da taxa de quadros. O delta e limitado para que uma pausa longa,
+ * como uma aba em segundo plano, nao dispare uma rajada de ticks.
  */
 import { BALANCE, TICK_SECONDS } from "../config/balance.js";
 
@@ -22,10 +16,7 @@ export function createFixedLoop(): FixedLoopState {
 
 const MAX_DELTA_SECONDS = BALANCE.simulation.deltaClampMs / 1000;
 
-/**
- * Consome o delta e devolve quantos ticks devem rodar agora.
- * O chamador roda o step essa quantidade de vezes, sempre com TICK_SECONDS.
- */
+/** Consome o delta e devolve quantos ticks de TICK_SECONDS devem rodar. */
 export function advance(loop: FixedLoopState, deltaSeconds: number): number {
   const clamped = Math.min(Math.max(deltaSeconds, 0), MAX_DELTA_SECONDS);
   loop.accumulator += clamped;
@@ -39,10 +30,7 @@ export function advance(loop: FixedLoopState, deltaSeconds: number): number {
   return ticks;
 }
 
-/**
- * Fracao do proximo tick ja acumulada, de 0 a 1. O render usa isso para
- * interpolar entre o tick anterior e o atual e nao mostrar movimento em degraus.
- */
+/** Fracao do proximo tick ja acumulada, de 0 a 1, para interpolacao. */
 export function interpolationAlpha(loop: FixedLoopState): number {
   return loop.accumulator / TICK_SECONDS;
 }

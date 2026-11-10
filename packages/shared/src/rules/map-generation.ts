@@ -1,13 +1,6 @@
 /**
- * Arena inicial: layout de pilares sorteado e caixas sorteadas, tudo com RNG
- * semeado.
- *
- * A densidade de caixas e sorteada entre os limites de BALANCE.mapGeneration
- * e aplicada sobre o piso do layout, tirando spawns e suas clearances.
- *
- * Cada spawn tambem reserva uma rota de fuga: o caminho mais curto ate uma
- * celula fora da cruz da primeira bomba solta no spawn. Essas celulas nunca
- * recebem caixa. Sem isso, a maioria dos mapas prendia alguem logo de cara.
+ * Arena inicial: layout e caixas sorteados com RNG semeado. Cada spawn reserva
+ * uma rota de fuga ate fora do alcance da primeira bomba, livre de caixas.
  */
 import { ARENA_LAYOUTS, isLayoutWall, type ArenaLayout } from "../config/arena-layouts.js";
 import {
@@ -33,7 +26,7 @@ function layoutAt(index: number): ArenaLayout {
   return layout;
 }
 
-/** Grade so com as paredes do layout, sem caixas. Layout 0 e o classico. */
+/** Grade com as paredes do layout, sem caixas. */
 export function createStaticGrid(layoutIndex = 0): Grid {
   const layout = layoutAt(layoutIndex);
   const grid = emptyGrid();
@@ -58,7 +51,6 @@ export function reservedCells(grid: Grid): Set<number> {
   return reserved;
 }
 
-/** Celulas que podem receber caixa, em ordem de varredura. */
 export function crateCandidates(grid: Grid): { x: number; y: number }[] {
   const reserved = reservedCells(grid);
   const cells: { x: number; y: number }[] = [];
@@ -100,16 +92,11 @@ const DIRS: readonly (readonly [number, number])[] = [
   [0, -1],
 ];
 
-/** Celulas que a primeira bomba no spawn atinge. */
 export function firstBombReach(grid: Grid, spawn: { x: number; y: number }): Set<number> {
   return new Set(propagate(grid, spawn, BALANCE.player.rangeInitial, () => false).cells);
 }
 
-/**
- * Caminho mais curto, so por piso, do spawn ate a celula mais proxima fora da
- * cruz da primeira bomba. Roda sobre a grade do layout, antes das caixas.
- * Devolve as celulas do caminho, incluindo o spawn e o destino.
- */
+/** Menor caminho por piso do spawn ate fora do alcance da primeira bomba, inclusive. */
 export function escapeRoute(grid: Grid, spawn: { x: number; y: number }): number[] {
   const reach = firstBombReach(grid, spawn);
   const start = cellIndex(spawn.x, spawn.y);

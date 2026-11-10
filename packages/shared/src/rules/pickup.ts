@@ -1,7 +1,4 @@
-/**
- * Power-ups: nascem de caixas destruidas, somem na chama, sao coletados pelo
- * jogador que pisa na celula. Cada tipo sobe um atributo ate o teto.
- */
+/** Itens: sorteio nas caixas destruidas, queima pela chama, coleta e efeito com teto. */
 import { cellIndex, cellX, cellY } from "../config/arena.js";
 import { BALANCE } from "../config/balance.js";
 import type { Player } from "../domain/player.js";
@@ -14,10 +11,7 @@ export interface Drops {
   readonly rng: RngState;
 }
 
-/**
- * Sorteia um power-up para cada caixa destruida, em ordem crescente de
- * indice para que o consumo do RNG seja o mesmo no cliente e no servidor.
- */
+/** Sorteio em ordem crescente de indice, para o consumo do RNG ser deterministico. */
 export function rollDrops(crates: Iterable<number>, rng: RngState): Drops {
   const ordered = [...crates].sort((a, b) => a - b);
   const powerUps: PowerUp[] = [];
@@ -36,7 +30,6 @@ export function rollDrops(crates: Iterable<number>, rng: RngState): Drops {
   return { powerUps, rng: state };
 }
 
-/** Remove os power-ups que estao em celula com chama. */
 export function burnPowerUps(powerUps: readonly PowerUp[], flames: ReadonlySet<number>): PowerUp[] {
   return powerUps.filter((p) => !flames.has(cellIndex(p.x, p.y)));
 }
@@ -58,7 +51,7 @@ export interface Collection {
   readonly powerUps: PowerUp[];
 }
 
-/** Jogador vivo com o centro na celula do power-up leva o item. */
+/** Coleta pela celula do centro do jogador. */
 export function collectPowerUps(players: readonly Player[], powerUps: readonly PowerUp[]): Collection {
   let remaining = [...powerUps];
   const updated = players.map((player) => {

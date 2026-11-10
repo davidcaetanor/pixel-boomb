@@ -117,8 +117,7 @@ describe("movement", () => {
 });
 
 describe("facing ao virar segurando a tecla", () => {
-  // Reproduz a travada visual: segurando direita, aperta baixo sem soltar.
-  // A direcao so pode mudar de east para south uma vez, sem voltar.
+  // Segurando direita, aperta baixo sem soltar: a direcao muda uma unica vez.
   it.each([1.5, 1.9, 2.3, 2.7, 3.1, 3.3, 3.45, 3.6, 3.7, 3.9, 4.2])(
     "nao pisca de lado partindo de x = %s",
     (startX) => {

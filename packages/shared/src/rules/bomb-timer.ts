@@ -1,6 +1,4 @@
-/**
- * Pavio: desconta o tempo e aponta quais bombas estouram neste tick.
- */
+/** Contagem do pavio. */
 import type { Bomb } from "../domain/bomb.js";
 
 export function tickFuses(bombs: readonly Bomb[], dt: number): Bomb[] {

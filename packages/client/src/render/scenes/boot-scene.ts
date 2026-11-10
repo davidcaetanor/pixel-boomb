@@ -1,6 +1,4 @@
-/**
- * Carrega as texturas e passa para a partida. Nao desenha nem decide nada.
- */
+/** Carrega as texturas e abre a partida. */
 import Phaser from "phaser";
 import {
   FOLHA_JOGADOR,
@@ -24,7 +22,9 @@ export class BootScene extends Phaser.Scene {
     });
   }
 
+  /** `?local` abre a partida offline; o padrao e a sala online. */
   create(): void {
-    this.scene.start("match");
+    const local = new URLSearchParams(window.location.search).has("local");
+    this.scene.start(local ? "match" : "online");
   }
 }

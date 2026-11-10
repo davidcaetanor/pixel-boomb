@@ -1,11 +1,6 @@
 /**
- * Setas e WASD viram InputCommand.
- *
- * Envia a direcao mais recente de cada eixo e qual eixo foi apertado por
- * ultimo. Segurar "direita" e apertar "baixo" pede baixo com prioridade e
- * direita como alternativa; a simulacao decide qual cabe.
- *
- * Bomba (Espaco) e enviada so uma vez por aperto, no proximo read().
+ * Setas e WASD como InputCommand: a direcao mais recente de cada eixo, com
+ * prioridade para o eixo apertado por ultimo. Espaco gera uma bomba por aperto.
  */
 import type { AxisIntent, InputCommand } from "@pixelboom/shared";
 import { IDLE_INPUT } from "@pixelboom/shared";
@@ -62,16 +57,23 @@ export class KeyboardSource {
     }
   };
 
-  /** Ao perder o foco o keyup nunca chega; solta tudo para nao andar sozinho. */
+  /** Sem foco o keyup nao chega; as teclas sao liberadas para evitar movimento preso. */
   private readonly onBlur = (): void => {
     this.held = [];
     this.bombPending = false;
+  };
+
+  private readonly onVisibility = (): void => {
+    if (document.hidden) {
+      this.onBlur();
+    }
   };
 
   constructor(private readonly target: Window = window) {
     target.addEventListener("keydown", this.onDown);
     target.addEventListener("keyup", this.onUp);
     target.addEventListener("blur", this.onBlur);
+    document.addEventListener("visibilitychange", this.onVisibility);
   }
 
   read(): InputCommand {
@@ -98,6 +100,7 @@ export class KeyboardSource {
     this.target.removeEventListener("keydown", this.onDown);
     this.target.removeEventListener("keyup", this.onUp);
     this.target.removeEventListener("blur", this.onBlur);
+    document.removeEventListener("visibilitychange", this.onVisibility);
     this.held = [];
   }
 }

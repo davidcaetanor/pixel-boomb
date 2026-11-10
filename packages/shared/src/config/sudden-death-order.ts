@@ -1,9 +1,6 @@
 /**
- * Ordem em que os aneis da arena viram parede durante a morte subita:
- * de fora para dentro, um anel completo a cada intervalo.
- *
- * E esse mecanismo que controla a duracao da partida. Para ajustar o ritmo,
- * mexa no inicio da morte subita em balance.ts, nunca no tamanho da arena.
+ * Aneis do interior na ordem em que viram parede na morte subita, de fora para
+ * dentro. O ritmo da partida e controlado pelos tempos em balance.ts.
  */
 import { ARENA_COLS, ARENA_ROWS, cellIndex } from "./arena.js";
 

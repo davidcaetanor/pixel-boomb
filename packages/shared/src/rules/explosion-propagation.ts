@@ -1,9 +1,6 @@
 /**
- * Chama em cruz a partir de uma celula, ate o alcance.
- *
- * Em cada braco: piso deixa passar; caixa e atingida e para a chama; parede
- * para sem ser atingida. Bomba no caminho e atingida e para a chama, quem
- * continua e a explosao dela (chain-reaction.ts).
+ * Propagacao em cruz ate o alcance. Caixa e bomba sao atingidas e encerram o
+ * braco; parede encerra sem ser atingida.
  */
 import { cellIndex } from "../config/arena.js";
 import { CellKind } from "../domain/cell.js";
@@ -19,7 +16,7 @@ const ARMS: readonly (readonly [number, number])[] = [
 export interface Propagation {
   /** Celulas com chama; a primeira e a origem. */
   readonly cells: number[];
-  /** Caixas atingidas, a destruir. */
+  /** Caixas atingidas. */
   readonly crates: number[];
 }
 

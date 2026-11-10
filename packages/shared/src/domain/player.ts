@@ -1,9 +1,6 @@
 /**
- * Posicao em ponto flutuante, em unidades de celula. O jogador desliza; a
- * bomba e que trava no centro da celula.
- *
- * Nao existe colisao entre jogadores: eles se atravessam. Essa e a decisao
- * que elimina a necessidade de reconciliacao com rollback.
+ * Posicao continua em unidades de celula. Jogadores nao colidem entre si, o que
+ * dispensa reconciliacao com rollback na rede.
  */
 export const Facing = {
   North: "north",
@@ -16,14 +13,11 @@ export type Facing = (typeof Facing)[keyof typeof Facing];
 
 export interface Player {
   readonly id: string;
-  /** 0 a 7: define cor, spawn e posicao no placar. */
+  /** 0 a 7: cor e posicao no placar. */
   readonly slot: number;
   x: number;
   y: number;
-  /**
-   * Direcao pedida no ultimo movimento aceito. Vem da intencao, nao do
-   * deslocamento, porque o desvio de quina empurra de lado.
-   */
+  /** Direcao do ultimo movimento aceito, derivada da intencao e nao do deslocamento. */
   facing: Facing;
   /** Celulas por segundo. */
   speed: number;

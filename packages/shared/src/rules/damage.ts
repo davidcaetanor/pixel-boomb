@@ -1,7 +1,4 @@
-/**
- * Chama mata. Vale a celula do centro do jogador, nao a caixa de colisao:
- * encostar de raspao numa chama vizinha nao mata.
- */
+/** Dano por chama, avaliado na celula do centro do jogador. */
 import { cellIndex } from "../config/arena.js";
 import type { Explosion } from "../domain/explosion.js";
 import type { Player } from "../domain/player.js";

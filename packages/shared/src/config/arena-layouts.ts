@@ -1,10 +1,7 @@
 /**
- * Layouts de pilares. Um e sorteado por rodada.
- *
- * "#" e parede, "." e piso, "S" marca um spawn (piso). O teste
- * arena-layouts.test.ts cobra de cada layout: borda fechada, simetria nos dois
- * eixos, spawns e clearances livres, tudo conectado e nenhum beco sem saida.
- * Para criar um novo, desenhe aqui e rode os testes.
+ * Layouts de pilares, um sorteado por rodada. "#" e parede, "." e piso e "S"
+ * marca um spawn. Todo layout precisa de borda fechada, simetria nos dois
+ * eixos, spawns livres, conexidade total e nenhum beco sem saida.
  */
 import { ARENA_COLS, ARENA_ROWS } from "./arena.js";
 
@@ -108,7 +105,7 @@ export const ARENA_LAYOUTS: readonly ArenaLayout[] = [
 
 const WALL_CHAR = "#";
 
-/** A celula (x, y) e parede no layout dado? Fora da arena conta como parede. */
+/** Fora da arena conta como parede. */
 export function isLayoutWall(layout: ArenaLayout, x: number, y: number): boolean {
   if (x < 0 || y < 0 || x >= ARENA_COLS || y >= ARENA_ROWS) {
     return true;

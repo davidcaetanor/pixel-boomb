@@ -1,0 +1,8 @@
+# Proxy HTTPS para o container. A emissao e a renovacao do certificado
+# dependem da porta 80 acessivel.
+
+pixelboom.example.com {
+	encode zstd gzip
+	header -Server
+	reverse_proxy 127.0.0.1:2567
+}
