@@ -78,7 +78,7 @@ export class MatchScene extends Phaser.Scene {
     const atual = this.state.players[0];
     const anterior = this.previous.players[0] ?? atual;
     if (atual !== undefined && anterior !== undefined) {
-      this.playerView.render(anterior, atual, alpha);
+      this.playerView.render(anterior, atual, alpha, deltaMs / MS_PER_SECOND);
     }
   }
 
