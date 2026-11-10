@@ -1,5 +1,5 @@
 /**
- * Sprite do personagem do slot, interpolado entre dois estados. A direcao vem
+ * Sprite de um personagem do elenco, interpolado entre dois estados. A direcao vem
  * de Player.facing; o deslocamento so indica se ha movimento. O quadro parado
  * espera IDLE_GRACE_SECONDS para nao piscar na troca de tecla.
  */
@@ -58,8 +58,8 @@ export class PlayerView {
   private stillFor = IDLE_GRACE_SECONDS;
   private dead = false;
 
-  constructor(private readonly scene: Phaser.Scene, slot: number) {
-    this.sheet = chaveDoPersonagem(slot);
+  constructor(private readonly scene: Phaser.Scene, character: number) {
+    this.sheet = chaveDoPersonagem(character);
     registerAnimations(scene, this.sheet);
     this.sprite = scene.add.sprite(0, 0, this.sheet, idleFrame(this.facing)).setDepth(PLAYER_DEPTH);
   }

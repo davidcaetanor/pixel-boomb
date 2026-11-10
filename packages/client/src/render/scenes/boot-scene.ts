@@ -18,8 +18,8 @@ export class BootScene extends Phaser.Scene {
     for (const nome of Object.values(TEXTURA)) {
       this.load.image(nome, caminhoDaTextura(nome));
     }
-    ELENCO.forEach((_, slot) => {
-      const chave = chaveDoPersonagem(slot);
+    ELENCO.forEach((_, character) => {
+      const chave = chaveDoPersonagem(character);
       this.load.spritesheet(chave, caminhoDaFolha(chave), {
         frameWidth: FOLHA_PERSONAGEM.larguraFrame,
         frameHeight: FOLHA_PERSONAGEM.alturaFrame,
