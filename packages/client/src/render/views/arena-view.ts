@@ -1,21 +1,25 @@
 /**
  * Arena: piso, borda, pilares, marcadores de spawn e caixas.
  *
- * Le o Grid e pinta. As caixas sao sincronizadas a cada quadro: se a celula
- * deixou de ser caixa na simulacao, a imagem sai.
+ * Le o Grid e pinta. A cada quadro sincroniza o que muda na rodada: caixa
+ * destruida sai, celula fechada pela morte subita ganha parede, e os
+ * marcadores de spawn so aparecem na contagem.
  */
 import type Phaser from "phaser";
 import {
   ARENA_COLS,
   ARENA_ROWS,
   CellKind,
+  MatchPhase,
   SPAWN_POINTS,
   TILE_SIZE,
   cellAt,
   cellIndex,
   isBorder,
   isPillar,
+  isStaticWall,
   type Grid,
+  type MatchPhase as Phase,
 } from "@pixelboom/shared";
 import { TEXTURA } from "../atlas/atlas-registry.js";
 
@@ -27,6 +31,8 @@ const CORES_JOGADOR = [
 
 export class ArenaView {
   private readonly caixas = new Map<number, Phaser.GameObjects.Image>();
+  private readonly fechadas = new Set<number>();
+  private readonly marcadores: Phaser.GameObjects.Image[] = [];
 
   constructor(private readonly scene: Phaser.Scene, grid: Grid) {
     for (let y = 0; y < ARENA_ROWS; y += 1) {
@@ -43,9 +49,10 @@ export class ArenaView {
       }
     }
 
-    // Fixos ate existir a fase de contagem regressiva (E3).
     SPAWN_POINTS.forEach((spawn, slot) => {
-      this.coloca(TEXTURA.spawn, spawn.x, spawn.y).setTint(CORES_JOGADOR[slot] ?? 0xffffff);
+      this.marcadores.push(
+        this.coloca(TEXTURA.spawn, spawn.x, spawn.y).setTint(CORES_JOGADOR[slot] ?? 0xffffff),
+      );
     });
 
     for (let y = 0; y < ARENA_ROWS; y += 1) {
@@ -57,11 +64,30 @@ export class ArenaView {
     }
   }
 
-  render(grid: Grid): void {
+  render(grid: Grid, phase: Phase): void {
+    const contagem = phase === MatchPhase.Countdown;
+    for (const marcador of this.marcadores) {
+      marcador.setVisible(contagem);
+    }
+
     for (const [index, imagem] of this.caixas) {
       if (grid.cells[index] !== CellKind.Crate) {
         imagem.destroy();
         this.caixas.delete(index);
+      }
+    }
+
+    for (let y = 0; y < ARENA_ROWS; y += 1) {
+      for (let x = 0; x < ARENA_COLS; x += 1) {
+        const index = cellIndex(x, y);
+        if (
+          !this.fechadas.has(index) &&
+          !isStaticWall(x, y) &&
+          cellAt(grid, x, y) === CellKind.Wall
+        ) {
+          this.fechadas.add(index);
+          this.coloca(TEXTURA.pilar, x, y);
+        }
       }
     }
   }
