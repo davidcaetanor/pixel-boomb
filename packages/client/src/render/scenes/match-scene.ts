@@ -1,6 +1,7 @@
 /**
  * Partida local: rodada completa no loop de passo fixo. Enter depois do fim
- * comeca outra rodada com a semente seguinte.
+ * comeca outra rodada com a semente seguinte. A primeira semente e sorteada
+ * ao abrir a pagina, entao recarregar tambem muda o mapa.
  *
  * O update do Phaser roda na taxa do monitor; a simulacao so avanca em ticks
  * de 30 Hz pelo acumulador de shared, e o desenho interpola entre ticks.
@@ -27,10 +28,10 @@ import { PowerUpView } from "../views/powerup-view.js";
 
 /** Id do jogador local enquanto nao ha sala (E4). */
 const LOCAL_PLAYER_ID = "local";
-/** Semente da primeira rodada local; a sala sorteia a sua no servidor (E4). */
-const LOCAL_SEED = 1;
-/** Chave no registry do Phaser que guarda quantas rodadas ja comecaram. */
-const ROUND_KEY = "rodada-local";
+/** Faixa de sementes de 31 bits, a mesma que o RNG de shared aceita. */
+const SEED_RANGE = 2 ** 31;
+/** Chave no registry do Phaser que guarda a semente da proxima rodada. */
+const SEED_KEY = "semente-local";
 const MS_PER_SECOND = 1000;
 
 export class MatchScene extends Phaser.Scene {
@@ -50,14 +51,17 @@ export class MatchScene extends Phaser.Scene {
   }
 
   create(): void {
-    const rodada = (this.registry.get(ROUND_KEY) as number | undefined) ?? 0;
-    this.registry.set(ROUND_KEY, rodada + 1);
-    this.state = createMatchState(LOCAL_SEED + rodada, [LOCAL_PLAYER_ID]);
+    // Fora de shared o sorteio sem semente e permitido: aqui so escolhemos a
+    // semente; toda aleatoriedade da regra continua vindo do RNG de shared.
+    const semente =
+      (this.registry.get(SEED_KEY) as number | undefined) ?? Math.floor(Math.random() * SEED_RANGE);
+    this.registry.set(SEED_KEY, (semente + 1) % SEED_RANGE);
+    this.state = createMatchState(semente, [LOCAL_PLAYER_ID]);
     this.previous = this.state;
     this.loop = createFixedLoop();
     this.keyboard = new KeyboardSource();
 
-    this.arenaView = new ArenaView(this, this.state.grid);
+    this.arenaView = new ArenaView(this, this.state.grid, this.state.players);
     this.bombView = new BombView(this);
     this.powerUpView = new PowerUpView(this);
     this.explosionView = new ExplosionView(this);
