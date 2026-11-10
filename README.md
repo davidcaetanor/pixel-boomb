@@ -1,53 +1,28 @@
 # PixelBoom
 
-Jogo multiplayer de arena em grade no estilo Bomberman, em pixel art, para
-navegador desktop. Até 8 jogadores por sala.
+Jogo multiplayer de arena em grade, em pixel art, para navegador.
 
-Em produção: https://pixelboomb.duckdns.org
+## Visão do produto
+
+O PixelBoom é uma batalha de bombas em rodadas curtas para até 8 jogadores por
+sala. Cada jogador abre caminho pelas caixas, coleta itens e tenta ser o último
+de pé enquanto a arena se fecha.
+
+A partida é decidida pelo servidor. O navegador envia só a intenção de cada
+jogador, e a mesma simulação roda no servidor e no cliente, o que mantém todos
+vendo o mesmo jogo.
+
+- Arena em grade com layout de pilares e caixas sorteados a cada rodada.
+- Spawns equidistantes e sorteados, com rota de fuga garantida da primeira bomba.
+- Explosões em cruz com reação em cadeia entre bombas.
+- Itens de mais bombas, mais alcance e mais velocidade, com teto.
+- Morte súbita: a arena se fecha em anéis até restar um jogador.
+- Rodadas contínuas: quem entra durante uma partida joga a próxima.
 
 ## Stack
 
-TypeScript (strict), pnpm workspaces, Phaser 4, Colyseus, Vite e Vitest.
-
-## Estrutura
-
-```
-packages/shared   simulação pura: domínio, regras e configuração
-packages/server   sala autoritativa e servidor HTTP/WebSocket
-packages/client   render, entrada e rede
-assets/source     arte original
-assets/atlas      texturas carregadas pelo cliente
-deploy/           compose e proxy de produção
-```
-
-## Desenvolvimento
-
-Requer Node 22 e pnpm.
-
-```bash
-pnpm install
-pnpm --filter @pixelboom/shared build
-pnpm dev:server
-pnpm dev
-```
-
-O cliente abre em http://localhost:5173 e conecta ao servidor na porta 2567.
-`?local` abre uma partida offline de um jogador.
-
-| Comando | Descrição |
+| Pacote | Tecnologias |
 |---|---|
-| `pnpm check` | lint, typecheck e testes |
-| `pnpm test` | testes da simulação |
-| `pnpm build` | build de todos os pacotes |
-
-## Produção
-
-A imagem é publicada no GHCR a cada push na `main`. No servidor:
-
-```bash
-docker compose -f deploy/docker-compose.yml pull
-docker compose -f deploy/docker-compose.yml up -d
-```
-
-O container escuta só em `127.0.0.1:2567`; o HTTPS fica a cargo do proxy do
-host (`deploy/Caddyfile.example`).
+| shared | TypeScript, Vitest |
+| server | Node.js 22, Colyseus |
+| client | Phaser 4, Vite, TypeScript |
