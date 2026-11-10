@@ -4,6 +4,8 @@
  * Envia a direcao mais recente de cada eixo e qual eixo foi apertado por
  * ultimo. Segurar "direita" e apertar "baixo" pede baixo com prioridade e
  * direita como alternativa; a simulacao decide qual cabe.
+ *
+ * Bomba (Espaco) e enviada so uma vez por aperto, no proximo read().
  */
 import type { AxisIntent, InputCommand } from "@pixelboom/shared";
 import { IDLE_INPUT } from "@pixelboom/shared";
@@ -28,11 +30,21 @@ const DIRECTION_AXIS: Readonly<Record<Direction, { axis: "x" | "y"; sign: AxisIn
   right: { axis: "x", sign: 1 },
 };
 
+const BOMB_KEYS: ReadonlySet<string> = new Set(["Space"]);
+
 export class KeyboardSource {
   /** Direcoes seguradas, da mais antiga para a mais recente. */
   private held: Direction[] = [];
+  private bombPending = false;
 
   private readonly onDown = (event: KeyboardEvent): void => {
+    if (BOMB_KEYS.has(event.code)) {
+      event.preventDefault();
+      if (!event.repeat) {
+        this.bombPending = true;
+      }
+      return;
+    }
     const dir = KEY_TO_DIRECTION[event.code];
     if (dir === undefined) {
       return;
@@ -53,6 +65,7 @@ export class KeyboardSource {
   /** Ao perder o foco o keyup nunca chega; solta tudo para nao andar sozinho. */
   private readonly onBlur = (): void => {
     this.held = [];
+    this.bombPending = false;
   };
 
   constructor(private readonly target: Window = window) {
@@ -62,9 +75,11 @@ export class KeyboardSource {
   }
 
   read(): InputCommand {
+    const bomb = this.bombPending;
+    this.bombPending = false;
     const last = this.held[this.held.length - 1];
     if (last === undefined) {
-      return IDLE_INPUT;
+      return bomb ? { ...IDLE_INPUT, bomb } : IDLE_INPUT;
     }
     let moveX: AxisIntent = 0;
     let moveY: AxisIntent = 0;
@@ -76,7 +91,7 @@ export class KeyboardSource {
         moveY = sign;
       }
     }
-    return { moveX, moveY, prefer: DIRECTION_AXIS[last].axis };
+    return { moveX, moveY, prefer: DIRECTION_AXIS[last].axis, bomb };
   }
 
   dispose(): void {

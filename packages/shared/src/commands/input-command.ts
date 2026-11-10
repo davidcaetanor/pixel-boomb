@@ -13,6 +13,8 @@ export interface InputCommand {
   readonly moveX: AxisIntent;
   readonly moveY: AxisIntent;
   readonly prefer?: MoveAxis;
+  /** Soltar bomba neste tick. O cliente manda so na borda do aperto. */
+  readonly bomb?: boolean;
 }
 
 export const IDLE_INPUT: InputCommand = { moveX: 0, moveY: 0 };

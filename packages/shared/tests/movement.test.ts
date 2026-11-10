@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { BALANCE, TICK_SECONDS } from "../src/config/balance.js";
 import { ARENA_COLS, ARENA_ROWS } from "../src/config/arena.js";
-import { moveAlongAxis, overlapsBlocked } from "../src/rules/grid-collision.js";
+import { gridSolid, moveAlongAxis, overlapsBlocked } from "../src/rules/grid-collision.js";
 import { PLAYER_HALF, movePlayer } from "../src/rules/movement.js";
 import { createMatchState, createStaticGrid, step } from "../src/simulation/step.js";
 import type { InputCommand } from "../src/commands/input-command.js";
 
-const grid = createStaticGrid();
+const grid = gridSolid(createStaticGrid());
 const speed = BALANCE.player.speedInitial;
 
 function walk(
@@ -120,7 +120,7 @@ describe("facing ao virar segurando a tecla", () => {
   it.each([1.5, 1.9, 2.3, 2.7, 3.1, 3.3, 3.45, 3.6, 3.7, 3.9, 4.2])(
     "nao pisca de lado partindo de x = %s",
     (startX) => {
-      let s = createMatchState(1, ["p"]);
+      let s = { ...createMatchState(1, ["p"]), grid: createStaticGrid() };
       s = { ...s, players: s.players.map((p) => ({ ...p, x: startX })) };
       const seen: string[] = [];
       for (let t = 0; t < 40; t += 1) {
