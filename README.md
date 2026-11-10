@@ -5,7 +5,10 @@ navegador. Ate 8 jogadores por sala. Projeto de faculdade, desktop apenas.
 
 ## Stack
 
-TypeScript strict, pnpm workspaces, Phaser 4 no render, Colyseus no netcode,
+TypeScript strict, 
+pnpm workspaces, 
+Phaser 4 no render, 
+Colyseus no netcode,
 Vite no cliente, Vitest nos testes.
 
 
