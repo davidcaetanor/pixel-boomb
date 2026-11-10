@@ -11,6 +11,7 @@ export * from "./domain/index.js";
 export * from "./rules/bomb-placement.js";
 export * from "./rules/bomb-timer.js";
 export * from "./rules/chain-reaction.js";
+export * from "./rules/character-pick.js";
 export * from "./rules/damage.js";
 export * from "./rules/explosion-propagation.js";
 export * from "./rules/grid-collision.js";
