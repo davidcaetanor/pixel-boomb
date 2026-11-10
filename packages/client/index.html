@@ -20,6 +20,54 @@
       canvas {
         image-rendering: pixelated;
       }
+      .lobby {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        font-family: monospace;
+        color: #f4ecd8;
+        background: rgba(20, 18, 28, 0.85);
+      }
+      .lobby h1 {
+        margin: 0 0 8px;
+        font-size: 40px;
+        letter-spacing: 2px;
+      }
+      .lobby form {
+        display: flex;
+        gap: 8px;
+      }
+      .lobby input,
+      .lobby button {
+        font: inherit;
+        font-size: 18px;
+        padding: 8px 14px;
+        border: 2px solid #f4ecd8;
+        background: #14121c;
+        color: #f4ecd8;
+      }
+      .lobby input {
+        width: 8ch;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+      .lobby button {
+        cursor: pointer;
+      }
+      .lobby button:disabled,
+      .lobby input:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .lobby-error {
+        min-height: 1.2em;
+        margin: 0;
+        color: #ff5a4a;
+      }
     </style>
   </head>
   <body>
