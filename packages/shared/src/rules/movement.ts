@@ -14,7 +14,7 @@ import type { AxisIntent, InputCommand } from "../commands/input-command.js";
 import { CELL_CENTER } from "../config/arena.js";
 import { BALANCE } from "../config/balance.js";
 import type { Grid } from "../domain/grid.js";
-import type { Player } from "../domain/player.js";
+import { Facing, type Player } from "../domain/player.js";
 import { isBlocked, moveAlongAxis, type Axis } from "./grid-collision.js";
 
 export const PLAYER_HALF = BALANCE.player.hitboxSize / 2;
@@ -22,6 +22,22 @@ export const PLAYER_HALF = BALANCE.player.hitboxSize / 2;
 export interface Position {
   readonly x: number;
   readonly y: number;
+}
+
+export interface MoveResult extends Position {
+  /** Direcao do eixo usado; ausente quando nada andou. */
+  readonly facing?: Facing;
+}
+
+function facingOf(axis: Axis, dir: AxisIntent): Facing {
+  if (axis === "x") {
+    return dir > 0 ? Facing.East : Facing.West;
+  }
+  return dir > 0 ? Facing.South : Facing.North;
+}
+
+function moved(a: Position, b: Position): boolean {
+  return a.x !== b.x || a.y !== b.y;
 }
 
 /** Normaliza intencao vinda de fora: qualquer coisa que nao seja -1/0/1 vira 0. */
@@ -96,7 +112,7 @@ export function movePlayer(
   player: Pick<Player, "x" | "y" | "speed">,
   input: InputCommand,
   dt: number,
-): Position {
+): MoveResult {
   const moveX = sanitizeAxis(input.moveX);
   const moveY = sanitizeAxis(input.moveY);
   const distance = player.speed * Math.max(dt, 0);
@@ -109,9 +125,22 @@ export function movePlayer(
 
   const tried = moveOnAxis(grid, start, first, intent[first], distance);
   if (!tried.blocked || intent[second] === 0) {
-    return tried.pos;
+    return withFacing(start, tried.pos, first, intent[first]);
   }
   // Preferido travado: usa o outro a partir do ponto original, sem o
-  // avanço parcial, para o jogador nao virar de lado por um tick.
-  return moveOnAxis(grid, start, second, intent[second], distance).pos;
+  // avanco parcial, para o jogador nao virar de lado por um tick.
+  const fallback = moveOnAxis(grid, start, second, intent[second], distance);
+  return withFacing(start, fallback.pos, second, intent[second]);
+}
+
+function withFacing(
+  start: Position,
+  end: Position,
+  axis: Axis,
+  dir: AxisIntent,
+): MoveResult {
+  if (dir === 0 || !moved(start, end)) {
+    return end;
+  }
+  return { ...end, facing: facingOf(axis, dir) };
 }

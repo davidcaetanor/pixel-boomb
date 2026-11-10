@@ -114,6 +114,29 @@ describe("movement", () => {
   });
 });
 
+describe("facing ao virar segurando a tecla", () => {
+  // Reproduz a travada visual: segurando direita, aperta baixo sem soltar.
+  // A direcao so pode mudar de east para south uma vez, sem voltar.
+  it.each([1.5, 1.9, 2.3, 2.7, 3.1, 3.3, 3.45, 3.6, 3.7, 3.9, 4.2])(
+    "nao pisca de lado partindo de x = %s",
+    (startX) => {
+      let s = createMatchState(1, ["p"]);
+      s = { ...s, players: s.players.map((p) => ({ ...p, x: startX })) };
+      const seen: string[] = [];
+      for (let t = 0; t < 40; t += 1) {
+        const input: InputCommand =
+          t < 3 ? { moveX: 1, moveY: 0 } : { moveX: 1, moveY: 1, prefer: "y" };
+        s = step(s, { p: input }, TICK_SECONDS);
+        const facing = s.players[0]?.facing ?? "";
+        if (seen[seen.length - 1] !== facing) {
+          seen.push(facing);
+        }
+      }
+      expect(seen).toEqual(["east", "south"]);
+    },
+  );
+});
+
 describe("step", () => {
   it("move so quem mandou comando e nao muta o estado anterior", () => {
     const s0 = createMatchState(42, ["a", "b"]);

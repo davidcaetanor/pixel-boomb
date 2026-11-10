@@ -1,6 +1,6 @@
 /**
- * View passiva do jogador. Interpola entre o tick anterior e o atual e escolhe
- * a animacao pelo deslocamento, sem consultar regra.
+ * View passiva do jogador. Interpola entre o tick anterior e o atual; a
+ * direcao vem de Player.facing, e o deslocamento so diz se esta andando.
  *
  * So 4 direcoes, porque o movimento e de 4 direcoes. Parado por mais que
  * IDLE_GRACE_SECONDS, mostra o frame de repouso da ultima direcao. A tolerancia
@@ -50,13 +50,6 @@ export function registerPlayerAnimations(scene: Phaser.Scene): void {
   });
 }
 
-function directionOf(dx: number, dy: number): DirecaoFolha {
-  if (Math.abs(dx) >= Math.abs(dy)) {
-    return dx > 0 ? "east" : "west";
-  }
-  return dy > 0 ? "south" : "north";
-}
-
 export class PlayerView {
   private readonly sprite: Phaser.GameObjects.Sprite;
   private facing: DirecaoFolha = "south";
@@ -80,7 +73,7 @@ export class PlayerView {
 
     if (Math.hypot(dx, dy) > MOVING_THRESHOLD) {
       this.stillFor = 0;
-      this.facing = directionOf(dx, dy);
+      this.facing = current.facing;
       this.sprite.anims.play(animKey(this.facing), true);
       return;
     }

@@ -13,7 +13,7 @@ import { CELL_CENTER, SPAWN_POINTS, isStaticWall } from "../config/arena.js";
 import { CellKind } from "../domain/cell.js";
 import { emptyGrid, setCell, type Grid } from "../domain/grid.js";
 import { MatchPhase, type MatchState } from "../domain/match-state.js";
-import type { Player } from "../domain/player.js";
+import { Facing, type Player } from "../domain/player.js";
 import { movePlayer } from "../rules/movement.js";
 import { seedRng } from "./rng.js";
 
@@ -42,6 +42,7 @@ export function createPlayer(id: string, slot: number): Player {
     slot,
     x: spawn.x + CELL_CENTER,
     y: spawn.y + CELL_CENTER,
+    facing: Facing.South,
     speed: p.speedInitial,
     maxBombs: p.bombsInitial,
     range: p.rangeInitial,
@@ -81,7 +82,7 @@ export function step(
     }
     const input = inputs[player.id] ?? IDLE_INPUT;
     const pos = movePlayer(state.grid, player, input, dt);
-    return { ...player, x: pos.x, y: pos.y };
+    return { ...player, x: pos.x, y: pos.y, facing: pos.facing ?? player.facing };
   });
 
   return {
