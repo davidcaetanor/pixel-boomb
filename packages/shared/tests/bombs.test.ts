@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { playingMatch } from "./helpers.js";
 import { BALANCE, TICK_SECONDS } from "../src/config/balance.js";
 import { SPAWN_SAFE_INDICES, cellIndex, cellX, cellY } from "../src/config/arena.js";
 import { CellKind } from "../src/domain/cell.js";
@@ -7,7 +8,7 @@ import type { MatchState } from "../src/domain/match-state.js";
 import type { InputCommand, InputsByPlayer } from "../src/commands/input-command.js";
 import { crateCandidates, createStaticGrid, generateMap } from "../src/rules/map-generation.js";
 import { propagate } from "../src/rules/explosion-propagation.js";
-import { createMatchState, step } from "../src/simulation/step.js";
+import { step } from "../src/simulation/step.js";
 import { seedRng } from "../src/simulation/rng.js";
 
 const BOMB: InputCommand = { moveX: 0, moveY: 0, bomb: true };
@@ -16,7 +17,7 @@ const FUSE_TICKS = Math.ceil(BALANCE.time.bombFuse / TICK_SECONDS);
 /** Partida sem caixas, jogadores no centro das celulas dadas. */
 function arena(positions: Record<string, [number, number]>): MatchState {
   const ids = Object.keys(positions);
-  const base = createMatchState(1, ids);
+  const base = playingMatch(1, ids);
   return {
     ...base,
     grid: createStaticGrid(),
