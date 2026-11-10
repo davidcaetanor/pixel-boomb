@@ -1,10 +1,7 @@
 import { ARENA_COLS, CELL_COUNT, cellIndex, isInside } from "../config/arena.js";
 import { CellKind } from "./cell.js";
 
-/**
- * A grade da arena, achatada. Uint8Array e so um array de bytes: nao e API de
- * Node nem de DOM, entao cabe dentro da simulacao pura.
- */
+/** Grade da arena em ordem de linhas, um byte por celula. */
 export interface Grid {
   readonly cols: number;
   readonly rows: number;

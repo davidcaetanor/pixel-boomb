@@ -1,9 +1,7 @@
 /**
- * Estado recebido da sala para o modelo que as views entendem.
- *
- * O schema do Colyseus e so transporte: aqui ele vira MatchState de shared,
- * e o render nunca le o schema direto. Campos que so o servidor usa (pavio,
- * RNG, dono da bomba) chegam neutros porque o cliente nao decide regra.
+ * Converte o estado recebido da sala em MatchState para as views. Campos
+ * usados so pela simulacao do servidor (pavio, RNG, dono da bomba) chegam
+ * com valores neutros.
  */
 import {
   ARENA_COLS,
@@ -14,7 +12,7 @@ import {
   type PowerUpKind,
 } from "@pixelboom/shared";
 
-/** Fase so do transporte: sala esperando jogadores. */
+/** Fase de transporte: sala aguardando jogadores. */
 const WAITING_PHASE = "waiting";
 
 interface RemotePlayer {
@@ -29,7 +27,7 @@ interface RemotePlayer {
   range: number;
 }
 
-/** Forma do estado da sala vista pelo cliente, sem depender das classes do servidor. */
+/** Formato do estado da sala, independente das classes de schema do servidor. */
 export interface RemoteState {
   phase: string;
   tick: number;

@@ -1,10 +1,4 @@
-/**
- * Todo numero de jogo do PixelBoom vive aqui. Nenhum literal magico espalhado
- * pelo codigo. O porque de cada valor esta em docs/02-game-design.md; este
- * arquivo e a fonte de verdade.
- *
- * Layout da arena nao mora aqui: mora em ./arena.ts.
- */
+/** Numeros de jogo. Dimensoes e layout da arena ficam em ./arena.ts. */
 export const BALANCE = {
   /** Progressao do jogador. Velocidade em celulas por segundo. */
   player: {
@@ -20,23 +14,17 @@ export const BALANCE = {
     rangeStep: 1,
     rangeMax: 6,
 
-    /**
-     * Lado da caixa de colisao do jogador, em celulas. Menor que 1 para caber
-     * no corredor com folga; o desvio de quina cuida do alinhamento.
-     */
+    /** Lado da caixa de colisao do jogador, em celulas. */
     hitboxSize: 0.8,
   },
 
   /** Colisao contra a grade. */
   physics: {
-    /**
-     * Folga numerica para que encostar exatamente na borda de uma celula
-     * nao conte como estar dentro dela.
-     */
+    /** Tolerancia para que encostar na borda de uma celula nao conte como ocupa-la. */
     collisionEpsilon: 1e-9,
   },
 
-  /** Tempos, sempre em segundos. */
+  /** Tempos em segundos. */
   time: {
     bombFuse: 2.5,
     flameOnScreen: 0.5,
@@ -55,20 +43,20 @@ export const BALANCE = {
     powerUpChance: 0.3,
   },
 
-  /** Cadencias. A simulacao e passo fixo; o render nunca manda nela. */
+  /** Cadencia da simulacao de passo fixo. */
   simulation: {
     tickHz: 30,
     deltaClampMs: 100,
   },
 
-  /** Rede. Mora aqui para que nenhum numero fique solto no cliente. */
+  /** Rede. */
   net: {
     patchesPerSecond: 30,
     interpolationBufferMs: 66,
     maxClientsPerRoom: 8,
     /** Jogadores conectados para a sala comecar uma rodada. */
     minPlayersToStart: 2,
-    /** Teto de mensagens por cliente; acima disso o servidor descarta. */
+    /** Mensagens aceitas por cliente por segundo. */
     maxMessagesPerSecond: 60,
   },
 

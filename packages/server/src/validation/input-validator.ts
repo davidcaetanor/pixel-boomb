@@ -1,8 +1,4 @@
-/**
- * Nunca confie no cliente. A mensagem chega como dado qualquer; so passa se
- * tiver exatamente a forma de InputCommand, com valores no dominio esperado.
- * Qualquer outra coisa vira null e e descartada.
- */
+/** Aceita apenas mensagens com o formato exato de InputCommand; o resto vira null. */
 import type { AxisIntent, InputCommand, MoveAxis } from "@pixelboom/shared";
 
 function axis(value: unknown): AxisIntent | null {

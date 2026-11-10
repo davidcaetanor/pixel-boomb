@@ -1,14 +1,11 @@
 /**
- * Movimento continuo do jogador, em celulas por segundo (BALANCE.player).
+ * Movimento continuo do jogador.
  *
- * Dois comportamentos fazem a sensacao de "suave, sem degrau":
+ * Virada antecipada: com dois eixos ativos, o preferido e tentado primeiro e o
+ * outro so e usado se ele estiver bloqueado.
  *
- * 1. Virada antecipada: com duas direcoes seguradas, a mais recente tenta
- *    primeiro; se estiver bloqueada, segue na outra ate a virada abrir.
- * 2. Desvio de quina: se o jogador empurra contra um pilar mas o centro dele
- *    esta numa faixa cuja celula a frente esta livre, o passo que sobrou vira
- *    um ajuste lateral rumo ao centro dessa faixa. E isso que impede de
- *    "grudar" na quina ao entrar num corredor de 1 celula.
+ * Desvio de quina: ao bater numa parede com a celula a frente livre na faixa
+ * do centro, o passo restante alinha o jogador ao centro dessa faixa.
  */
 import type { AxisIntent, InputCommand } from "../commands/input-command.js";
 import { CELL_CENTER } from "../config/arena.js";
@@ -39,7 +36,7 @@ function moved(a: Position, b: Position): boolean {
   return a.x !== b.x || a.y !== b.y;
 }
 
-/** Normaliza intencao vinda de fora: qualquer coisa que nao seja -1/0/1 vira 0. */
+/** Valores fora de -1, 0 e 1 viram 0. */
 export function sanitizeAxis(value: number): AxisIntent {
   if (value === 1 || value === -1) {
     return value;
@@ -75,7 +72,6 @@ function moveOnAxis(
     return { pos: next, blocked: false };
   }
 
-  // Desvio de quina: olha a celula a frente na faixa onde o centro esta.
   const across = axis === "x" ? next.y : next.x;
   const lane = Math.floor(across);
   const laneCenter = lane + CELL_CENTER;
@@ -85,7 +81,6 @@ function moveOnAxis(
   }
 
   const leadEdge = (axis === "x" ? next.x : next.y) + dir * PLAYER_HALF;
-  // Bloqueado significa borda encostada numa linha inteira da grade.
   const edgeLine = Math.round(leadEdge);
   const ahead = dir > 0 ? edgeLine : edgeLine - 1;
   const aheadBlocked = axis === "x" ? solid(ahead, lane) : solid(lane, ahead);
@@ -101,10 +96,6 @@ function moveOnAxis(
   return { pos: next, blocked: false };
 }
 
-/**
- * Nova posicao do jogador depois de `dt` segundos com a intencao dada.
- * Funcao pura: nao muta nada.
- */
 export function movePlayer(
   solid: Solid,
   player: Pick<Player, "x" | "y" | "speed">,
@@ -125,8 +116,7 @@ export function movePlayer(
   if (!tried.blocked || intent[second] === 0) {
     return withFacing(start, tried.pos, first, intent[first]);
   }
-  // Preferido travado: usa o outro a partir do ponto original, sem o
-  // avanco parcial, para o jogador nao virar de lado por um tick.
+  // O avanco parcial do eixo bloqueado e descartado para a direcao nao oscilar.
   const fallback = moveOnAxis(solid, start, second, intent[second], distance);
   return withFacing(start, fallback.pos, second, intent[second]);
 }

@@ -1,10 +1,7 @@
 /**
- * Arena: piso, borda, pilares, marcadores de spawn e caixas.
- *
- * Le o Grid e pinta: borda vira arvore, qualquer outra parede vira pilar, o
- * que cobre o layout sorteado. A cada quadro sincroniza o que muda na rodada:
- * caixa destruida sai, celula fechada pela morte subita ganha pilar, e o
- * marcador de cada jogador so aparece na contagem, no spawn onde ele nasceu.
+ * Desenha a grade: borda como arvore, demais paredes como pilar, caixas e o
+ * marcador de spawn de cada jogador, visivel so na contagem. A cada quadro
+ * remove caixas destruidas e desenha paredes novas da morte subita.
  */
 import type Phaser from "phaser";
 import {
@@ -43,7 +40,6 @@ export class ArenaView {
       for (let x = 0; x < ARENA_COLS; x += 1) {
         this.coloca(TEXTURA.piso, x, y);
         if (isBorder(x, y)) {
-          // Arvore pequena nos cantos para o perimetro nao ficar repetitivo.
           const canto =
             (x === 0 || x === ARENA_COLS - 1) && (y === 0 || y === ARENA_ROWS - 1);
           this.coloca(canto ? TEXTURA.arvorePequena : TEXTURA.arvore, x, y);

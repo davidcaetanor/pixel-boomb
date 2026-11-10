@@ -1,10 +1,7 @@
 /**
- * Partida local: rodada completa no loop de passo fixo. Enter depois do fim
- * comeca outra rodada com a semente seguinte. A primeira semente e sorteada
- * ao abrir a pagina, entao recarregar tambem muda o mapa.
- *
- * O update do Phaser roda na taxa do monitor; a simulacao so avanca em ticks
- * de 30 Hz pelo acumulador de shared, e o desenho interpola entre ticks.
+ * Partida offline de um jogador. O update do Phaser segue a taxa do monitor;
+ * a simulacao avanca em ticks fixos pelo acumulador e o desenho interpola
+ * entre eles. Enter, ao fim da rodada, inicia outra com a semente seguinte.
  */
 import Phaser from "phaser";
 import {
@@ -26,7 +23,7 @@ import { ExplosionView } from "../views/explosion-view.js";
 import { PlayerView } from "../views/player-view.js";
 import { PowerUpView } from "../views/powerup-view.js";
 
-/** Id do jogador local enquanto nao ha sala (E4). */
+/** Id do jogador na partida offline. */
 const LOCAL_PLAYER_ID = "local";
 /** Faixa de sementes de 31 bits, a mesma que o RNG de shared aceita. */
 const SEED_RANGE = 2 ** 31;
@@ -51,8 +48,6 @@ export class MatchScene extends Phaser.Scene {
   }
 
   create(): void {
-    // Fora de shared o sorteio sem semente e permitido: aqui so escolhemos a
-    // semente; toda aleatoriedade da regra continua vindo do RNG de shared.
     const semente =
       (this.registry.get(SEED_KEY) as number | undefined) ?? Math.floor(Math.random() * SEED_RANGE);
     this.registry.set(SEED_KEY, (semente + 1) % SEED_RANGE);

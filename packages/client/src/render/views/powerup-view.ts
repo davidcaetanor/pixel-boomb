@@ -1,6 +1,4 @@
-/**
- * Power-ups no chao, uma imagem por celula. Some quando sai do estado.
- */
+/** Uma imagem por power-up, sincronizada pela celula. */
 import type Phaser from "phaser";
 import {
   CELL_CENTER,
@@ -11,7 +9,7 @@ import {
 } from "@pixelboom/shared";
 import { TEXTURA } from "../atlas/atlas-registry.js";
 
-/** Mesmo nivel da bomba: abaixo do jogador e da chama. */
+/** Mesmo nivel da bomba. */
 const POWERUP_DEPTH = 5;
 
 const TEXTURA_POR_TIPO: Readonly<Record<PowerUpKind, string>> = {

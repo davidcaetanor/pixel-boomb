@@ -18,13 +18,7 @@ export const MatchPhase = {
 
 export type MatchPhase = (typeof MatchPhase)[keyof typeof MatchPhase];
 
-/**
- * O estado completo de uma rodada. A simulacao e
- * (estado, comandos, dt) => novo estado, e este e o estado.
- *
- * Nao contem nada de rede, de render nem de relogio: o tempo decorrido e
- * acumulado aqui a partir do dt que entra.
- */
+/** Estado completo de uma rodada. O tempo e acumulado a partir do dt de cada tick. */
 export interface MatchState {
   /** Numero do tick da simulacao, comecando em 0. */
   tick: number;
@@ -42,6 +36,6 @@ export interface MatchState {
   winnerId: string | null;
   /** Proximo id livre para bomba e explosao. */
   nextEntityId: number;
-  /** Estado do RNG com semente. Faz parte do estado para o snapshot ser fiel. */
+  /** Estado do RNG, parte do estado para manter a simulacao reproduzivel. */
   rng: RngState;
 }

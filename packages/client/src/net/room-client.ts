@@ -1,9 +1,7 @@
 /**
- * Conexao com a sala. Uma so por aba, reaproveitada entre rodadas.
- *
- * Em producao o jogo e o WebSocket saem do mesmo endereco, entao o cliente
- * conecta onde a pagina foi aberta. No `pnpm dev` a pagina vem do Vite e o
- * servidor roda a parte, em DEV_SERVER_PORT.
+ * Conexao unica por aba, reaproveitada entre rodadas. Em producao pagina e
+ * WebSocket compartilham a origem; em desenvolvimento o servidor roda em
+ * DEV_SERVER_PORT, separado do Vite.
  */
 import { Client, type Room } from "@colyseus/sdk";
 

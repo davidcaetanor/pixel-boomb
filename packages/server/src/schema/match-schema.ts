@@ -1,8 +1,4 @@
-/**
- * Formato de transporte do estado. Nao e o modelo de dominio: a regra roda
- * sobre MatchState de @pixelboom/shared, e mappers.ts copia o resultado para
- * ca a cada tick. O Colyseus envia ao cliente so o que mudou.
- */
+/** Formato de transporte do estado; o modelo de dominio e o MatchState de shared. */
 import { ArraySchema, MapSchema, Schema, type } from "@colyseus/schema";
 
 export class PlayerSchema extends Schema {
@@ -34,16 +30,15 @@ export class PowerUpSchema extends Schema {
   @type("uint8") y = 0;
 }
 
-/** Fase extra so do transporte: sala esperando jogadores para comecar. */
+/** Fase de transporte: sala aguardando jogadores. */
 export const WAITING_PHASE = "waiting";
 
 export class MatchSchema extends Schema {
   @type("string") phase = WAITING_PHASE;
   @type("uint32") tick = 0;
   @type("float32") elapsed = 0;
-  /** Vazio quando nao ha vencedor (rodada em andamento ou empate). */
+  /** Vazio em empate ou durante a rodada. */
   @type("string") winnerId = "";
-  /** Quantos estao conectados, para a tela de espera. */
   @type("uint8") connected = 0;
   @type(["uint8"]) cells = new ArraySchema<number>();
   @type({ map: PlayerSchema }) players = new MapSchema<PlayerSchema>();

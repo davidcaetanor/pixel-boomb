@@ -1,8 +1,6 @@
 /**
- * Fim da rodada: ultimo vivo vence; se todos morrem, empate.
- *
- * Com um jogador so (partida local de teste), a rodada acaba quando ele morre.
- * O teto de matchMax encerra em empate caso a espiral nao resolva.
+ * Fim da rodada: o ultimo vivo vence e a morte de todos e empate. Sozinho, o
+ * jogador joga ate morrer. Atingir matchMax encerra em empate.
  */
 import { BALANCE } from "../config/balance.js";
 import type { Player } from "../domain/player.js";

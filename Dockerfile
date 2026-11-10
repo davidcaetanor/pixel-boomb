@@ -1,8 +1,5 @@
-# Imagem do PixelBoom: um processo Node servindo a pagina e o WebSocket.
-#
-# Etapa build: instala tudo e compila shared, client e server.
-# Etapa runtime: so dependencias de producao do server e os dist, rodando
-# como usuario sem privilegio.
+# build: compila shared, client e server.
+# runtime: dependencias de producao do server e os artefatos compilados.
 
 FROM node:22-alpine AS build
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0

@@ -1,15 +1,7 @@
 /**
- * Colisao continua de uma caixa quadrada contra a grade.
- *
- * Posicoes em unidades de celula, com (x, y) no centro da caixa: a celula
- * (cx, cy) vai de cx a cx + 1. O movimento e resolvido um eixo por vez, o que
- * produz o deslizar ao longo da parede de graca.
- *
- * Quem e solido vem de um predicado `Solid`: a grade sozinha, ou a grade mais
- * as bombas que aquele jogador nao pode atravessar.
- *
- * Varre todas as colunas (ou linhas) entre a borda atual e a borda alvo, entao
- * nao ha tunelamento mesmo com passo maior que uma celula.
+ * Colisao continua de uma caixa quadrada contra a grade, um eixo por vez, o
+ * que produz o deslize ao longo da parede. A varredura cobre todas as linhas
+ * entre a posicao atual e a alvo, evitando tunelamento.
  */
 import { BALANCE } from "../config/balance.js";
 import { blocksMovement } from "../domain/cell.js";
@@ -19,7 +11,7 @@ const EPS = BALANCE.physics.collisionEpsilon;
 
 export type Axis = "x" | "y";
 
-/** A celula (cx, cy) bloqueia o movimento? */
+/** Indica se a celula bloqueia o movimento. */
 export type Solid = (cx: number, cy: number) => boolean;
 
 export interface Box {
@@ -29,17 +21,16 @@ export interface Box {
   readonly half: number;
 }
 
-/** Celula bloqueia o movimento? Fora da arena conta como parede. */
+/** Fora da arena conta como parede. */
 export function isBlocked(grid: Grid, cx: number, cy: number): boolean {
   return blocksMovement(cellAt(grid, cx, cy));
 }
 
-/** Solidez so da grade: parede, caixa e fora da arena. */
+/** Solidez considerando apenas a grade. */
 export function gridSolid(grid: Grid): Solid {
   return (cx, cy) => isBlocked(grid, cx, cy);
 }
 
-/** Celulas que a caixa ocupa, em indices de coluna e linha. */
 export function cellsOverlapped(box: Box): { x: number; y: number }[] {
   const cells: { x: number; y: number }[] = [];
   const x0 = Math.floor(box.x - box.half + EPS);
@@ -54,7 +45,6 @@ export function cellsOverlapped(box: Box): { x: number; y: number }[] {
   return cells;
 }
 
-/** A caixa ocupa alguma celula solida? */
 export function overlapsBlocked(solid: Solid, box: Box): boolean {
   return cellsOverlapped(box).some((c) => solid(c.x, c.y));
 }

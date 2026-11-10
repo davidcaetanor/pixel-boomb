@@ -1,9 +1,6 @@
 /**
- * Detona um conjunto de bombas e todas as que forem alcancadas pela chama,
- * em cadeia, dentro do mesmo tick.
- *
- * Todas as chamas leem a grade de antes da detonacao: duas bombas que
- * atingem a mesma caixa param nela, e a caixa so some no fim.
+ * Detonacao em cadeia dentro de um tick. Todas as chamas usam a grade anterior
+ * a detonacao, entao uma caixa atingida por duas bombas bloqueia as duas.
  */
 import { BALANCE } from "../config/balance.js";
 import { cellIndex } from "../config/arena.js";
@@ -16,7 +13,7 @@ export interface ChainResult {
   readonly explosions: Explosion[];
   /** Bombas que continuam no chao. */
   readonly remaining: Bomb[];
-  /** Bombas que estouraram, para devolver a contagem ao dono. */
+  /** Bombas que estouraram neste tick. */
   readonly detonated: Bomb[];
   readonly cratesDestroyed: Set<number>;
   readonly nextEntityId: number;

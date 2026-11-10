@@ -1,9 +1,9 @@
 /**
- * Servico unico: o mesmo processo serve a pagina do jogo e o WebSocket.
+ * Processo unico para a pagina do jogo e o WebSocket.
  *
- * PORT: porta HTTP (padrao 2567).
- * HOST: interface de escuta (padrao 0.0.0.0, para funcionar dentro do container).
- * STATIC_DIR: pasta do build do cliente (padrao packages/client/dist).
+ * PORT       porta HTTP (2567)
+ * HOST       interface de escuta (0.0.0.0)
+ * STATIC_DIR build do cliente (packages/client/dist)
  */
 import { createServer } from "node:http";
 import { dirname, resolve } from "node:path";
@@ -29,8 +29,7 @@ gameServer.define("match", MatchRoom);
 
 await gameServer.listen(port, host);
 
-// O Colyseus responde a qualquer rota HTTP. Um despachante unico decide quem
-// atende: matchmaking vai para ele, todo o resto e o build do cliente.
+// O Colyseus atende qualquer rota HTTP; somente matchmaking deve chegar a ele.
 const colyseusHandlers = httpServer.listeners("request") as ((...args: unknown[]) => void)[];
 const serveStatic = createStaticHandler(staticDir);
 httpServer.removeAllListeners("request");

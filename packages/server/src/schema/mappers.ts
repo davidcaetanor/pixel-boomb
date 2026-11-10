@@ -1,10 +1,6 @@
 /**
- * Dominio para schema, em um lugar so. Nenhum outro arquivo do servidor
- * escreve no MatchSchema.
- *
- * Listas sao reescritas por inteiro a cada tick; com 8 jogadores e 325
- * celulas o custo e irrelevante e o codigo fica obvio. A grade so e copiada
- * celula a celula, para o Colyseus mandar apenas as que mudaram.
+ * Unico ponto de escrita do MatchSchema. Listas pequenas sao reescritas a cada
+ * tick; a grade e atualizada celula a celula para enviar so a diferenca.
  */
 import { ArraySchema } from "@colyseus/schema";
 import type { MatchState } from "@pixelboom/shared";
@@ -71,7 +67,6 @@ export function writeMatch(target: MatchSchema, state: MatchState): void {
   );
 }
 
-/** Estado de espera: sem partida, so a contagem de conectados. */
 export function writeWaiting(target: MatchSchema, connected: number): void {
   target.phase = WAITING_PHASE;
   target.connected = connected;

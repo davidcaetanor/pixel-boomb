@@ -1,15 +1,6 @@
 /**
- * RNG com semente, deterministico e puro.
- *
- * Math.random() esta proibido em shared/ por lint. O motivo nao e purismo:
- * cliente e servidor rodam a mesma simulacao, e se sorteiam numeros
- * diferentes o jogo divergente e praticamente impossivel de depurar.
- *
- * Cada funcao devolve o valor e o proximo estado. Nada e mutado, entao o
- * estado do RNG pode entrar no snapshot como qualquer outro campo.
- *
- * Algoritmo: mulberry32. 32 bits de estado, distribuicao boa o suficiente
- * para geracao de mapa e sorteio de power-up.
+ * RNG deterministico (mulberry32) com estado explicito: cada funcao devolve o
+ * valor e o proximo estado, sem mutacao.
  */
 export type RngState = number;
 
@@ -60,10 +51,7 @@ export function nextChance(
   return [value < probability, next];
 }
 
-/**
- * Embaralhamento Fisher-Yates deterministico. Devolve um array novo.
- * Usado na geracao de mapa para escolher quais celulas recebem caixa.
- */
+/** Fisher-Yates deterministico; devolve um array novo. */
 export function shuffle<T>(
   items: readonly T[],
   state: RngState,

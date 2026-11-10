@@ -1,10 +1,7 @@
 /**
- * Partida online, sem predicao (E4): o servidor e a autoridade, o cliente so
- * manda intencao e desenha o ultimo estado recebido. Vai parecer travado com
- * latencia alta, e isso e esperado ate a E5.
- *
- * A cada rodada nova a cena reinicia para redesenhar a arena; a conexao com a
- * sala continua a mesma.
+ * Partida online sem predicao: o servidor e a autoridade, o cliente envia
+ * intencao e desenha o ultimo estado recebido. Cada rodada nova reinicia a
+ * cena para redesenhar a arena, mantendo a conexao.
  */
 import Phaser from "phaser";
 import { BALANCE, type InputCommand, type MatchState } from "@pixelboom/shared";
@@ -20,7 +17,7 @@ import { PlayerView } from "../views/player-view.js";
 import { PowerUpView } from "../views/powerup-view.js";
 
 const MS_PER_SECOND = 1000;
-/** Sem predicao, desenha o estado recebido sem interpolar entre ticks. */
+/** O estado recebido e desenhado como chegou, sem interpolacao. */
 const NO_INTERPOLATION = 1;
 
 function sameIntent(a: InputCommand | null, b: InputCommand): boolean {
@@ -67,8 +64,7 @@ export class OnlineScene extends Phaser.Scene {
       })
       .catch(() => this.status.setText("sem conexao com o servidor"));
 
-    // Aba escondida: o Phaser para de atualizar, entao avisamos o servidor
-    // agora para o jogador nao seguir andando sozinho.
+    // Com a aba oculta o update para; a intencao parada e enviada na hora.
     const onHidden = (): void => {
       if (document.hidden && this.room !== null) {
         this.room.send("input", { moveX: 0, moveY: 0 });
@@ -100,7 +96,6 @@ export class OnlineScene extends Phaser.Scene {
 
     const state = snapshot.state;
     if (state.tick < this.lastTick) {
-      // Rodada nova: arena diferente, redesenha do zero.
       this.scene.restart();
       return;
     }

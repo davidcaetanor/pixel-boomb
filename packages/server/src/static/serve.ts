@@ -1,10 +1,4 @@
-/**
- * Serve o build do cliente pelo mesmo processo do WebSocket.
- *
- * So le arquivos de dentro de `root`: o caminho pedido e normalizado e
- * conferido, entao "../" nao sai da pasta. As rotas de matchmaking do
- * Colyseus nem chegam aqui: index.ts as desvia antes.
- */
+/** Arquivos estaticos do cliente, restritos ao diretorio raiz informado. */
 import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import type { IncomingMessage, ServerResponse } from "node:http";
@@ -22,9 +16,9 @@ const CONTENT_TYPES: Readonly<Record<string, string>> = {
   ".woff2": "font/woff2",
 };
 
-/** Prefixo das rotas HTTP do Colyseus. */
+/** Prefixo das rotas de matchmaking do Colyseus. */
 export const MATCHMAKE_PREFIX = "/matchmake/";
-/** Arquivos com hash no nome podem ficar em cache por um ano. */
+/** Arquivos com hash no nome sao imutaveis. */
 const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
 const NO_CACHE = "no-cache";
 

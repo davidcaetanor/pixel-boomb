@@ -1,10 +1,7 @@
 /**
- * Sala autoritativa. O servidor roda a mesma simulacao de shared a 30 Hz e e
- * o unico que decide onde cada um esta. O cliente so manda intencao.
- *
- * Ciclo: espera ate minPlayersToStart conectados, roda a rodada, mostra o
- * resultado por roundRestartDelay e comeca outra com quem estiver na sala.
- * Quem entra no meio de uma rodada assiste e joga a proxima.
+ * Sala autoritativa: roda a simulacao de shared e decide o estado; o cliente
+ * envia apenas intencao. Aguarda minPlayersToStart, joga a rodada, exibe o
+ * resultado por roundRestartDelay e recomeca com quem estiver conectado.
  */
 import { Room, type Client } from "@colyseus/core";
 import {
@@ -34,16 +31,11 @@ export class MatchRoom extends Room<{ state: MatchSchema }> {
   override state = new MatchSchema();
 
   private match: MatchState | null = null;
-  /** Ultima intencao valida de cada jogador. */
   private readonly intents = new Map<string, InputCommand>();
-  /** Bomba pedida desde o ultimo tick; nao se perde se chegar entre ticks. */
+  /** Pedidos de bomba acumulados entre ticks. */
   private readonly bombRequests = new Set<string>();
   private finishedFor = 0;
-  /**
-   * O timer do sistema nao dispara exatamente a cada 33 ms (no Windows chega a
-   * rodar ~21 Hz). O acumulador de shared converte o tempo real em ticks
-   * fixos, igual ao cliente, e o relogio do jogo nao atrasa.
-   */
+  /** O timer do sistema nao e preciso o bastante; o acumulador garante a taxa de ticks. */
   private readonly loop: FixedLoopState = createFixedLoop();
 
   override messages = {
@@ -81,7 +73,6 @@ export class MatchRoom extends Room<{ state: MatchSchema }> {
     this.intents.delete(client.sessionId);
     this.bombRequests.delete(client.sessionId);
     this.state.connected = this.clients.length;
-    // Quem sai fica fora da rodada; a vitoria resolve se sobrar um so.
     if (this.match !== null) {
       this.match = {
         ...this.match,

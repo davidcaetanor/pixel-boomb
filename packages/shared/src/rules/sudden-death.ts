@@ -1,7 +1,6 @@
 /**
- * Morte subita: a partir de suddenDeathStart, um anel inteiro vira parede a
- * cada suddenDeathRingInterval, de fora para dentro. Quem estiver no anel
- * morre; bomba e power-up no anel somem.
+ * Morte subita: a cada intervalo um anel vira parede, de fora para dentro,
+ * eliminando jogadores, bombas e itens nas celulas fechadas.
  */
 import { cellIndex, cellX, cellY } from "../config/arena.js";
 import { BALANCE } from "../config/balance.js";
@@ -13,7 +12,7 @@ import type { Player } from "../domain/player.js";
 import type { PowerUp } from "../domain/powerup.js";
 import { playerCell } from "./bomb-placement.js";
 
-/** Quantos aneis ja deveriam estar fechados em `elapsed` segundos. */
+/** Aneis que devem estar fechados no instante `elapsed`. */
 export function ringsDue(elapsed: number): number {
   const { suddenDeathStart, suddenDeathRingInterval } = BALANCE.time;
   if (elapsed < suddenDeathStart) {

@@ -1,13 +1,7 @@
 /**
- * Layout da arena: dimensoes, paredes estaticas e pontos de spawn.
- *
- * 25 x 13 e impar x impar de proposito: permite o padrao de pilares do
- * Bomberman (pilar em toda posicao par do interior, corredor em toda impar),
- * o que garante que nenhum corredor fique sem saida.
- *
- * A altura determina o zoom: 13 linhas x 32 px = 416, que a 2x da 832 e cabe
- * numa janela 1080p com barra do navegador e HUD. Para arena maior, cresca em
- * colunas, nunca em linhas.
+ * Dimensoes da arena e pontos de spawn. Dimensoes impares permitem o padrao de
+ * pilares em posicoes pares. A altura de 13 linhas a 32 px com zoom 2 cabe em
+ * uma janela 1080p; a arena cresce em colunas.
  */
 export const ARENA_COLS = 25;
 export const ARENA_ROWS = 13;
@@ -47,18 +41,14 @@ export interface SpawnPoint {
   /** Celula onde o jogador nasce. */
   readonly x: number;
   readonly y: number;
-  /**
-   * As duas vizinhas ortogonais que ficam livres junto com a celula do spawn,
-   * formando um L de 3 celulas para o jogador nao nascer encurralado.
-   */
+  /** Vizinhas ortogonais mantidas livres junto com o spawn. */
   readonly clearance: readonly { readonly x: number; readonly y: number }[];
 }
 
 /**
- * 8 pontos no corredor da borda, em ordem ao redor da arena, a 8 celulas de
- * caminhada um do outro. O corredor da borda e livre em todo layout, entao a
- * distancia entre vizinhos e a mesma em qualquer rodada. Nenhum ponto fica no
- * canto: o canto deixaria um vizinho mais perto que o outro.
+ * Pontos em ordem ao redor da arena, no corredor da borda, a 8 celulas de
+ * caminhada do vizinho em qualquer layout. Os cantos ficam de fora porque
+ * deixariam um vizinho mais proximo que o outro.
  */
 export const SPAWN_POINTS: readonly SpawnPoint[] = [
   { x: 8, y: 1, clearance: [{ x: 7, y: 1 }, { x: 9, y: 1 }] },
@@ -71,10 +61,7 @@ export const SPAWN_POINTS: readonly SpawnPoint[] = [
   { x: 1, y: 2, clearance: [{ x: 1, y: 1 }, { x: 1, y: 3 }] },
 ] as const;
 
-/**
- * Indices de celula que nunca recebem caixa: os spawns e suas clearances.
- * Calculado uma vez; a geracao de mapa consulta isto.
- */
+/** Spawns e suas vizinhas livres, que nunca recebem caixa. */
 export const SPAWN_SAFE_INDICES: ReadonlySet<number> = new Set(
   SPAWN_POINTS.flatMap((spawn) => [
     cellIndex(spawn.x, spawn.y),

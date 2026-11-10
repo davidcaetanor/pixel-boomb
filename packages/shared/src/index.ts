@@ -1,9 +1,4 @@
-/**
- * Superficie publica de @pixelboom/shared.
- *
- * Este pacote e a simulacao pura do jogo: nao conhece Phaser, Colyseus, DOM
- * nem Node. server e client importam daqui; nunca o contrario.
- */
+/** API publica da simulacao, consumida por server e client. */
 export * from "./config/arena.js";
 export * from "./config/arena-layouts.js";
 export * from "./config/balance.js";

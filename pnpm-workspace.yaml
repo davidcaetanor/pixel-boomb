@@ -1,8 +1,7 @@
 packages:
   - "packages/*"
 
-# Scripts de build aprovados explicitamente. esbuild e msgpackr-extract compilam
-# binario nativo; sem isto o pnpm 10+ bloqueia a instalacao.
+# Pacotes com binario nativo autorizados a rodar script de instalacao.
 allowBuilds:
   esbuild: true
   msgpackr-extract: true

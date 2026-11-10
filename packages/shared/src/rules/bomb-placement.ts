@@ -1,12 +1,8 @@
 /**
- * Soltar bomba e saber quando ela bloqueia.
- *
- * A bomba trava no centro da celula onde esta o centro do jogador. Uma por
- * celula, nunca acima de maxBombs, so em piso.
- *
- * Bloqueio: uma bomba e solida para um jogador, exceto se ele ja estava
- * sobre a celula dela no inicio do tick. Assim quem soltou (ou quem estava
- * passando por ali) consegue sair, e depois de sair nao volta.
+ * Posicionamento e bloqueio de bombas. A bomba ocupa a celula do centro do
+ * jogador, uma por celula, ate maxBombs. Ela e solida para todo jogador que
+ * nao estava sobre a celula no inicio do tick: quem esta em cima sai, mas nao
+ * volta.
  */
 import { BALANCE } from "../config/balance.js";
 import { CellKind } from "../domain/cell.js";

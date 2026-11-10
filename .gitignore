@@ -4,7 +4,7 @@ dist/
 .vite/
 *.tsbuildinfo
 
-# Segredos, nada aqui pode ir pro repositorio
+# Segredos e configuracao local
 .env
 .env.*
 !.env.example
@@ -18,7 +18,7 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 
-# Documentacao do projeto, fora do versionamento por decisao do David
+# Documentacao de trabalho, mantida fora do repositorio
 docs/
 
 # Temporarios
