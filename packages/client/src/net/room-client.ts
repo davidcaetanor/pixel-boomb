@@ -21,9 +21,16 @@ function serverUrl(): string {
 
 let current: Promise<Room> | null = null;
 
+/** A entrada conclui antes do primeiro estado; a sala so e entregue com o estado ja recebido. */
+async function joinWithState(): Promise<Room> {
+  const room = await new Client(serverUrl()).joinOrCreate(ROOM_NAME);
+  await new Promise<void>((resolve) => room.onStateChange.once(() => resolve()));
+  return room;
+}
+
 export function joinMatch(): Promise<Room> {
   if (current === null) {
-    current = new Client(serverUrl()).joinOrCreate(ROOM_NAME);
+    current = joinWithState();
     current.catch(() => {
       current = null;
     });
