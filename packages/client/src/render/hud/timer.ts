@@ -1,4 +1,4 @@
-/** Contagem regressiva, relogio, aviso de morte subita e resultado da rodada. */
+/** Relogio da rodada, contagem regressiva, aviso de morte subita e aviso central. */
 import type Phaser from "phaser";
 import { LOGICAL_HEIGHT, LOGICAL_WIDTH, MatchPhase, type MatchState } from "@pixelboom/shared";
 
@@ -19,7 +19,7 @@ export class TimerHud {
   private readonly topo: Phaser.GameObjects.Text;
   private readonly centro: Phaser.GameObjects.Text;
 
-  constructor(scene: Phaser.Scene, private readonly localId: string) {
+  constructor(scene: Phaser.Scene) {
     const estilo = {
       fontFamily: "monospace",
       color: COR_NORMAL,
@@ -36,44 +36,25 @@ export class TimerHud {
       .setDepth(HUD_DEPTH);
   }
 
-  render(state: MatchState): void {
+  /** `banner` aparece no centro, exceto durante a contagem regressiva. */
+  render(state: MatchState, prefix: string, banner: string | null): void {
+    const clock = relogio(state.elapsed);
     switch (state.phase) {
       case MatchPhase.Countdown:
-        this.topo.setText("");
-        this.centro.setText(String(Math.ceil(-state.elapsed))).setColor(COR_NORMAL);
-        return;
-      case MatchPhase.Playing:
-        this.topo.setText(relogio(state.elapsed)).setColor(COR_NORMAL);
-        this.centro.setText("");
+        this.topo.setText(prefix).setColor(COR_NORMAL);
+        this.centro.setText(String(Math.ceil(-state.elapsed)));
         return;
       case MatchPhase.SuddenDeath:
-        this.topo.setText(`MORTE SUBITA  ${relogio(state.elapsed)}`).setColor(COR_PERIGO);
-        this.centro.setText("");
-        return;
-      case MatchPhase.Finished:
-        this.topo.setText(relogio(state.elapsed)).setColor(COR_NORMAL);
-        this.centro.setText(`${this.resultado(state)}\nEnter: nova rodada`).setColor(COR_NORMAL);
-        return;
+        this.topo.setText(`${prefix}  MORTE SUBITA  ${clock}`.trim()).setColor(COR_PERIGO);
+        break;
+      default:
+        this.topo.setText(`${prefix}  ${clock}`.trim()).setColor(COR_NORMAL);
     }
+    this.centro.setText(banner ?? "");
   }
 
   renderWaiting(connected: number, needed: number): void {
     this.topo.setText("");
-    this.centro.setText(`Aguardando jogadores\n${connected}/${needed}`).setColor(COR_NORMAL);
-  }
-
-  /** Jogador que entrou durante a rodada e aguarda a proxima. */
-  renderSpectator(state: MatchState): void {
-    this.render(state);
-    if (state.phase !== MatchPhase.Finished) {
-      this.centro.setText("Assistindo\nvoce entra na proxima rodada").setColor(COR_NORMAL);
-    }
-  }
-
-  private resultado(state: MatchState): string {
-    if (state.winnerId === null) {
-      return state.players.length > 1 ? "Empate" : "Fim de rodada";
-    }
-    return state.winnerId === this.localId ? "Vitoria" : "Derrota";
+    this.centro.setText(`Aguardando jogadores\n${connected}/${needed}`);
   }
 }
