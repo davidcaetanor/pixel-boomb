@@ -24,7 +24,9 @@ export class BootScene extends Phaser.Scene {
     });
   }
 
+  /** `?local` abre a partida offline de um jogador; sem ele, a sala online. */
   create(): void {
-    this.scene.start("match");
+    const local = new URLSearchParams(window.location.search).has("local");
+    this.scene.start(local ? "match" : "online");
   }
 }

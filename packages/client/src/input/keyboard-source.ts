@@ -68,10 +68,18 @@ export class KeyboardSource {
     this.bombPending = false;
   };
 
+  /** Aba em segundo plano conta como perder o foco. */
+  private readonly onVisibility = (): void => {
+    if (document.hidden) {
+      this.onBlur();
+    }
+  };
+
   constructor(private readonly target: Window = window) {
     target.addEventListener("keydown", this.onDown);
     target.addEventListener("keyup", this.onUp);
     target.addEventListener("blur", this.onBlur);
+    document.addEventListener("visibilitychange", this.onVisibility);
   }
 
   read(): InputCommand {
@@ -98,6 +106,7 @@ export class KeyboardSource {
     this.target.removeEventListener("keydown", this.onDown);
     this.target.removeEventListener("keyup", this.onUp);
     this.target.removeEventListener("blur", this.onBlur);
+    document.removeEventListener("visibilitychange", this.onVisibility);
     this.held = [];
   }
 }

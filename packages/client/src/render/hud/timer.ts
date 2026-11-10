@@ -60,6 +60,20 @@ export class TimerHud {
     }
   }
 
+  /** Sala aberta, esperando gente suficiente para a primeira rodada. */
+  renderWaiting(connected: number, needed: number): void {
+    this.topo.setText("");
+    this.centro.setText(`Aguardando jogadores\n${connected}/${needed}`).setColor(COR_NORMAL);
+  }
+
+  /** Entrou no meio da rodada: assiste e joga a proxima. */
+  renderSpectator(state: MatchState): void {
+    this.render(state);
+    if (state.phase !== MatchPhase.Finished) {
+      this.centro.setText("Assistindo\nvoce entra na proxima rodada").setColor(COR_NORMAL);
+    }
+  }
+
   private resultado(state: MatchState): string {
     if (state.winnerId === null) {
       return state.players.length > 1 ? "Empate" : "Fim de rodada";
