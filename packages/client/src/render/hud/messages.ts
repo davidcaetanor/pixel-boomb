@@ -45,3 +45,8 @@ export function onlineBanner(state: MatchState, series: SeriesInfo, localId: str
   }
   return self.alive ? null : "Eliminado\nassistindo";
 }
+
+/** O jogador venceu a rodada que acabou de terminar e deve comemorar. */
+export function comemora(state: MatchState, playerId: string): boolean {
+  return state.phase === MatchPhase.Finished && state.winnerId === playerId;
+}
