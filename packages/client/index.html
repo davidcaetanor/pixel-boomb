@@ -27,74 +27,133 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 16px;
-        font-family: monospace;
+        /* Courier New tem avanco de 0,6 em: a 10 px cada caractere mede 6 px inteiros. */
+        font-family: "Courier New", monospace;
         color: #f4ecd8;
-        background: rgba(20, 18, 28, 0.85);
+        /* Arena montada com os tiles do jogo, na mesma escala do canvas. */
+        background:
+          linear-gradient(rgba(20, 18, 28, 0.55), rgba(20, 18, 28, 0.55)),
+          url(/ui-fundo.png) 0 0 / calc(960px * var(--ui-zoom, 2)) auto;
+        image-rendering: pixelated;
+      }
+      /*
+       * Dentro do painel as medidas sao em pixels de arte; o zoom inteiro em
+       * pixels fisicos (--ui-zoom, de pixel-scale.ts) amplia tudo junto,
+       * igual ao canvas. Bordas de 9-slice usam o tamanho nativo de cada peca.
+       */
+      .ui-panel {
+        zoom: var(--ui-zoom, 2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 0 4px;
+        border: 28px solid transparent;
+        border-image: url(/ui-painel.png) 28 fill / 28px round;
+        font-size: 10px;
+        /* Altura de linha inteira: "normal" e fracionaria e desalinha a grade. */
+        line-height: 12px;
       }
       .lobby h1 {
-        margin: 0 0 8px;
-        font-size: 40px;
-        letter-spacing: 2px;
+        margin: 0;
+        line-height: 0;
+      }
+      .ui-logo {
+        display: block;
       }
       .lobby form {
         display: flex;
-        gap: 8px;
+        gap: 4px;
       }
       .lobby input,
       .lobby button {
         font: inherit;
-        font-size: 18px;
-        padding: 8px 14px;
-        border: 2px solid #f4ecd8;
-        background: #14121c;
-        color: #f4ecd8;
+        line-height: 12px;
+        padding: 0 2px;
       }
       .lobby input {
-        width: 8ch;
+        width: 7ch;
+        color: #f4ecd8;
+        background: none;
+        border: 10px solid transparent;
+        border-image: url(/ui-slot.png) 10 fill / 10px stretch;
         text-transform: uppercase;
-        letter-spacing: 3px;
+        outline: none;
       }
-      .lobby button {
-        cursor: pointer;
-      }
-      .lobby button:disabled,
       .lobby input:disabled {
         opacity: 0.5;
+      }
+      .lobby button {
+        color: #14121c;
+        font-weight: bold;
+        background: none;
+        border: solid transparent;
+        border-width: 10px 12px;
+        border-image: url(/ui-botao.png) 10 12 fill / 10px 12px stretch;
+        cursor: pointer;
+      }
+      .lobby button:hover:not(:disabled) {
+        border-image-source: url(/ui-botao-hover.png);
+      }
+      .lobby button:active:not(:disabled) {
+        border-image-source: url(/ui-botao-pressionado.png);
+      }
+      .lobby button:disabled {
+        border-image-source: url(/ui-botao-desabilitado.png);
+        color: #5a5866;
         cursor: default;
+      }
+      .lobby .room-start {
+        padding: 0 16px;
       }
       .roster {
         display: grid;
         grid-template-columns: repeat(4, auto);
-        gap: 10px;
+        gap: 4px;
       }
       .lobby .roster-card {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 4px;
-        padding: 6px;
-        font-size: 13px;
+        padding: 0;
+        font-weight: normal;
+        color: #f4ecd8;
+        /* 10 + 48 do personagem + 12 do rotulo + 10 = 80, na grade de 8 px. */
+        border-width: 10px;
+        border-image: url(/ui-slot.png) 10 fill / 10px stretch;
+        outline-offset: 0;
       }
-      .lobby .roster-card.is-mine {
-        border-width: 4px;
-        padding: 4px;
+      .lobby .roster-card:hover:not(:disabled),
+      .lobby .roster-card:active:not(:disabled) {
+        border-image-source: url(/ui-slot-hover.png);
+      }
+      .lobby .roster-card.is-mine,
+      .lobby .roster-card.is-mine:hover {
+        border-image-source: url(/ui-slot-selecionado.png);
+      }
+      .lobby .roster-card:disabled {
+        border-image-source: url(/ui-slot-ocupado.png);
+        color: #f4ecd8;
+      }
+      .lobby .roster-card:disabled .roster-preview {
+        opacity: 0.45;
       }
       .roster-preview {
         display: block;
         background-repeat: no-repeat;
         background-position: 0 0;
-        image-rendering: pixelated;
+      }
+      .roster-host {
+        position: absolute;
+        top: -12px;
+        right: -12px;
       }
       .room-status {
         margin: 0;
       }
-      .lobby .room-start {
-        font-size: 22px;
-        padding: 10px 32px;
-      }
       .lobby-error {
-        min-height: 1.2em;
+        min-height: 10px;
         margin: 0;
         color: #ff5a4a;
       }

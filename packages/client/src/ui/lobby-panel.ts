@@ -17,7 +17,11 @@ export class LobbyPanel {
     this.root.className = "lobby";
 
     const title = document.createElement("h1");
-    title.textContent = "PixelBoom";
+    const logo = document.createElement("img");
+    logo.className = "ui-logo";
+    logo.src = "/ui-logo.png";
+    logo.alt = "PixelBoom";
+    title.append(logo);
 
     const create = document.createElement("button");
     create.type = "button";
@@ -43,7 +47,10 @@ export class LobbyPanel {
     this.error.className = "lobby-error";
 
     this.buttons = [create, join];
-    this.root.append(title, create, form, this.error);
+    const box = document.createElement("div");
+    box.className = "ui-panel";
+    box.append(title, create, form, this.error);
+    this.root.append(box);
     host.append(this.root);
   }
 
