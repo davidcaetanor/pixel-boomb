@@ -87,7 +87,7 @@ describe("movement", () => {
   it("nao desvia quando a frente e parede na propria faixa", () => {
     // Centro na coluna 2 (pilar abaixo): para, sem escorregar.
     const end = walk({ x: 2.5, y: 1.5 }, { moveX: 0, moveY: 1 }, 30);
-    expect(end).toEqual({ x: 2.5, y: 1 + 1 - PLAYER_HALF });
+    expect({ x: end.x, y: end.y }).toEqual({ x: 2.5, y: 1 + 1 - PLAYER_HALF });
   });
 
   it("ignora intencao fora de -1/0/1", () => {
@@ -136,6 +136,19 @@ describe("facing ao virar segurando a tecla", () => {
       expect(seen).toEqual(["east", "south"]);
     },
   );
+});
+
+describe("facing contra parede", () => {
+  it("vira para a parede mesmo sem andar", () => {
+    // Em (1.5, 1.5) a borda fica a oeste: empurrar para a esquerda nao anda.
+    const result = movePlayer(grid, { x: 1.4, y: 1.5, speed }, { moveX: -1, moveY: 0 }, TICK_SECONDS);
+    expect(result).toEqual({ x: 1.4, y: 1.5, facing: "west" });
+  });
+
+  it("sem intencao nao muda a direcao", () => {
+    const result = movePlayer(grid, { x: 1.5, y: 1.5, speed }, { moveX: 0, moveY: 0 }, TICK_SECONDS);
+    expect(result.facing).toBeUndefined();
+  });
 });
 
 describe("step", () => {
