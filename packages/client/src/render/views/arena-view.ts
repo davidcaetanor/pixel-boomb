@@ -33,7 +33,8 @@ export class ArenaView {
   ) {
     for (let y = 0; y < ARENA_ROWS; y += 1) {
       for (let x = 0; x < ARENA_COLS; x += 1) {
-        this.coloca(TEXTURA.piso, x, y);
+        // Xadrez de dois tons: cada celula da grade se le sozinha.
+        this.coloca((x + y) % 2 === 0 ? TEXTURA.pisoClaro : TEXTURA.pisoEscuro, x, y);
         if (isBorder(x, y)) {
           const canto =
             (x === 0 || x === ARENA_COLS - 1) && (y === 0 || y === ARENA_ROWS - 1);
