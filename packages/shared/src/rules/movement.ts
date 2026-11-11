@@ -114,11 +114,19 @@ export function movePlayer(
 
   const tried = moveOnAxis(solid, start, first, intent[first], distance);
   if (!tried.blocked || intent[second] === 0) {
-    return withFacing(start, tried.pos, first, intent[first]);
+    return facingTowardWall(withFacing(start, tried.pos, first, intent[first]), first, intent[first]);
   }
   // O avanco parcial do eixo bloqueado e descartado para a direcao nao oscilar.
   const fallback = moveOnAxis(solid, start, second, intent[second], distance);
-  return withFacing(start, fallback.pos, second, intent[second]);
+  return facingTowardWall(withFacing(start, fallback.pos, second, intent[second]), first, intent[first]);
+}
+
+/** Empurrando parede sem andar, o jogador se vira para o eixo preferido. */
+function facingTowardWall(result: MoveResult, axis: Axis, dir: AxisIntent): MoveResult {
+  if (result.facing !== undefined || dir === 0) {
+    return result;
+  }
+  return { ...result, facing: facingOf(axis, dir) };
 }
 
 function withFacing(

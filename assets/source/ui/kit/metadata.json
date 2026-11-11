@@ -1,0 +1,166 @@
+{
+  "ui_assets": [
+    {
+      "id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a",
+      "name": "pixelboom_ui_kit",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "template",
+      "file": "pixelboom_ui_kit/pixelboom_ui_kit.png",
+      "size": {
+        "width": 341,
+        "height": 192
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a"
+    },
+    {
+      "id": "5a4d17f1-41f8-4e00-b727-0a4aa5b69133",
+      "name": "dialog panel",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "element",
+      "file": "pixelboom_ui_kit/elements/dialog_panel.png",
+      "size": {
+        "width": 152,
+        "height": 190
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a"
+    },
+    {
+      "id": "63f6de25-d2cc-4737-b5c3-ba59dde7f748",
+      "name": "button",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "element",
+      "file": "pixelboom_ui_kit/elements/button/button.png",
+      "size": {
+        "width": 114,
+        "height": 44
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a"
+    },
+    {
+      "id": "30cbcee5-424f-4d44-a713-464ef1ee6a1f",
+      "name": "hover",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "state",
+      "file": "pixelboom_ui_kit/elements/button/hover.png",
+      "size": {
+        "width": 106,
+        "height": 40
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a",
+      "parent_id": "63f6de25-d2cc-4737-b5c3-ba59dde7f748"
+    },
+    {
+      "id": "736408d0-7313-4e10-80dc-e952d5bf2a79",
+      "name": "pressed",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "state",
+      "file": "pixelboom_ui_kit/elements/button/pressed.png",
+      "size": {
+        "width": 106,
+        "height": 40
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a",
+      "parent_id": "63f6de25-d2cc-4737-b5c3-ba59dde7f748"
+    },
+    {
+      "id": "6214602a-e88f-46f5-bca5-f893bd52dc20",
+      "name": "disabled",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "state",
+      "file": "pixelboom_ui_kit/elements/button/disabled.png",
+      "size": {
+        "width": 106,
+        "height": 40
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a",
+      "parent_id": "63f6de25-d2cc-4737-b5c3-ba59dde7f748"
+    },
+    {
+      "id": "86ab68a7-0b16-4549-916e-1dfa1af9ae30",
+      "name": "slot",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "element",
+      "file": "pixelboom_ui_kit/elements/slot/slot.png",
+      "size": {
+        "width": 50,
+        "height": 49
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a"
+    },
+    {
+      "id": "dc025add-66a9-4997-b9dd-5b0a6efeb3f8",
+      "name": "hover",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "state",
+      "file": "pixelboom_ui_kit/elements/slot/hover.png",
+      "size": {
+        "width": 43,
+        "height": 44
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a",
+      "parent_id": "86ab68a7-0b16-4549-916e-1dfa1af9ae30"
+    },
+    {
+      "id": "f404f58d-8ded-483c-9db3-9d70639bb25a",
+      "name": "selected",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "state",
+      "file": "pixelboom_ui_kit/elements/slot/selected.png",
+      "size": {
+        "width": 43,
+        "height": 44
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a",
+      "parent_id": "86ab68a7-0b16-4549-916e-1dfa1af9ae30"
+    },
+    {
+      "id": "65423b4b-88a8-4b4d-85ab-9dc1f3d42ee1",
+      "name": "taken",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "state",
+      "file": "pixelboom_ui_kit/elements/slot/taken.png",
+      "size": {
+        "width": 43,
+        "height": 44
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a",
+      "parent_id": "86ab68a7-0b16-4549-916e-1dfa1af9ae30"
+    },
+    {
+      "id": "560edec9-8aef-40b1-9730-63622288e19b",
+      "name": "player badge",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "element",
+      "file": "pixelboom_ui_kit/elements/player_badge.png",
+      "size": {
+        "width": 50,
+        "height": 49
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a"
+    },
+    {
+      "id": "503fe5d3-8097-429b-8c14-f9d1d9125f68",
+      "name": "arrow marker",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "element",
+      "file": "pixelboom_ui_kit/elements/arrow_marker.png",
+      "size": {
+        "width": 45,
+        "height": 44
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a"
+    },
+    {
+      "id": "b6c1b62f-aac2-45a8-973a-e14644ddf21a",
+      "name": "result banner",
+      "prompt": "Pixel art UI kit for a cute cartoon top-down Bomberman-style arena game. Flat cel shading with only two tones per color, thick dark outline (#14121c), bright readable palette, pale cream (#f4ecd8) borders and faces with a darker plum-navy interior, warm wood-brown and bomb-black accents. Crisp straight edges, readable at very small size. No gradient, no texture, no glow, no sparkles, no text, no icons inside the shapes. Pieces: a large empty dialog panel with a thick cream frame and dark interior; a wide chunky empty button with a cream face and dark outline and a 2px darker bottom lip; a small empty square slot; a round empty player badge; a wide horizontal empty banner ribbon for round results; a small downward-pointing chunky triangular arrow marker in cream white.",
+      "kind": "element",
+      "file": "pixelboom_ui_kit/elements/result_banner.png",
+      "size": {
+        "width": 178,
+        "height": 49
+      },
+      "group_id": "68dc57d0-5213-46fd-ac0e-cb6fc0449f0a"
+    }
+  ]
+}

@@ -19,9 +19,12 @@ export interface RoomPanelView {
   readonly members: readonly { readonly id: string; readonly character: number }[];
 }
 
-/** Escala da miniatura do personagem sobre o quadro de 48 px. */
-const PREVIEW_SCALE = 2;
+/** Miniatura em escala de arte; o zoom do painel amplia junto com o resto. */
+const PREVIEW_SCALE = 1;
 const COPIED_FEEDBACK_MS = 1500;
+/** Espessura do contorno na cor do slot que marca o dono do personagem. */
+const OWNER_OUTLINE = 1;
+const OWNER_OUTLINE_MINE = 2;
 
 export class RoomPanel {
   private readonly root: HTMLElement;
@@ -57,7 +60,13 @@ export class RoomPanel {
       preview.style.backgroundSize = `${FOLHA_PERSONAGEM.larguraFrame * FOLHA_PERSONAGEM.colunas * PREVIEW_SCALE}px auto`;
       const label = document.createElement("span");
       label.className = "roster-label";
-      card.append(preview, label);
+      const crown = document.createElement("img");
+      crown.className = "roster-host";
+      crown.src = "/ui-coroa.png";
+      crown.alt = "anfitriao";
+      crown.title = "anfitriao";
+      crown.hidden = true;
+      card.append(crown, preview, label);
       card.addEventListener("click", () => actions.onPick(character));
       this.cards.push(card);
       grid.append(card);
@@ -72,7 +81,10 @@ export class RoomPanel {
     this.start.className = "room-start";
     this.start.addEventListener("click", () => actions.onStart());
 
-    this.root.append(title, this.copy, grid, this.status, this.start);
+    const box = document.createElement("div");
+    box.className = "ui-panel";
+    box.append(title, this.copy, grid, this.status, this.start);
+    this.root.append(box);
     host.append(this.root);
   }
 
@@ -88,7 +100,12 @@ export class RoomPanel {
       const mine = owner?.id === view.localId;
       card.disabled = owner !== undefined && !mine;
       card.classList.toggle("is-mine", mine);
-      card.style.borderColor = owner === undefined ? "" : corCss(corDoSlot(owner.slot));
+      card.style.outline =
+        owner === undefined ? "" : `${mine ? OWNER_OUTLINE_MINE : OWNER_OUTLINE}px solid ${corCss(corDoSlot(owner.slot))}`;
+      const crown = card.querySelector<HTMLElement>(".roster-host");
+      if (crown !== null) {
+        crown.hidden = owner?.id !== view.hostId;
+      }
       const label = card.querySelector(".roster-label");
       if (label !== null) {
         label.textContent = owner === undefined ? "livre" : mine ? "voce" : `J${owner.slot + 1}`;

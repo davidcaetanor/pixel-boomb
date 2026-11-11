@@ -16,7 +16,7 @@ import {
   type MatchState,
 } from "@pixelboom/shared";
 import { KeyboardSource } from "../../input/keyboard-source.js";
-import { roundResult } from "../hud/messages.js";
+import { comemora, roundResult } from "../hud/messages.js";
 import { TimerHud } from "../hud/timer.js";
 import { ArenaView } from "../views/arena-view.js";
 import { BombView } from "../views/bomb-view.js";
@@ -93,7 +93,7 @@ export class MatchScene extends Phaser.Scene {
     const anterior = this.previous.players[0] ?? atual;
     if (atual !== undefined && anterior !== undefined) {
       const alpha = interpolationAlpha(this.loop);
-      this.playerView.render(anterior, atual, alpha, deltaMs / MS_PER_SECOND);
+      this.playerView.render(anterior, atual, alpha, deltaMs / MS_PER_SECOND, comemora(this.state, atual.id));
     }
     const banner =
       this.state.phase === MatchPhase.Finished

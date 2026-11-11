@@ -23,7 +23,8 @@ import { predictionFor, type LocalPrediction } from "../../net/prediction.js";
 import { activeRoom } from "../../net/room-client.js";
 import { readSnapshot, type Lobby, type MatchSnapshot, type RemoteState } from "../../net/snapshot.js";
 import { RoomPanel } from "../../ui/room-panel.js";
-import { onlineBanner, roundLabel } from "../hud/messages.js";
+import { comemora, onlineBanner, roundLabel } from "../hud/messages.js";
+import { paraFonteHud, textoHud } from "../hud/pixel-text.js";
 import { Scoreboard } from "../hud/scoreboard.js";
 import { SelfMarker } from "../hud/self-marker.js";
 import { TimerHud } from "../hud/timer.js";
@@ -54,7 +55,7 @@ export class OnlineScene extends Phaser.Scene {
   private keyboard!: KeyboardSource;
   private timer!: TimerHud;
   private scoreboard!: Scoreboard;
-  private status!: Phaser.GameObjects.Text;
+  private status!: Phaser.GameObjects.BitmapText;
   private readonly buffer = new SnapshotBuffer();
   private readonly loop: FixedLoopState = createFixedLoop();
   private readonly drawnOthers = new Map<string, Player>();
@@ -86,15 +87,7 @@ export class OnlineScene extends Phaser.Scene {
     this.keyboard = new KeyboardSource();
     this.timer = new TimerHud(this);
     this.scoreboard = new Scoreboard(this);
-    this.status = this.add
-      .text(8, 4, `SALA ${room.roomId}`, {
-        fontFamily: "monospace",
-        fontSize: "12px",
-        color: "#f4ecd8",
-        stroke: "#14121c",
-        strokeThickness: 3,
-      })
-      .setDepth(200);
+    this.status = textoHud(this, 8, 4, `SALA ${room.roomId}`).setDepth(200);
 
     const onState = (state: unknown): void => this.receive(state as RemoteState);
     room.onStateChange(onState);
@@ -153,7 +146,7 @@ export class OnlineScene extends Phaser.Scene {
       return;
     }
     if (activeRoom() !== this.room) {
-      this.status.setText("desconectado, recarregue a pagina");
+      this.status.setText(paraFonteHud("desconectado. recarregue a pagina"));
       return;
     }
     const snapshot = this.latest;
@@ -191,11 +184,11 @@ export class OnlineScene extends Phaser.Scene {
       if (player.id === localId) {
         const frames = this.prediction.frames;
         const current = frames === null ? player : { ...frames.current, alive: player.alive };
-        view.render(frames?.previous ?? player, current, interpolationAlpha(this.loop), dt);
+        view.render(frames?.previous ?? player, current, interpolationAlpha(this.loop), dt, comemora(state, player.id));
         continue;
       }
       const sampled = this.buffer.sample(player.id, now) ?? player;
-      view.render(this.drawnOthers.get(player.id) ?? sampled, sampled, 1, dt);
+      view.render(this.drawnOthers.get(player.id) ?? sampled, sampled, 1, dt, comemora(state, player.id));
       this.drawnOthers.set(player.id, sampled);
     }
 
